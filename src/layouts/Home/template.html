@@ -1,0 +1,21 @@
+<div>
+    <Banner />
+    <div class="home">
+        <div class="description">Click Buttons to begin EASI score calculation.</div>
+        <div class="tabs">
+            <div
+                class="tab"
+                :class="{'active': tab.isSeclected}"
+                v-for="tab in tabs"
+                :key="tab.name"
+                :style="{'border-left': `2px solid ${tab.color}`}"
+                @click="activeTab=`${tab.id}`; selectTab(tab.id)"
+            >
+                <div class="text">{{tab.name}}</div>
+            </div>
+        </div>
+        <keep-alive>
+            <component :is="activeTab"></component>
+        </keep-alive>
+    </div>
+</div>
