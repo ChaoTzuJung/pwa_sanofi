@@ -8,8 +8,8 @@ import generateGrids from 'utils/generateGrids';
 export default {
   name: 'Grid4',
   components: {
-    Modal,
     Info,
+    Modal,
     Carousel3d,
     Slide,
   },

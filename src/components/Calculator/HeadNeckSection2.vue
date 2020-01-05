@@ -1,11 +1,10 @@
 <script>
 import { mapState } from 'vuex';
-import GridOne from 'components/Common/Grid.vue';
 import Accordion from 'components/Common/Accordion.vue';
-// import GridOne from 'components/Calculator/SubComponents/Grid.vue';
-// import GridTwo from 'components/Calculator/SubComponents/Grid2.vue';
-// import GridThree from 'components/Calculator/SubComponents/Grid3.vue';
-// import GridFour from 'components/Calculator/SubComponents/Grid4.vue';
+import Erythema from 'components/Calculator/SubComponents/Erythema.vue';
+import EdemaPapulation from 'components/Calculator/SubComponents/EdemaPapulation.vue';
+import Excoriation from 'components/Calculator/SubComponents/Excoriation.vue';
+import Lichenification from 'components/Calculator/SubComponents/Lichenification.vue';
 import Button from 'components/Common/Button.vue';
 import generateGrids from 'utils/generateGrids';
 
@@ -17,10 +16,10 @@ export default {
   name: 'HeadNeckSection2',
   components: {
     Accordion,
-    GridOne,
-    // GridTwo,
-    // GridThree,
-    // GridFour,
+    Erythema,
+    EdemaPapulation,
+    Excoriation,
+    Lichenification,
     Button,
   },
   data() {
@@ -34,15 +33,15 @@ export default {
           name: 'Erythema',
           id: '0',
           isSeclected: true,
-          component: 'GridOne',
+          component: 'Erythema',
           score: 0,
         },
-        EdemaPapulation: {
+        'Edema / papulation': {
           num: 2,
           name: 'Edema / papulation',
           id: '1',
           isSeclected: false,
-          component: 'GridTwo',
+          component: 'EdemaPapulation',
           score: 0,
         },
         Excoriation: {
@@ -50,7 +49,7 @@ export default {
           name: 'Excoriation',
           id: '2',
           isSeclected: false,
-          component: 'GridThree',
+          component: 'Excoriation',
           score: 0,
         },
         Lichenification: {
@@ -58,23 +57,19 @@ export default {
           name: 'Lichenification',
           id: '3',
           isSeclected: false,
-          component: 'GridFour',
+          component: 'Lichenification',
           score: 0,
         },
       },
       gridData: [],
-      currentTabComponent: GridOne,
+      currentTabComponent: Erythema,
       symptomName: 'Erythema',
       input: '',
-      erythema: '',
-      edema: '',
-      excoriation: '',
-      lichenification: '',
       accordionOpen: {
-        1: false,
-        2: false,
-        3: false,
-        4: false,
+        Erythema: false,
+        'Edema / papulation': false,
+        Excoriation: false,
+        Lichenification: false,
       },
     };
   },
@@ -83,39 +78,6 @@ export default {
       area: state => state.area,
       body: state => state.body,
     }),
-    // areascore() {
-    //   return this.area.HeadNeck.AreaScore;
-    // },
-    // symptom() {
-    //   const score = [];
-    //   this.levels.forEach((level) => {
-    //     let result;
-    //     switch (level.name) {
-    //       case 'Erythema':
-    //         result = this.area.HeadNeck.SymptomScore.Erythema;
-    //         break;
-    //       case 'Edema / papulation':
-    //         result = this.area.HeadNeck.SymptomScore.EdemaPapulation;
-    //         break;
-    //       case 'Excoriation':
-    //         result = this.area.HeadNeck.SymptomScore.Excoriation;
-    //         break;
-    //       case 'Lichenification':
-    //         result = this.area.HeadNeck.SymptomScore.Lichenification;
-    //         break;
-    //       default:
-    //         result = 0;
-    //     }
-    //     score.push(result);
-    //   });
-    //   return score;
-    // },
-    // tabFinish() {
-    //   const {
-    //     ERYTHEMA, EDEMAPAPULATION, EXCORIATION, LICHENIFICATION,
-    //   } = this.body.HeadNeck.finish;
-    //   return [ERYTHEMA, EDEMAPAPULATION, EXCORIATION, LICHENIFICATION];
-    // },
   },
   watch: {
     selected() {
@@ -219,8 +181,9 @@ export default {
     isInt(n) {
       return typeof n === 'number' && n % 1 === 0;
     },
-    openAccordion(id) {
-      this.accordionOpen[id] = !this.accordionOpen[id];
+    openAccordion(level) {
+      // 點擊 Accordion head 打開 Accordion content
+      this.accordionOpen[level.name] = !this.accordionOpen[level.name];
     },
     // 切換到隔壁的Tab
     SwitchTabToNext(component) {
@@ -233,6 +196,8 @@ export default {
     changeTab(level) {
       this.symptomName = level.name;
       this.currentTabComponent = level.component;
+      // 換資料注入不同圖片跟內文
+      this.gridData = generateGrids(level.name, 'Head & Neck');
       // this.selectTab(level.id);
     },
     changeScore(e) {
@@ -275,15 +240,14 @@ export default {
       <h2>EASI lesion severity atlas</h2>
       <div class="tabs">
           <!-- TODO: 移除desktop :class="{'active': level.isSeclected}" -->
-          <!-- TODO: 移除desktop -->
+          <!-- :class="!accordionOpen[level.num] && 'collapse'" -->
           <div
             class="tab"
-            :class="!accordionOpen[level.num] && 'collapse'"
             v-for="level in Object.values(levels)"
             :key="level.name"
             @click="changeTab(level)"
           >
-            <div class="top" @click="openAccordion(level.num)">
+            <div class="top" @click="openAccordion(level)">
               <!-- TODO: 移除 :class="{'checked': tabFinish[level.num - 1]} -->
               <div class="no">
                 <div>{{level.num}}</div>
@@ -295,31 +259,33 @@ export default {
               </div>
               <svg class="svg-circleplus" viewBox="0 0 100 100">
                 <line x1="22.5" y1="50" x2="77.5" y2="50" stroke-width="7.5"></line>
-                <line x1="50" y1="22.5" x2="50" y2="77.5" stroke-width="7.5"
-                v-if="!accordionOpen[level.num]"></line>
+                <!-- v-if="!accordionOpen[level.num]" -->
+                <line x1="50" y1="22.5" x2="50" y2="77.5" stroke-width="7.5"></line>
               </svg>
             </div>
             <!--for moible grid -->
-            <div class="bottom" v-if="accordionOpen[level.num]">
+            <!-- <div class="bottom" v-if="accordionOpen[level.num]"> -->
+            <div class="bottom">
               <Accordion
                 class="custom-accordion"
                 :checkedValue="levels[symptomName].score"
-                :gridData="gridData"
+                :accordionName="level.name"
+                :open="accordionOpen[level.name]"
                 @onPickAccordion="changeScore"
               />
             </div>
         </div>
       </div>
       <keep-alive>
-          <component
-            class="tab-content"
-            v-bind="{body: 'HeadNeck'}"
-            :is="currentTabComponent"
-            :symptom="symptomName"
-            :gridData="gridData"
-            @changeScore="changeScore"
-          >
-          </component>
+        <component
+          class="tab-content"
+          :symptom="symptomName"
+          :gridData="gridData"
+          :checkedValue="levels[symptomName].score"
+          :is="currentTabComponent"
+          @changeScore="changeScore"
+        >
+        </component>
       </keep-alive>
     </div>
   </div>
@@ -536,13 +502,10 @@ export default {
           justify-content: center;
           flex-direction: column;
           width: 100%;
-          height: 44px;
+          height: auto;
           padding: 0;
           margin-right: 0;
-          margin-bottom: 400px;
           box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-          border-top: 0.5px solid #d8d8d8;
-          border-bottom: 0.5px solid #d8d8d8;
           line-height: 1.5;
           position: relative;
         }
@@ -553,7 +516,9 @@ export default {
           @media screen and (max-width: 769px) {
             align-items: center;
             width: 100vw;
-            padding: 0 20px;
+            padding: 11px 20px;
+            border-top: 0.5px solid #d8d8d8;
+            border-bottom: 0.5px solid #d8d8d8;
           }
 
           & > .no {
@@ -634,10 +599,7 @@ export default {
           display: none;
 
           @media screen and (max-width: 769px) {
-            position: absolute;
-            top: 44px;
             display: block;
-            border: 1px solid red;
           }
         }
       }

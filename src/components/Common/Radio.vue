@@ -14,7 +14,8 @@ export default {
       default: '#bcbc1c',
     },
     value: {
-      type: Number,
+      require: true,
+
     },
     customLabelWidth: {
       type: Boolean,
@@ -55,7 +56,7 @@ export default {
         type="radio"
         :name="name"
         :value="value"
-        :checked="value === checkedValue"
+        :checked="value.toString() === checkedValue.toString()"
         @input="inputHandler"
       >
       <span :class="radioColor"></span>
@@ -69,20 +70,11 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* position: relative; */
-    /* margin-left: 8px;
-    margin-bottom: 12px; */
     font-family: Arial;
     font-size: 14px;
     line-height: 1.57;
     color: #333333;
     width: 90px;
-
-    /* @media screen and (min-width: 769px) {
-      margin-right: 23px;
-      margin-bottom: 0;
-      width: auto;
-    } */
 
     input {
       position: absolute;
@@ -121,7 +113,6 @@ export default {
 
     // ratio 製作
     & > .checkmark {
-      border: 1px solid blue;
       position: absolute;
       top: 0;
       left: 0;

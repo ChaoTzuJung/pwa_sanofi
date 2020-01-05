@@ -26,9 +26,8 @@ export default {
       require: true,
       type: Number,
     },
-    // 父層元件已點擊的值
     checkedValue: {
-      type: Number,
+      type: String,
     },
   },
   data() {

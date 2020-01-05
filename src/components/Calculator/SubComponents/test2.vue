@@ -6,10 +6,10 @@ import Info from 'components/Common/Info.vue';
 import generateGrids from 'utils/generateGrids';
 
 export default {
-  name: 'Grid3',
+  name: 'Grid2',
   components: {
-    Modal,
     Info,
+    Modal,
     Carousel3d,
     Slide,
   },
@@ -34,14 +34,14 @@ export default {
     },
     symptomscore: {
       get() {
-        if (this.area[this.$attrs.body].SymptomScore.Excoriation === '0') {
+        if (this.area[this.$attrs.body].SymptomScore.EdemaPapulation === '0') {
           return this.selected;
         }
-        return this.area[this.$attrs.body].SymptomScore.Excoriation;
+        return this.area[this.$attrs.body].SymptomScore.EdemaPapulation;
       },
       set(val) {
         this.selected = true;
-        this.$store.commit('setSymptomScore', { body: this.$attrs.body, symptom: 'Excoriation', val });
+        this.$store.commit('setSymptomScore', { body: this.$attrs.body, symptom: 'EdemaPapulation', val });
       },
     },
   },
@@ -57,17 +57,17 @@ export default {
     // val: 0, 1, 2, 3
     triggerComputed(gridScore) {
       this.selected = true;
-      this.$store.commit('setSymptomScore', { body: this.$attrs.body, symptom: 'Excoriation', val: gridScore });
+      this.$store.commit('setSymptomScore', { body: this.$attrs.body, symptom: 'EdemaPapulation', val: gridScore });
     },
   },
   watch: {
     selected() {
-      this.$store.commit('setSymptomCompleted', { body: this.$attrs.body, symptom: 'EXCORIATION', completed: true });
+      this.$store.commit('setSymptomCompleted', { body: this.$attrs.body, symptom: 'EDEMAPAPULATION', completed: true });
       this.$store.commit('checkSymptomCompleted', { body: this.$attrs.body });
     },
   },
   created() {
-    this.grids = generateGrids('Excoriation', 'Head & Neck');
+    this.grids = generateGrids('Edema / papulation', 'Head & Neck');
   },
 };
 </script>
@@ -75,7 +75,7 @@ export default {
 <template>
     <div>
         <Modal
-            title="Excoriation"
+            title="EdemaPapulation"
             :imageGroup = "modalImages"
             :infos= "modalInfos"
             :selectId="selectId"
@@ -86,8 +86,8 @@ export default {
             @close="closeModal"
         >
         </Modal>
-        <div class="grid-three desktop">
-            <div class="grid"   :key="grid.name" v-for="grid in grids">
+        <div class="grid-two desktop">
+            <div class="grid" :key="grid.name" v-for="grid in grids">
                 <div class="imgbox">
                     <div
                         class="img"
@@ -112,7 +112,7 @@ export default {
                 </div>
             </div>
         </div>
-        <div class="grid-three mobile">
+        <div class="grid-two mobile">
             <carousel-3d
                 class="grids"
                 :disable3d="true"
@@ -139,7 +139,7 @@ export default {
                             :style="{backgroundImage: 'url(' + grid.image + ')'}"
                             @click="openModal(grid.name)"
                         >
-                          <img class="resize" :src="grid.icon" />
+                            <img class="resize" :src="grid.icon" />
                         </div>
                         <!-- id 與 for 決定check綁定的label與radio -->
                         <div class="select">
@@ -169,7 +169,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
-.grid-three {
+.grid-two {
   display: flex;
   width: 100vw;
   margin-bottom: 20px;
@@ -186,14 +186,14 @@ export default {
 
     @media screen and (min-width: 769px) {
       padding: 20px;
-    }
 
-    &:nth-child(2n) {
-      padding-right: 0;
-    }
+      &:nth-child(2n) {
+        padding-right: 0;
+      }
 
-    &:nth-child(2n + 1) {
-      padding-left: 0;
+      &:nth-child(2n + 1) {
+        padding-left: 0;
+      }
     }
 
     & > .imgbox {
@@ -201,15 +201,6 @@ export default {
       width: 100%;
       height: 100%;
       cursor: pointer;
-
-      & > .resize {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 20px;
-        height: 20px;
-        margin: 20px;
-      }
 
       & > .img {
         width: 100%;

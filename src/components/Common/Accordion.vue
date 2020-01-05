@@ -2,6 +2,7 @@
 import { Carousel3d, Slide } from 'vue-carousel-3d';
 import Info from 'components/Common/Info.vue';
 import Radio from 'components/Common/Radio.vue';
+import generateAccordion from 'utils/generateGrids';
 
 export default {
   name: 'Accordion',
@@ -12,18 +13,22 @@ export default {
     Slide,
   },
   props: {
-    gridData: {
+    accordionName: {
       require: true,
-      type: Array,
+      type: String,
     },
     checkedValue: {
       type: Number,
+    },
+    open: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
     return {
       picked: '', // number
-      checked: false,
+      accordionData: [],
     };
   },
   computed: {
@@ -32,6 +37,9 @@ export default {
     picked() {
       this.picked = parseInt(this.picked, 10);
     },
+  },
+  created() {
+    this.accordionData = generateAccordion(this.accordionName, 'Head & Neck');
   },
   methods: {
     onPickHandler(e) {
@@ -43,7 +51,7 @@ export default {
 </script>
 
 <template>
-  <div class="accordion">
+  <div class="accordion" v-if="open">
     <carousel-3d
       :disable3d="true"
       :space="315"
@@ -59,7 +67,7 @@ export default {
     >
       <slide
           class="carousel-3d-slide option"
-          v-for="(grid, i) in gridData"
+          v-for="(grid, i) in accordionData"
           :key="grid.name"
           :index="i"
       >
@@ -99,10 +107,8 @@ export default {
 .accordion {
   display: flex;
   width: 100vw;
-  margin-bottom: 20px;
 
   & .carousel-3d-container {
-    border: 1px solid blue;
     & > .carousel-3d-slider {
       & > .option {
         background: #fff;
@@ -124,7 +130,6 @@ export default {
           cursor: pointer;
           position: absolute;
           top: 0;
-          border: 1px solid green;
 
           & > .img {
             width: 100%;
@@ -132,7 +137,6 @@ export default {
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
-            border: 1px solid black;
 
             & > .resize-icon {
               position: absolute;
@@ -149,96 +153,13 @@ export default {
             align-items: center;
             position: relative;
             margin-top: 10px;
-            border: 1px solid purple;
+            height: 20px;
+            cursor: auto;
 
-            & > .container {
-              display: block;
+            & > .custom-radio {
               position: relative;
-              padding: 0;
-              margin: 0;
-              height: 20px;
               width: 20px;
-              cursor: pointer;
-
-              & > input {
-                position: absolute;
-                opacity: 0;
-                cursor: pointer;
-                height: 0;
-                width: 0;
-
-                // 當點擊時的顏色
-                &:checked ~ .checkmark {
-                  background-color: #bcbc1c;
-                }
-
-                // 當點擊時的勾勾顯示
-                &:checked ~ .checkmark:after {
-                  display: block;
-                }
-
-                &:checked ~ .checkmark.customColor {
-                  background-color: #525ca3;
-                }
-
-                &:checked ~ .checkmark.customColor:after {
-                  display: block;
-                }
-              }
-
-              // ratio 製作
-              & > .checkmark {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 20px;
-                width: 20px;
-                background-color: #ffffff;
-                border: 2px solid #bcbc1c;
-                border-radius: 50%;
-
-                // 當點擊ratio時的勾勾製作
-                &:after {
-                  content: '';
-                  position: absolute;
-                  display: none;
-                  left: 6px;
-                  top: -1px;
-                  width: 6px;
-                  height: 12px;
-                  border: solid white;
-                  border-width: 0 1px 1px 0;
-                  -webkit-transform: rotate(45deg);
-                  -ms-transform: rotate(45deg);
-                  transform: rotate(45deg);
-                }
-              }
-
-              & > .checkmark.customColor {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 20px;
-                width: 20px;
-                background-color: #ffffff;
-                border: 2px solid #525ca3;
-                border-radius: 50%;
-
-                &:after {
-                  content: '';
-                  position: absolute;
-                  display: none;
-                  left: 6px;
-                  top: -1px;
-                  width: 6px;
-                  height: 12px;
-                  border: solid white;
-                  border-width: 0 1px 1px 0;
-                  -webkit-transform: rotate(45deg);
-                  -ms-transform: rotate(45deg);
-                  transform: rotate(45deg);
-                }
-              }
+              height: 20px;
             }
 
             & > .check-score {
@@ -247,8 +168,6 @@ export default {
               font-weight: 300;
               line-height: 1.33;
               color: #333333;
-              line-height: 25px;
-              height: 20px;
             }
           }
         }

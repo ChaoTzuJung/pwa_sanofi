@@ -16,6 +16,9 @@ export default {
       require: true,
       type: Array,
     },
+    checkedValue: {
+      type: Number,
+    },
   },
   data() {
     return {
@@ -31,11 +34,6 @@ export default {
         this.$emit('changeScore', value);
         this.score = value;
       },
-    },
-  },
-  watch: {
-    score() {
-      this.score = parseInt(this.score, 10);
     },
   },
   methods: {
