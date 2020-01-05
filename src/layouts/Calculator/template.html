@@ -2,12 +2,13 @@
     <div class="title">Calculator</div>
     <div class="description">Determine the severity of atopic dermatitis in each of the four body regions.</div>
     <div class="tabs desktop">
-        <!-- TODO: 移除 :class active -->
+        <!-- @click="switchTab(tab.component); selectTab(tab.abbreviation)" -->
         <div
-            v-for="(tab,index) in tabs"
+            v-for="(tab,index) in Object.values(tabs)"
             :key="tab.name"
             class="tab"
-            @click="switchTab(tab.component); selectTab(tab.abbreviation)"
+            :class="{'active': tab.component === currentTabComponent}"
+            @click="changeTab(tab)"
         >
             <div class="tab-area">
                 <div class="no">
@@ -17,8 +18,7 @@
                 </div>
                 <div class="wordings">
                     <div class="text">{{tab.name}}</div>
-                    <!-- <div class="score">score: {{bodyscore[tab.id - 1].toFixed(1)}}</div> -->
-                    <div class="score">score: 0</div>
+                    <div class="score">score: {{tab.score}}</div>
                 </div>
             </div>
             <!-- <div v-if="valid(tab)" class="valid-text">*Required fields.</div> -->
@@ -41,8 +41,7 @@
                 v-for="(tab,index) in tabs"
                 :key="tab.name"
             >
-            <!-- TODO: 移除 :class active -->
-                <div class="tab-container">
+                <div clas="tab-container" :class="{'active': tab.component === currentTabComponent}">
                     <div class="tab-area"  @click="switchTab(tab.component); selectTab(tab.abbreviation)">
                         <!-- TODO: 移除 :class="{'checked': canAccessToResult[tab.id - 1]}" -->
                         <div class="no">
@@ -53,8 +52,7 @@
                         </div>
                         <div class="wordings">
                             <div class="text">{{tab.name}}</div>
-                            <!-- <div class="score">score: {{bodyscore[tab.id - 1].toFixed(1)}}</div> -->
-                            <div class="score">score: 0</div>
+                            <div class="score">score: {{tab.score}}</div>
                         </div>
                     </div>
                     <!-- <div v-if="valid(tab)" class="valid-text">*Required fields.</div> -->
@@ -84,7 +82,8 @@
                 goToNextSlide: goToNextSlide,
                 goToFirstSlide: goToFirstSlide
             }"
-            :is="'HeadNeckSection2'"
+            :is="currentTabComponent"
+            @changeBodyScore="changeBodyScore"
         >
         </component>
     </keep-alive>

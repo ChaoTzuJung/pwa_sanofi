@@ -31,15 +31,10 @@
     // for pc
     & > .tabs {
         display: flex;
+        height: 80px;
         padding: 0 20px;
-        margin: 0;
         margin-top: 40px;
-        height: 86px;
-    
-        @media screen and (min-width: 769px) {
-            height: 80px;
-            margin-bottom: 40px;
-        }
+        margin-bottom: 40px;
 
         & > .tab {
             display: flex;
@@ -131,6 +126,7 @@
 
     // for mobile
     & > .tabs.mobile {
+        border: 1px solid #000;
         margin-top: 0;
         margin-bottom: 40px;
         width: 100vw;
@@ -141,8 +137,6 @@
             padding: 0 0 0 20px;
 
             & .swiper-wrapper {
-                // 無法使用？
-                border: 2px solid blue !important;
 
                 & > .swiper-slide {
                     // 沒寫會變預設 100%

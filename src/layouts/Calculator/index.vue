@@ -3,19 +3,19 @@ import { mapState } from 'vuex';
 import { Carousel3d, Slide } from 'vue-carousel-3d';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
 
-import HeadNeckSection2 from 'components/Calculator/HeadNeckSection2.vue';
-// import UpperExtremitiesSection from 'components/UpperExtremitiesSection.vue';
-// import TrunkSection from 'components/TrunkSection.vue';
-// import LowerExtremitiesSection from 'components/LowerExtremitiesSection.vue';
+import HeadNeckSection from 'components/Calculator/HeadNeckSection.vue';
+import UpperExtremitiesSection from 'components/Calculator/UpperExtremitiesSection.vue';
+import TrunkSection from 'components/Calculator/TrunkSection.vue';
+import LowerExtremitiesSection from 'components/Calculator/LowerExtremitiesSection.vue';
 // import ResultSection from 'components/ResultSection.vue';
 
 export default {
   name: 'CalculatorContainer',
   components: {
-    HeadNeckSection2,
-    // UpperExtremitiesSection,
-    // TrunkSection,
-    // LowerExtremitiesSection,
+    HeadNeckSection,
+    UpperExtremitiesSection,
+    TrunkSection,
+    LowerExtremitiesSection,
     // ResultSection,
     Carousel3d,
     Slide,
@@ -24,32 +24,36 @@ export default {
   },
   data() {
     return {
-      tabs: [
-        {
+      tabs: {
+        HeadNeckSection: {
           name: 'Head & Neck',
           id: '1',
           component: 'HeadNeckSection',
           abbreviation: 'HeadNeck',
+          score: 0,
         },
-        {
+        UpperExtremitiesSection: {
           name: 'Upper extremities',
           id: '2',
           component: 'UpperExtremitiesSection',
           abbreviation: 'UpperExtremities',
+          score: 0,
         },
-        {
+        TrunkSection: {
           name: 'Trunk',
           id: '3',
           component: 'TrunkSection',
           abbreviation: 'Trunk',
+          score: 0,
         },
-        {
+        LowerExtremitiesSection: {
           name: 'Lower extremities',
           id: '4',
           component: 'LowerExtremitiesSection',
           abbreviation: 'LowerExtremities',
+          score: 0,
         },
-      ],
+      },
       swiperOption: {
         freeMode: true,
         slidesPerView: 'auto',
@@ -64,6 +68,11 @@ export default {
           },
         },
       },
+      headNeck: 0,
+      upperExtremities: 0,
+      trunk: 0,
+      lowerExtremities: 0,
+      currentTabComponent: 'HeadNeckSection',
     };
   },
   computed: {
@@ -73,6 +82,19 @@ export default {
       // body: state => state.body,
       patient: state => state.patient,
     }),
+    // bodyPoint: {
+    //   get() {
+    //     result = Area
+    //       * (parseInt(Erythema, 10)
+    //       + parseInt(EdemaPapulation, 10)
+    //       + parseInt(Excoriation, 10)
+    //       + parseInt(Lichenification, 10))
+    //       * 0.1;
+    //   },
+    //   set() {
+
+    //   },
+    // },
     // bodyscore() {
     //   const score = [];
     //   this.tabs.forEach((tab) => {
@@ -210,9 +232,9 @@ export default {
   },
   methods: {
     // 讓 activeTab 改變 (Head/UpperExtremities/Trunk/...)，下面畫面動態渲染
-    switchTab(component) {
-      this.$store.commit('changeTab', { sectionName: component });
-    },
+    // switchTab(component) {
+    //   this.$store.commit('changeTab', { sectionName: component });
+    // },
     // valid(tab) {
     //   return (!this.body[tab.abbreviation].areaIsCompleted
     //   || !this.body[tab.abbreviation].allSymptomIsCompleted)
@@ -246,11 +268,18 @@ export default {
       //   tab.isSelected = this.body[tab.abbreviation].isSelect;
       // });
     },
+    changeTab(tab) {
+      this.currentTabComponent = tab.component;
+    },
     goToNextSlide() {
       this.$refs.mySwiper.swiper.slideNext();
     },
     goToFirstSlide() {
       this.$refs.mySwiper.swiper.slideTo(0);
+    },
+    changeBodyScore(e) {
+      console.log('bodyscore', e);
+      this.tabs[this.currentTabComponent].score = parseFloat(e, 10).toFixed(1);
     },
   },
 };

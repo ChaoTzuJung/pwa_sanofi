@@ -13,7 +13,7 @@ const headFrontImage = `${IMG_PATH}/asset/pic/2019-10-14-07-12-09-ddf8b1091ccd6d
 const headBackImage = `${IMG_PATH}/asset/pic/2019-10-14-07-12-58-f2d16df8e16ec159d87a410d81b5f2d3.png`;
 
 export default {
-  name: 'HeadNeckSection',
+  name: 'UpperExtremitiesSection',
   components: {
     Accordion,
     Erythema,
@@ -32,6 +32,7 @@ export default {
           num: 1,
           name: 'Erythema',
           id: '0',
+          isActive: true,
           component: 'Erythema',
           score: 0,
         },
@@ -39,6 +40,7 @@ export default {
           num: 2,
           name: 'Edema / papulation',
           id: '1',
+          isActive: false,
           component: 'EdemaPapulation',
           score: 0,
         },
@@ -46,6 +48,7 @@ export default {
           num: 3,
           name: 'Excoriation',
           id: '2',
+          isActive: false,
           component: 'Excoriation',
           score: 0,
         },
@@ -53,6 +56,7 @@ export default {
           num: 4,
           name: 'Lichenification',
           id: '3',
+          isActive: false,
           component: 'Lichenification',
           score: 0,
         },
@@ -160,6 +164,7 @@ export default {
       this.$attrs.goToNextSlide();
     },
     changeTab(tabItem) {
+      tabItem.isActive = true;
       this.symptomName = tabItem.name;
       this.currentTabComponent = tabItem.component;
       // 換資料注入不同圖片跟內文
@@ -205,7 +210,6 @@ export default {
     <div class="tab-section">
       <h2>EASI lesion severity atlas</h2>
       <div class="tabs">
-        <!-- :class="!accordionOpen[tabItem.name] && 'collapse'" -->
         <div
           class="tab"
           :class="{'active': tabItem.component === currentTabComponent}"

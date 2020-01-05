@@ -1,12 +1,12 @@
 <script>
 import { mapState } from 'vuex';
+import GridOne from 'components/Common/Grid.vue';
 import Accordion from 'components/Common/Accordion.vue';
-import Erythema from 'components/Calculator/SubComponents/Erythema.vue';
-import EdemaPapulation from 'components/Calculator/SubComponents/EdemaPapulation.vue';
-import Excoriation from 'components/Calculator/SubComponents/Excoriation.vue';
-import Lichenification from 'components/Calculator/SubComponents/Lichenification.vue';
+// import GridOne from 'components/Calculator/SubComponents/Grid.vue';
+// import GridTwo from 'components/Calculator/SubComponents/Grid2.vue';
+// import GridThree from 'components/Calculator/SubComponents/Grid3.vue';
+// import GridFour from 'components/Calculator/SubComponents/Grid4.vue';
 import Button from 'components/Common/Button.vue';
-import generateGrids from 'utils/generateGrids';
 
 const IMG_PATH = 'https://s3-ap-northeast-1.amazonaws.com/sanofi.surveycake.com';
 const headFrontImage = `${IMG_PATH}/asset/pic/2019-10-14-07-12-09-ddf8b1091ccd6d88136fad03400f0f1c.png`;
@@ -16,10 +16,10 @@ export default {
   name: 'HeadNeckSection2',
   components: {
     Accordion,
-    Erythema,
-    EdemaPapulation,
-    Excoriation,
-    Lichenification,
+    GridOne,
+    // GridTwo,
+    // GridThree,
+    // GridFour,
     Button,
   },
   data() {
@@ -27,49 +27,27 @@ export default {
       selected: false,
       headFrontImage,
       headBackImage,
-      levels: {
-        Erythema: {
-          num: 1,
-          name: 'Erythema',
-          id: '0',
-          isSeclected: true,
-          component: 'Erythema',
-          score: 0,
+      levels: [
+        {
+          num: 1, name: 'Erythema', id: '0', isSeclected: true, component: 'GridOne',
         },
-        'Edema / papulation': {
-          num: 2,
-          name: 'Edema / papulation',
-          id: '1',
-          isSeclected: false,
-          component: 'EdemaPapulation',
-          score: 0,
+        {
+          num: 2, name: 'Edema / papulation', id: '1', isSeclected: false, component: 'GridTwo',
         },
-        Excoriation: {
-          num: 3,
-          name: 'Excoriation',
-          id: '2',
-          isSeclected: false,
-          component: 'Excoriation',
-          score: 0,
+        {
+          num: 3, name: 'Excoriation', id: '2', isSeclected: false, component: 'GridThree',
         },
-        Lichenification: {
-          num: 4,
-          name: 'Lichenification',
-          id: '3',
-          isSeclected: false,
-          component: 'Lichenification',
-          score: 0,
+        {
+          num: 4, name: 'Lichenification', id: '3', isSeclected: false, component: 'GridFour',
         },
-      },
-      gridData: [],
-      currentTabComponent: Erythema,
-      symptomName: 'Erythema',
+      ],
+      activeTab: Accordion,
       input: '',
       accordionOpen: {
-        Erythema: false,
-        'Edema / papulation': false,
-        Excoriation: false,
-        Lichenification: false,
+        1: false,
+        2: false,
+        3: false,
+        4: false,
       },
     };
   },
@@ -78,6 +56,39 @@ export default {
       area: state => state.area,
       body: state => state.body,
     }),
+    // areascore() {
+    //   return this.area.HeadNeck.AreaScore;
+    // },
+    // symptom() {
+    //   const score = [];
+    //   this.levels.forEach((level) => {
+    //     let result;
+    //     switch (level.name) {
+    //       case 'Erythema':
+    //         result = this.area.HeadNeck.SymptomScore.Erythema;
+    //         break;
+    //       case 'Edema / papulation':
+    //         result = this.area.HeadNeck.SymptomScore.EdemaPapulation;
+    //         break;
+    //       case 'Excoriation':
+    //         result = this.area.HeadNeck.SymptomScore.Excoriation;
+    //         break;
+    //       case 'Lichenification':
+    //         result = this.area.HeadNeck.SymptomScore.Lichenification;
+    //         break;
+    //       default:
+    //         result = 0;
+    //     }
+    //     score.push(result);
+    //   });
+    //   return score;
+    // },
+    // tabFinish() {
+    //   const {
+    //     ERYTHEMA, EDEMAPAPULATION, EXCORIATION, LICHENIFICATION,
+    //   } = this.body.HeadNeck.finish;
+    //   return [ERYTHEMA, EDEMAPAPULATION, EXCORIATION, LICHENIFICATION];
+    // },
   },
   watch: {
     selected() {
@@ -162,9 +173,6 @@ export default {
       }
     },
   },
-  created() {
-    this.gridData = generateGrids('Erythema', 'Head & Neck');
-  },
   activated() {
     window.scrollTo(0, 0);
   },
@@ -181,9 +189,8 @@ export default {
     isInt(n) {
       return typeof n === 'number' && n % 1 === 0;
     },
-    openAccordion(level) {
-      // 點擊 Accordion head 打開 Accordion content
-      this.accordionOpen[level.name] = !this.accordionOpen[level.name];
+    openAccordion(id) {
+      this.accordionOpen[id] = !this.accordionOpen[id];
     },
     // 切換到隔壁的Tab
     SwitchTabToNext(component) {
@@ -192,16 +199,6 @@ export default {
     },
     goToNextSlide() {
       this.$attrs.goToNextSlide();
-    },
-    changeTab(level) {
-      this.symptomName = level.name;
-      this.currentTabComponent = level.component;
-      // 換資料注入不同圖片跟內文
-      this.gridData = generateGrids(level.name, 'Head & Neck');
-      // this.selectTab(level.id);
-    },
-    changeScore(e) {
-      this.levels[this.symptomName].score = parseInt(e, 10);
     },
   },
 };
@@ -236,18 +233,16 @@ export default {
       </div>
       <div class="additional">*Estimate the percentage involvement of this body region.</div>
     </div>
-    <div class="tab-section">
-      <h2>EASI lesion severity atlas</h2>
-      <div class="tabs">
-          <!-- TODO: 移除desktop :class="{'active': level.isSeclected}" -->
-          <!-- :class="!accordionOpen[level.num] && 'collapse'" -->
+    <div class="tab-section mobile">
+        <h2>EASI lesion severity atlas</h2>
+        <div class="accordions">
           <div
-            class="tab"
-            v-for="level in Object.values(levels)"
             :key="level.name"
-            @click="changeTab(level)"
+            v-for="level in levels"
+            class="accordion"
+            :style="!accordionOpen[level.num] && {margin: '0 0 20px 0'}"
           >
-            <div class="top" @click="openAccordion(level)">
+            <div class="top" @click="openAccordion(level.num)">
               <!-- TODO: 移除 :class="{'checked': tabFinish[level.num - 1]} -->
               <div class="no">
                 <div>{{level.num}}</div>
@@ -255,37 +250,43 @@ export default {
               <div class="wordings">
                 <!-- TODO: 移除 <div class="text">{{level.name}}:
                 {{`${symptom[level.id]}.0`}}</div> -->
-                <div class="text">{{level.name}}: {{level.score}}.0</div>
+                <div class="text">{{level.name}}: 0</div>
               </div>
-              <svg class="svg-circleplus" viewBox="0 0 100 100">
+              <svg class="svg-circleplus mobile" viewBox="0 0 100 100">
                 <line x1="22.5" y1="50" x2="77.5" y2="50" stroke-width="7.5"></line>
-                <!-- v-if="!accordionOpen[level.num]" -->
-                <line x1="50" y1="22.5" x2="50" y2="77.5" stroke-width="7.5"></line>
+                <line x1="50" y1="22.5" x2="50" y2="77.5" stroke-width="7.5"
+                v-if="!accordionOpen[level.num]"></line>
               </svg>
             </div>
-            <!--for moible grid -->
-            <!-- <div class="bottom" v-if="accordionOpen[level.num]"> -->
-            <div class="bottom">
-              <Accordion
-                class="custom-accordion"
-                :checkedValue="levels[symptomName].score"
-                :accordionName="level.name"
-                :open="accordionOpen[level.name]"
-                @onPickAccordion="changeScore"
-              />
+
+            <div class="bottom" v-if="accordionOpen[level.num]">
+              <component v-bind="{body: 'HeadNeck'}" :is="level.component"></component>
             </div>
+          </div>
+        </div>
+    </div>
+    <div class="tab-section desktop">
+      <h2>EASI lesion severity atlas</h2>
+      <div class="tabs">
+        <div
+          :key="level.name"
+          v-for="level in levels"
+          class="tab"
+          :class="{'active': level.isSeclected}"
+          @click="activeTab=`${level.component}`; selectTab(level.id)"
+        >
+        <!-- TODO: 移除 :class="{'checked': tabFinish[level.num - 1]}" -->
+          <div class="no">
+            <!-- <div :class="{'ball': tabFinish[level.num - 1]}">{{level.num}}</div> -->
+          </div>
+          <div class="wordings">
+            <!-- <div class="text">{{level.name}}: {{`${symptom[level.id]}.0`}}</div> -->
+            <div class="text">{{level.name}}: 0</div>
+          </div>
         </div>
       </div>
       <keep-alive>
-        <component
-          class="tab-content"
-          :symptom="symptomName"
-          :gridData="gridData"
-          :checkedValue="levels[symptomName].score"
-          :is="currentTabComponent"
-          @changeScore="changeScore"
-        >
-        </component>
+          <component v-bind="{body: 'HeadNeck'}" :is="activeTab"></component>
       </keep-alive>
     </div>
   </div>
@@ -477,12 +478,6 @@ export default {
       display: flex;
       margin-top: 40px;
 
-      @media screen and (max-width: 769px) {
-        display: block;
-        margin-top: 0px;
-      }
-
-
       & > .tab {
         display: flex;
         width: 224px;
@@ -498,115 +493,57 @@ export default {
         font-size: 16px;
         cursor: pointer;
 
-        @media screen and (max-width: 769px) {
-          justify-content: center;
-          flex-direction: column;
-          width: 100%;
-          height: auto;
-          padding: 0;
-          margin-right: 0;
-          box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-          line-height: 1.5;
-          position: relative;
-        }
+        & > .no {
+          width: 20px;
+          height: 20px;
+          margin-right: 5px;
+          border-radius: 50%;
+          font-family: Arial;
+          font-size: 11.7px;
+          line-height: 18px;
+          text-align: center;
+          border: solid 1px rgba(0, 0, 0, 0.15);
+          color: rgba(0, 0, 0, 0.5);
 
-        & > .top {
-          display: flex;
-
-          @media screen and (max-width: 769px) {
-            align-items: center;
-            width: 100vw;
-            padding: 11px 20px;
-            border-top: 0.5px solid #d8d8d8;
-            border-bottom: 0.5px solid #d8d8d8;
-          }
-
-          & > .no {
-            width: 20px;
-            height: 20px;
-            margin-right: 5px;
-            border-radius: 50%;
-            font-family: Arial;
-            font-size: 11.7px;
-            line-height: 18px;
-            text-align: center;
-            border: solid 1px rgba(0, 0, 0, 0.15);
-            color: rgba(0, 0, 0, 0.5);
-
-            @media screen and (max-width: 769px) {
-              border: solid 1px #525ca3;
-              color: #525ca3;
-            }
-
-            & > .ball {
-              display: none;
-            }
-          }
-
-          & > .checked {
-            background-color: #bcbc1c;
-            border: 2px solid #bcbc1c;
-          }
-
-          & .checked::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            height: 12px;
-            border: solid white;
-            border-width: 0 1px 1px 0;
-            -webkit-transform: rotate(45deg) translate(-3px, 1px);
-            -ms-transform: rotate(45deg) translate(-3px, 1px);
-            transform: rotate(45deg) translate(-3px, 1px);
-          }
-
-          & > .wordings {
-            & > .text {
-              @media screen and (max-width: 769px) {
-                color: #000000;
-                font-weight: bold;
-                font-size: 15px;
-              }
-            }
-
-            & > .score {
-              font-family: Arial;
-              font-size: 16px;
-              font-weight: normal;
-              line-height: 1.5;
-              color: rgba(0, 0, 0, 0.5);
-            }
-          }
-
-          & > .svg-circleplus {
+          & > .ball {
             display: none;
-
-            @media screen and (max-width: 769px) {
-              display: block;
-              height: 20px;
-              stroke: #000;
-              margin-left: auto;
-              cursor: pointer;
-            }
-          }
-
-          &:last-child {
-            margin-right: 0;
           }
         }
 
-        & > .bottom {
-          display: none;
+        & > .checked {
+          background-color: #bcbc1c;
+          border: 2px solid #bcbc1c;
+        }
 
-          @media screen and (max-width: 769px) {
-            display: block;
+        & .checked::after {
+          content: '';
+          position: absolute;
+          width: 6px;
+          height: 12px;
+          border: solid white;
+          border-width: 0 1px 1px 0;
+          -webkit-transform: rotate(45deg) translate(-3px, 1px);
+          -ms-transform: rotate(45deg) translate(-3px, 1px);
+          transform: rotate(45deg) translate(-3px, 1px);
+        }
+
+        & > .wordings {
+          & > .text {
+            // margin-left: 28px;
+          }
+
+          & > .score {
+            font-family: Arial;
+            font-size: 16px;
+            font-weight: normal;
+            line-height: 1.5;
+            color: rgba(0, 0, 0, 0.5);
           }
         }
-      }
 
-      // 開關 Accordion
-      & > .collapse {
-        margin-bottom: 20px;
+        &:last-child {
+          margin-right: 0;
+        }
       }
 
       & > .active {
@@ -657,19 +594,82 @@ export default {
       }
     }
 
-    & > .tab-content {
-      @media screen and (max-width: 769px) {
-        display: none;
+    // mobile
+    & > .accordions {
+      & > .accordion {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: 44px;
+        border-top: 0.5px solid #d8d8d8;
+        border-bottom: 0.5px solid #d8d8d8;
+        background: #fff;
+        line-height: 1.5;
+        font-family: Arial;
+        font-size: 16px;
+        margin-bottom: 400px;
+        position: relative;
+        cursor: pointer;
+
+        & > .top {
+          display: flex;
+          align-items: center;
+          width: 100vw;
+          padding: 0 20px;
+
+          & > .no {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            border-radius: 50%;
+            font-family: Arial;
+            font-size: 11.7px;
+            line-height: 18px;
+            text-align: center;
+            border: solid 1px #525ca3;
+            color: #525ca3;
+
+            & > .ball {
+              display: none;
+            }
+          }
+
+          & > .svg-circleplus {
+            height: 20px;
+            stroke: #000;
+            margin-left: auto;
+            cursor: pointer;
+          }
+        }
+
+        & > .bottom {
+          position: absolute;
+          top: 44px;
+          display: block;
+        }
       }
-
     }
-
 
     & > .button {
       margin: 20px 0 80px 0;
     }
   }
 
+  & > .desktop {
+    display: none;
 
+    @media screen and (min-width: 769px) {
+      display: block;
+    }
+  }
+
+  & > .mobile {
+    display: block;
+
+    @media screen and (min-width: 769px) {
+      display: none;
+    }
+  }
 }
 </style>
