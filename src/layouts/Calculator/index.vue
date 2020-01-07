@@ -3,20 +3,22 @@ import { mapState } from 'vuex';
 import { Carousel3d, Slide } from 'vue-carousel-3d';
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
 
+import Tab from 'components/Common/Tab.vue';
 import HeadNeckSection from 'components/Calculator/HeadNeckSection.vue';
 import UpperExtremitiesSection from 'components/Calculator/UpperExtremitiesSection.vue';
 import TrunkSection from 'components/Calculator/TrunkSection.vue';
 import LowerExtremitiesSection from 'components/Calculator/LowerExtremitiesSection.vue';
-// import ResultSection from 'components/ResultSection.vue';
+import ResultSection from 'components/Calculator/ResultSection.vue';
 
 export default {
   name: 'CalculatorContainer',
   components: {
+    Tab,
     HeadNeckSection,
     UpperExtremitiesSection,
     TrunkSection,
     LowerExtremitiesSection,
-    // ResultSection,
+    ResultSection,
     Carousel3d,
     Slide,
     swiper,
@@ -30,7 +32,7 @@ export default {
           id: '1',
           component: 'HeadNeckSection',
           abbreviation: 'HeadNeck',
-          score: 0,
+          score: 0.0,
         },
         UpperExtremitiesSection: {
           name: 'Upper extremities',
@@ -52,6 +54,13 @@ export default {
           component: 'LowerExtremitiesSection',
           abbreviation: 'LowerExtremities',
           score: 0,
+        },
+        ResultSection: {
+          name: 'Result',
+          id: '5',
+          component: 'ResultSection',
+          abbreviation: 'result',
+          score: null,
         },
       },
       swiperOption: {

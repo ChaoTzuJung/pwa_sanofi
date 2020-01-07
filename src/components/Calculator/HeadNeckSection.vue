@@ -1,5 +1,6 @@
 <script>
 import { mapState } from 'vuex';
+
 import Accordion from 'components/Common/Accordion.vue';
 import Erythema from 'components/Calculator/SubComponents/Erythema.vue';
 import EdemaPapulation from 'components/Calculator/SubComponents/EdemaPapulation.vue';
@@ -205,7 +206,6 @@ export default {
     <div class="tab-section">
       <h2>EASI lesion severity atlas</h2>
       <div class="tabs">
-        <!-- :class="!accordionOpen[tabItem.name] && 'collapse'" -->
         <div
           class="tab"
           :class="{'active': tabItem.component === currentTabComponent}"
@@ -231,8 +231,6 @@ export default {
               />
             </svg>
           </div>
-          <!--for moible grid -->
-          <!-- <div class="bottom" v-if="accordionOpen[tabItem.num]"> -->
           <div class="bottom">
             <Accordion
               class="custom-accordion"

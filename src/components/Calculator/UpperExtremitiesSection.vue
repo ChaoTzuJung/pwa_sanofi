@@ -9,8 +9,8 @@ import Button from 'components/Common/Button.vue';
 import generateGrids from 'utils/generateGrids';
 
 const IMG_PATH = 'https://s3-ap-northeast-1.amazonaws.com/sanofi.surveycake.com';
-const headFrontImage = `${IMG_PATH}/asset/pic/2019-10-14-07-12-09-ddf8b1091ccd6d88136fad03400f0f1c.png`;
-const headBackImage = `${IMG_PATH}/asset/pic/2019-10-14-07-12-58-f2d16df8e16ec159d87a410d81b5f2d3.png`;
+const upperFrontImage = `${IMG_PATH}/asset/pic/2019-10-14-07-13-31-91694fb306dfe06308ed707ec264c58c.png`;
+const upperBackImage = `${IMG_PATH}/asset/pic/2019-10-14-07-13-58-479ede1e836b2334a7e8cbec6111ec4c.png`;
 
 export default {
   name: 'UpperExtremitiesSection',
@@ -25,8 +25,8 @@ export default {
   data() {
     return {
       selected: false,
-      headFrontImage,
-      headBackImage,
+      upperFrontImage,
+      upperBackImage,
       tabData: {
         Erythema: {
           num: 1,
@@ -183,11 +183,11 @@ export default {
     <div class="graph-section">
       <div class="front">
         <div class="title">Front</div>
-        <img :src="headFrontImage" />
+        <img :src="upperFrontImage" />
       </div>
       <div class="back">
         <div class="title">Back</div>
-        <img :src="headBackImage" />
+        <img :src="upperBackImage" />
       </div>
     </div>
     <div class="involvement-section">
