@@ -130,6 +130,7 @@ export default {
       if (this.input > 100 || this.input < 0) {
         this.input = '';
       }
+      this.$store.commit('patient/SAVE_AREASCORE_PERCENT', { type: 'Trunk', payload: this.input });
     },
     summary() {
       this.$emit('changeBodyScore', this.summary);

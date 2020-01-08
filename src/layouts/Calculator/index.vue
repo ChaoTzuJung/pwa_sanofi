@@ -287,7 +287,6 @@ export default {
       this.$refs.mySwiper.swiper.slideTo(0);
     },
     changeBodyScore(e) {
-      console.log('bodyscore', e);
       this.tabs[this.currentTabComponent].score = parseFloat(e, 10).toFixed(1);
     },
   },

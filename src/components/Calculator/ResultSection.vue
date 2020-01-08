@@ -1,11 +1,9 @@
 <script>
-// import { mapState, mapGetters } from 'vuex';
-// import VueSlider from 'vue-slider-component';
-import 'vue-slider-component/theme/default.css';
+import { mapState, mapGetters } from 'vuex';
 import Button from 'components/Common/Button.vue';
-// import Radio from 'components/Common/Radio.vue';
-// import ModalTable from '@/components/ModalTable.vue';
-// import Slider from '@/components/Slider.vue';
+import Radio from 'components/Common/Radio.vue';
+import Modal from 'components/Common/Modal.vue';
+import Slider from 'components/Common/Slider.vue';
 
 const IMG_PATH = 'https://s3-ap-northeast-1.amazonaws.com/sanofi.surveycake.com';
 const Question = `${IMG_PATH}/asset/pic/2019-10-14-06-39-08-541a7391941d878f29d1dc7f071cee7f.png`;
@@ -14,10 +12,9 @@ export default {
   name: 'ResultSection',
   components: {
     Button,
-    // Radio,
-    // VueSlider,
-    // ModalTable,
-    // Slider,
+    Radio,
+    Modal,
+    Slider,
   },
   props: {
     headneckScore: {
@@ -42,23 +39,12 @@ export default {
       radioValid: false,
       Question,
       IGA: '',
-      ages: [
-        { text: '0 - 5' },
-        { text: '6 - 11' },
-        { text: '12 - 17' },
-        { text: '18 - 30' },
-        { text: '30 - 40' },
-        { text: '40 - 50' },
-        { text: '50 - 60' },
-        { text: '60+' },
-        { text: 'unknown' },
-      ],
-      igas: [
-        { text: '0 - Clear' },
-        { text: '1 - Almost clear' },
-        { text: '2 - Mild' },
-        { text: '3 - Moderate' },
-        { text: '4 - Severe' },
+      igaData: [
+        { text: '0 - Clear', value: 0 },
+        { text: '1 - Almost clear', value: 1 },
+        { text: '2 - Mild', value: 2 },
+        { text: '3 - Moderate', value: 3 },
+        { text: '4 - Severe', value: 4 },
       ],
       marks: {
         0: {
@@ -111,18 +97,53 @@ export default {
           paddingBottom: '26px',
         },
       },
-      showTableModal: false,
+      showModal: false,
+      tableData: [
+        {
+          score: 'Score',
+          description: 'Morphological Description',
+        },
+        {
+          score: '0 – Clear',
+          description: 'No inflammatory signs of atopic dermatitis (no erythema, no induration/papulation, no lichenification, no oozing/crusting). Post-inflammatory hyperpigmentation and/or hypopigmentation may be present.',
+        },
+        {
+          score: '1 – Almost clear',
+          description: 'Barely perceptible erythema, barely perceptible induration/papulation, and/or minimal lichenification. No oozing or crusting.',
+        },
+        {
+          score: '2 – Mild',
+          description: 'Slight but definite erythema (pink), slight but definite induration/papulation, and/or slight but definite lichenification. No oozing or crusting.',
+        },
+        {
+          score: '3 – Moderate',
+          description: 'Clearly perceptible erythema (dull red), clearly perceptible induration/papulation, and/or clearly perceptible lichenification. Oozing and crusting may be present.',
+        },
+        {
+          score: '4 – Severe',
+          description: 'Marked erythema (deep or bright red), marked induration/papulation, and/or marked lichenification. Disease is widespread in extent. Oozing or crusting may be present.',
+        },
+      ],
     };
   },
+  // watch: {
+  //   BSA() {
+  //     this.BSA = this.AreaSumPercent;
+  //   },
+  // },
   computed: {
-    // ...mapState({
-    //   area: state => state.area,
-    //   body: state => state.body,
-    //   patient: state => state.patient,
-    // }),
-    // // ...mapGetters({
-    //   totalBodyScore: 'totalBodyScore',
-    // }),
+    ...mapState({
+      headNeckAreaPercent: state => state.patient.HeadNeck.area.areaPercent,
+      upperExtremitiesAreaPercent: state => state.patient.UpperExtremities.area.areaPercent,
+      trunkAreaPercent: state => state.patient.Trunk.area.areaPercent,
+      lowerExtremitiesAreaPercent: state => state.patient.LowerExtremities.area.areaPercent,
+    }),
+    ...mapGetters({
+      headNeckAreaPoint: 'patient/headNeckAreaPoint',
+      upperExtremitiesAreaPoint: 'patient/upperExtremitiesAreaPoint',
+      trunkAreaPoint: 'patient/trunkAreaPoint',
+      lowerExtremitiesAreaPoint: 'patient/lowerExtremitiesAreaPoint',
+    }),
     totalBodyScore() {
       return parseFloat(this.headneckScore, 10)
         + parseFloat(this.upperScore, 10)
@@ -180,16 +201,18 @@ export default {
         },
       ];
     },
-    BSA() {
-      // return parseInt(this.patient.BSA, 10).toFixed(0);
-      return 0;
-    },
-    // 在這頁不用Media Query做RWD是因為用display:none會造成IGA要點兩次才會打勾
-    isMobile() {
-      if (window.screen.width < 768 || document.documentElement.clientWidth < 768) {
-        return true;
-      }
-      return false;
+    BSA: {
+      get() {
+        return parseInt((this.headNeckAreaPercent * 0.1)
+        + (this.upperExtremitiesAreaPercent * 0.2)
+        + (this.trunkAreaPercent * 0.3)
+        + (this.lowerExtremitiesAreaPercent * 0.4), 10);
+      },
+      set(value) {
+        // TODO: 發 commit 到 vuex
+        this.$store.commit('patient/SAVE_BSA_PERCENT', value);
+        // this.BSA = value; // Not work
+      },
     },
   },
   activated() {
@@ -218,14 +241,14 @@ export default {
         this.radioValid = true;
       }
     },
-    openModalTable() {
-      this.showTableModal = true;
+    openModal() {
+      this.showModal = true;
     },
-    closeModalTable() {
-      this.showTableModal = false;
+    sliderChangeHandler(newSliderValue) {
+      this.BSA = newSliderValue;
     },
-    sliderHandler(val) {
-      this.$store.commit('savePatientBsaAndIga', { BSA: val, IGA: this.IGA });
+    onPickHandler(e) {
+      this.IGA = e;
     },
   },
 };
@@ -233,12 +256,28 @@ export default {
 
 <template>
   <div class="result-section">
-    <ModalTable
-      title="Investigator Global Assessment scale"
-      :isTableModalOpen="showTableModal"
-      @close="closeModalTable"
-    >
-    </ModalTable>
+    <Modal :open="showModal" @close="(e) => showModal = e">
+      <div slot="modal-content">
+        <div class="modal-title">Investigator Global Assessment scale</div>
+        <div class="modal-content">
+          <div class="modal-text">
+            The IGA score is selected using the descriptors
+            below that best describe the overall appearance
+            of the lesions at a given time point.
+            It is not necessary that all characteristics
+            under Morphological Description be present.
+          </div>
+          <div class="table-container">
+            <table border="0" cellSpacing="0">
+              <tr v-for="row in tableData" :key="row.score">
+                <td>{{row.score}}</td>
+                <td>{{row.description}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </Modal>
     <div class="content-section">
       <div class="result-section">
         <div class="test mobile">
@@ -291,67 +330,20 @@ export default {
       <div class="row" :class="{ 'change-margin': radioValid }">
         <div class="label">
           IGA (Investigator Global Assessment)
-          <img :src="Question" @click="openModalTable" />
+          <img :src="Question" @click="openModal" />
         </div>
         <div class="value">
-          <label for="0 - Clear">
-            <input
-              type="radio"
-              name="radio-group"
-              id="0 - Clear"
-              value="0 - Clear"
-              v-model="IGA"
-            >
-            <span class="checkmark"></span>
-            <span class="radio-text">0 - Clear</span>
-          </label>
-          <label for="1 - Almost clear">
-            <input
-              type="radio"
-              name="radio-group"
-              id="1 - Almost clear"
-              value="1 - Almost clear"
-              v-model="IGA"
-            >
-            <span class="checkmark"></span>
-            <span class="radio-text">1 - Almost clear</span>
-          </label>
-
-          <label for="2 - Mild">
-            <input
-              type="radio"
-              name="radio-group"
-              id="2 - Mild"
-              value="2 - Mild"
-              v-model="IGA"
-            >
-            <span class="checkmark"></span>
-            <span class="radio-text">2 - Mild</span>
-          </label>
-
-          <label for="3 - Moderate">
-            <input
-              type="radio"
-              name="radio-group"
-              id="3 - Moderate"
-              value="3 - Moderate"
-              v-model="IGA"
-            >
-            <span class="checkmark"></span>
-            <span class="radio-text">3 - Moderate</span>
-          </label>
-
-          <label for="4 - Severe">
-            <input
-              type="radio"
-              name="radio-group"
-              id="4 - Severe"
-              value="4 - Severe"
-              v-model="IGA"
-            >
-            <span class="checkmark"></span>
-            <span class="radio-text">4 - Severe</span>
-          </label>
+          <Radio
+            v-for="item in igaData"
+            :key="item.text"
+            :name="item.text"
+            :label="item.text"
+            color="#525ca3"
+            :value="item.text"
+            :checkedValue="IGA"
+            @input="onPickHandler"
+          >
+          </Radio>
         </div>
         <div class="error error2" v-if="radioValid">*Required fields.</div>
       </div>
@@ -359,7 +351,7 @@ export default {
         <Slider
           label="BSA (Body Surface Area)"
           :BSA="BSA"
-          @onChangeSlider="sliderHandler"
+          @onChangeSlider="sliderChangeHandler"
         />
       </div>
     </div>
@@ -835,6 +827,127 @@ export default {
             }
         }
     }
+}
+
+.modal-title {
+  padding: 40px 20px 10px 20px;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+  color: #000000;
+  text-align: center;
+
+  @media screen and (min-width: 769px) {
+    padding: 20px 0;
+  }
+}
+
+.modal-content {
+  width: 100%;
+  padding: 0 0 40px 0;
+  margin: 0 auto;
+
+  @media screen and (min-width: 769px) {
+    width: 784px;
+  }
+
+  & > .modal-text {
+    width: 100%;
+    margin-bottom: 20px;
+    font-family: Arial;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #000000;
+
+    @media screen and (min-width: 769px) {
+      font-size: 16px;
+      margin-bottom: 36px;
+    }
+  }
+
+  & > .table-container {
+      height: 100%;
+      overflow-y: hidden;
+
+    @media screen and (max-width: 769px) {
+      height: 60vh;
+      overflow-y: scroll;
+    }
+
+    & > table {
+      border: 1px solid #eeeeee;
+      width: 100%;
+
+      & > tr {
+        & > td {
+          color: #000000;
+          font-family: Arial;
+          font-size: 14px;
+          line-height: 1.57;
+          height: auto;
+
+          @media screen and (min-width: 769px) {
+            height: 90px;
+          }
+
+          // 第一列 td(直)
+          &:nth-child(1) {
+            padding-left: 20px;
+            padding-top: 12px;
+            display: flex;
+            width: auto;
+
+            @media screen and (min-width: 769px) {
+              align-items: center;
+              width: 183px;
+              padding-top: 0;
+            }
+          }
+
+          // 第二列 td(直)
+          &:nth-child(2) {
+            padding: 12px 16px;
+            width: 60%;
+
+            @media screen and (min-width: 769px) {
+              width: 601px;
+              padding: 12px 0;
+            }
+          }
+        }
+
+        &:nth-child(2n + 1) {
+          background: #eeeeee;
+        }
+
+        // 第一個 tr(橫)
+        &:first-child {
+          background: #525ca3;
+
+          & > td {
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 14px;
+            line-height: 1.57;
+            height: 45px;
+
+            // 第一排橫 第一個td score
+            &:first-child {
+              padding-left: 16px;
+
+              @media screen and (min-width: 769px) {
+                padding-left: 20px;
+              }
+            }
+            // 第二排橫 第一個td Morphological Description
+            &:last-child {
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .desktop {
