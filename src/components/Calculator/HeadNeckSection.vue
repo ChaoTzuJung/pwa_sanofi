@@ -2,11 +2,12 @@
 import { mapState } from 'vuex';
 
 import Accordion from 'components/Common/Accordion.vue';
+import Button from 'components/Common/Button.vue';
+import Carousel from 'components/Common/Carousel.vue';
 import Erythema from 'components/Calculator/SubComponents/Erythema.vue';
 import EdemaPapulation from 'components/Calculator/SubComponents/EdemaPapulation.vue';
 import Excoriation from 'components/Calculator/SubComponents/Excoriation.vue';
 import Lichenification from 'components/Calculator/SubComponents/Lichenification.vue';
-import Button from 'components/Common/Button.vue';
 import generateGrids from 'utils/generateGrids';
 
 const IMG_PATH = 'https://s3-ap-northeast-1.amazonaws.com/sanofi.surveycake.com';
@@ -17,11 +18,12 @@ export default {
   name: 'HeadNeckSection',
   components: {
     Accordion,
+    Button,
+    Carousel,
     Erythema,
     EdemaPapulation,
     Excoriation,
     Lichenification,
-    Button,
   },
   data() {
     return {
@@ -68,6 +70,7 @@ export default {
         Excoriation: false,
         Lichenification: false,
       },
+      showGridModal: false,
     };
   },
   computed: {
@@ -177,6 +180,11 @@ export default {
 
 <template>
   <div class="head-neck-section">
+    <Modal :open="showGridModal" @close="(e) => showGridModal = e">
+      <div slot="modal-content">
+        <Carousel :data="gridData"></Carousel>
+      </div>
+    </Modal>
     <div class="graph-section">
       <div class="front">
         <div class="title">Front</div>

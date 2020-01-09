@@ -19,19 +19,6 @@ export default {
       type: Number,
     },
   },
-  data() {
-    return {
-
-    };
-  },
-  computed: {
-
-  },
-  watch: {
-  },
-  created() {
-
-  },
   methods: {
     changeScore(e) {
       this.$emit('changeScore', e);
