@@ -48,6 +48,9 @@ export default {
       this.picked = e; // 0 - 3
       this.$emit('onPick', this.picked);
     },
+    openModal() {
+      this.$store.commit('calculator/OPEN_SYMPTOMS_MODAL', { symptom: this.name, status: true });
+    },
   },
 };
 </script>
@@ -58,7 +61,7 @@ export default {
       <div
         class="img"
         :style="{backgroundImage: 'url(' + image + ')'}"
-        @click="openModal(name)"
+        @click="openModal"
       >
         <img class="resize-icon" :src="icon" />
       </div>

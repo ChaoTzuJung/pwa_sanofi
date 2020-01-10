@@ -4,6 +4,7 @@ import { mapState } from 'vuex';
 import Accordion from 'components/Common/Accordion.vue';
 import Button from 'components/Common/Button.vue';
 import Carousel from 'components/Common/Carousel.vue';
+import Modal from 'components/Common/Modal.vue';
 import Erythema from 'components/Calculator/SubComponents/Erythema.vue';
 import EdemaPapulation from 'components/Calculator/SubComponents/EdemaPapulation.vue';
 import Excoriation from 'components/Calculator/SubComponents/Excoriation.vue';
@@ -19,6 +20,7 @@ export default {
     Accordion,
     Button,
     Carousel,
+    Modal,
     Erythema,
     EdemaPapulation,
     Excoriation,
@@ -69,13 +71,11 @@ export default {
         Excoriation: false,
         Lichenification: false,
       },
-      showGridModal: false,
     };
   },
   computed: {
     ...mapState({
-      area: state => state.area,
-      body: state => state.body,
+      calculator: state => state.calculator,
     }),
     areaPoint: {
       get() {
@@ -173,13 +173,17 @@ export default {
     changeScore(e) {
       this.tabData[this.symptomName].score = parseInt(e, 10);
     },
+    closeModal(e) {
+      console.log('參數', e);
+      this.$store.commit('calculator/OPEN_SYMPTOMS_MODAL', { symptom: 'HeadNeck', status: false });
+    },
   },
 };
 </script>
 
 <template>
   <div class="head-neck-section">
-    <Modal :open="showGridModal" @close="(e) => showGridModal = e">
+    <Modal :open="calculator.isModalOpen" @close="closeModal">
       <div slot="modal-content">
         <Carousel :data="gridData"></Carousel>
       </div>
