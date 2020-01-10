@@ -1,0 +1,139 @@
+.body-image {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 60px 0;
+
+    @media screen and (max-width: 769px) {
+      flex-direction: column;
+      margin: 30px 0 40px 0;
+    }
+
+    & > .front {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      align-items: center;
+      padding: 0 60px;
+      margin: 0 30px;
+
+      & > .title {
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 1.4;
+        letter-spacing: 0.5px;
+        color: #000000;
+      }
+
+      & > img {
+        margin-top: 40px;
+        margin-bottom: 0;
+
+        @media screen and (max-width: 769px) {
+          margin-top: 20px;
+          margin-bottom: 25px;
+        }
+      }
+
+      & > .score {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        top: 70px;
+        position: absolute;
+
+        & > .percentage {
+          display: inline-block;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          text-align: center;
+          line-height: 60px;
+          font-family: Arial;
+          font-size: 20px;
+          font-weight: bold;
+          color: #000000;
+        }
+
+        & > .percentage.scoreA {
+          background: #f7ee7f;
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        & > .percentage.scoreB {
+          background: #f0dd00;
+          transform: translateY(-50%);
+        }
+      }
+    }
+
+    & > .back {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      align-items: center;
+      padding: 0 60px;
+      margin: 0 30px;
+
+      & > .title {
+        width: 51px;
+        height: 28px;
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 1.4;
+        letter-spacing: 0.5px;
+        color: #000000;
+      }
+
+      & > img {
+        margin-top: 40px;
+      }
+
+      & > .score {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 70px;
+        width: 100%;
+
+        & > .percentage {
+          display: inline-block;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          text-align: center;
+          line-height: 60px;
+          font-family: Arial;
+          font-size: 20px;
+          font-weight: bold;
+          color: #000000;
+        }
+
+        & > .percentage.scoreA {
+          background: #f7ee7f;
+          box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        & > .percentage.scoreB {
+          background: #f0dd00;
+          transform: translateY(-50%);
+        }
+      }
+    }
+  }
+
+    .desktop {
+        @media screen and (max-width: 769px) {
+            display: none;
+        }
+    }
+
+    .mobile {
+        display: none;
+
+    @media screen and (max-width: 769px) {
+        display: block;
+    }
+}

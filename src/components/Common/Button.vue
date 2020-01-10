@@ -86,8 +86,6 @@ export default {
     }
 
     & div {
-        // 這個字體底下會留白
-        padding-top: 5px;
         line-height: 50px;
         font-weight: 500;
 

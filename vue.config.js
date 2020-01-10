@@ -27,7 +27,8 @@ module.exports = {
   chainWebpack: (config) => {
     config.resolve.alias
       .set('components', resolve('src/components'))
-      .set('utils', resolve('src/utils'));
+      .set('utils', resolve('src/utils'))
+      .set('assets', resolve('src/assets'));
     config.resolve.extensions.merge(['.js', '.vue', '.json']);
   },
 };

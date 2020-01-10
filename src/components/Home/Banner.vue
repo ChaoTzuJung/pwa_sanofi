@@ -1,8 +1,6 @@
 <script>
 import Button from 'components/Common/Button.vue';
-
-const IMG_PATH = 'https://s3-ap-northeast-1.amazonaws.com/sanofi.surveycake.com';
-const Banner = `${IMG_PATH}/asset/pic/2019-10-14-06-55-47-a93525992c75a11cee708cc7089c8db3.png`;
+import Banner from 'assets/images/banner@3x.png';
 
 export default {
   name: 'Banner',
@@ -51,7 +49,7 @@ export default {
 .banner {
   width: 100%;
   height: 100%;
-  min-height: 245px;
+  min-height: 293px;
   overflow: hidden;
   background-image: linear-gradient(
     to left,
@@ -66,7 +64,7 @@ export default {
   & > .imgbox {
     width: 100%;
     height: 100%;
-    min-height: 245px;
+    min-height: 293px;
     position: relative;
 
     @media screen and (min-width: 769px) {
@@ -106,29 +104,20 @@ export default {
 
       & > .top {
         display: flex;
+        align-items: baseline;
         color: #ffffff;
         margin-bottom: 5px;
 
-        @media screen and (min-width: 769px) {
-          margin-bottom: 20px;
-        }
-
         & > .bold {
           font-weight: 700;
-          font-size: 32px;
-
-          @media screen and (min-width: 769px) {
-            font-size: 40px;
-          }
+          line-height: 48px;
+          letter-spacing: 1px;
         }
 
         & > .medium {
           font-weight: 500;
-          font-size: 32px;
-
-          @media screen and (min-width: 769px) {
-            font-size: 40px;
-          }
+          line-height: 48px;
+          letter-spacing: 1px;
         }
       }
 
@@ -142,14 +131,15 @@ export default {
         }
 
         & > h2 {
-          width: 100%;
+          width: 320px;
           color: #ffffff;
-          font-weight: 300;
-          font-size: 16px;
+          line-height: 1.5;
+          letter-spacing: 0.4px;
 
-          @media screen and (min-width: 769px) {
-            width: 500px;
-            font-size: 20px;
+          @media screen and (max-width: 769px) {
+            width: 100%;
+            flex-direction: row;
+            justify-content: space-between;
           }
         }
 
@@ -184,7 +174,7 @@ export default {
               font-size: 14px;
               line-height: 1.57;
 
-              @media screen and (min-width: 769px) {
+              @media screen and (max-width: 769px) {
                 display: block;
               }
             }
