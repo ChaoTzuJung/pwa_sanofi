@@ -8,9 +8,8 @@ import Lichenification from 'components/Calculator/SubComponents/Lichenification
 import Button from 'components/Common/Button.vue';
 import generateGrids from 'utils/generateGrids';
 
-const IMG_PATH = 'https://s3-ap-northeast-1.amazonaws.com/sanofi.surveycake.com';
-const lowerFrontImage = `${IMG_PATH}/asset/pic/2019-10-14-07-15-16-ff95f0416e8fce7cf11d03f85c0e05e2.png`;
-const lowerBackImage = `${IMG_PATH}/asset/pic/2019-10-14-07-15-43-ee2c23b7bb403c3798e4e75b6ad24ea7.png`;
+import LegFrontImage from 'assets/images/leg-front.svg';
+import LegBackImage from 'assets/images/leg-back.svg';
 
 export default {
   name: 'LowerExtremitiesSection',
@@ -25,8 +24,8 @@ export default {
   data() {
     return {
       selected: false,
-      lowerFrontImage,
-      lowerBackImage,
+      LegFrontImage,
+      LegBackImage,
       tabData: {
         Erythema: {
           num: 1,
@@ -184,11 +183,11 @@ export default {
     <div class="graph-section">
       <div class="front">
         <div class="title">Front</div>
-        <img :src="lowerFrontImage" />
+        <img :src="LegFrontImage" />
       </div>
       <div class="back">
         <div class="title">Back</div>
-        <img :src="lowerBackImage" />
+        <img :src="LegBackImage" />
       </div>
     </div>
     <div class="involvement-section">
