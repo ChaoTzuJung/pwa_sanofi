@@ -46,6 +46,9 @@ export default {
       this.picked = e; // 0 - 3
       this.$emit('onPickAccordion', this.picked);
     },
+    openModal(name) {
+      this.$store.commit('calculator/OPEN_SYMPTOMS_MODAL', { severity: name, status: true });
+    },
   },
 };
 </script>

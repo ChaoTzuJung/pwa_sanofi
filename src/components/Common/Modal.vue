@@ -1,23 +1,16 @@
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'Modal',
-  props: {
-    open: {
-      type: Boolean,
-      default: false,
-    },
+  computed: {
+    ...mapState({
+      show: state => state.calculator.isModalOpen,
+    }),
   },
-  data() {
-    return {
-      show: false,
-    };
-  },
-  watch: {
-    open() {
-      this.show = this.open;
-    },
-    show() {
-      this.$emit('close', this.show);
+  methods: {
+    closeModal() {
+      this.$store.commit('calculator/OPEN_SYMPTOMS_MODAL', { severity: '', status: false });
     },
   },
 };
@@ -29,7 +22,7 @@ export default {
           <div class="mask">
             <div class="modal-wrapper">
               <div class="modal-container">
-                <div class="close" @click="show = false"></div>
+                <div class="close" @click="closeModal"></div>
                 <slot name="modal-content"></slot>
               </div>
             </div>

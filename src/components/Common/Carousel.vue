@@ -12,39 +12,23 @@ export default {
       require: true,
       type: Array,
     },
+    current: {
+      require: false,
+      default: 'None',
+      type: String,
+    },
   },
   data() {
     return {
       title: this.data[0].label.split('_')[0], // Erythema
-      selectId: '', // 'None'
-      addBorder: 'border: solid 4px #bcbc1c',
       images: this.imageGroup,
       screenWidth: window.screen.width,
       screenHeight: window.screen.height - 60,
-      pickedImage: '',
+      pickedImage: this.current,
       positionY: 0,
     };
   },
   computed: {
-    symptomscore: {
-      get() {
-        if (this.area[this.body].SymptomScore[this.title] === '0') {
-          return this.selected;
-        }
-        return this.area[this.body].SymptomScore[this.title];
-      },
-      set(val) {
-        this.selected = true;
-        this.setSymptom({ name: this.title, val });
-        this.setSymptomScore({ parent: this.body, name: this.title, val });
-      },
-    },
-    modalTitle() {
-      if (this.title === 'EdemaPapulation') {
-        return 'Edema / papulation';
-      }
-      return this.title;
-    },
     pickedScore() {
       let score;
       switch (this.pickedImage) {
@@ -61,7 +45,7 @@ export default {
           score = 3;
           break;
         default:
-          return null;
+          score = 0;
       }
       return score;
     },
@@ -69,32 +53,10 @@ export default {
       return this.$refs.swiper.swiper;
     },
     haveRelativeImage() {
-      return this.grids[this.pickedScore].relative.length > 1;
+      return this.data[this.pickedScore].relative.length > 1;
     },
   },
   watch: {
-    selected() {
-      if (this.title === 'Erythema') {
-        this.$store.commit('SET_SYMPTOM_ERYTHEMA_COMPLETED', { name: this.body, completed: true });
-      }
-
-      if (this.title === 'EdemaPapulation') {
-        this.$store.commit('SET_SYMPTOM_EDEMAPAPULATION_COMPLETED', { name: this.body, completed: true });
-      }
-
-      if (this.title === 'Excoriation') {
-        this.$store.commit('SET_SYMPTOM_EXCORIATION_COMPLETED', { name: this.body, completed: true });
-      }
-
-      if (this.title === 'Lichenification') {
-        this.$store.commit('SET_SYMPTOM_LICHENIFICATION_COMPLETED', { name: this.body, completed: true });
-      }
-
-      this.$store.commit('CHECK_SYMPTOM_COMPLETED', this.body);
-    },
-    selectId() {
-      this.pickedImage = this.selectId;
-    },
     isModalOpen() {
       this.open = this.isModalOpen;
     },
@@ -124,11 +86,11 @@ export default {
   <div class="carousel">
     <div class="switch">
       <div class="modal-title">
-        {{modalTitle}}
+        {{title}}
         <div class="current-name">{{pickedImage}}: {{pickedScore}}</div>
       </div>
       <div class="tab-menu">
-        <div class="tab" v-for="grid in grids" :key="grid.name" @click="changeTab(grid.name)">
+        <div class="tab" v-for="grid in data" :key="grid.name" @click="changeTab(grid.name)">
           <img :src="grid.image" :class="{'img-picked': pickedImage === grid.name}"/>
           <div class="name" :class="{'name-picked': pickedImage === grid.name}">{{grid.name}}</div>
         </div>
@@ -136,7 +98,7 @@ export default {
     </div>
     <div class="slider">
       <swiper ref="swiper">
-        <swiperSlide v-for="(imgurl, idx) in grids[pickedScore].relative" :key="idx">
+        <swiperSlide v-for="(imgurl, idx) in data[pickedScore].relative" :key="idx">
           <img :src="imgurl" :alt="idx" v-if="imgurl" />
         </swiperSlide>
       </swiper>

@@ -1,6 +1,6 @@
 export default {
-  OPEN_SYMPTOMS_MODAL(state, { symptom, status }) {
-    console.log('symptom', symptom);
+  OPEN_SYMPTOMS_MODAL(state, { severity, status }) {
+    state.currentSeverity = severity;
     state.isModalOpen = status;
   },
 };

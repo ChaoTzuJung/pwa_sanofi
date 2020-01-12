@@ -173,19 +173,15 @@ export default {
     changeScore(e) {
       this.tabData[this.symptomName].score = parseInt(e, 10);
     },
-    closeModal(e) {
-      console.log('參數', e);
-      this.$store.commit('calculator/OPEN_SYMPTOMS_MODAL', { symptom: 'HeadNeck', status: false });
-    },
   },
 };
 </script>
 
 <template>
   <div class="head-neck-section">
-    <Modal :open="calculator.isModalOpen" @close="closeModal">
+    <Modal>
       <div slot="modal-content">
-        <Carousel :data="gridData"></Carousel>
+        <Carousel :current="calculator.currentSeverity" :data="gridData"></Carousel>
       </div>
     </Modal>
     <div class="graph-section">

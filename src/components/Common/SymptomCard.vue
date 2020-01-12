@@ -36,8 +36,6 @@ export default {
       checked: false,
     };
   },
-  computed: {
-  },
   watch: {
     picked() {
       this.picked = parseInt(this.picked, 10);
@@ -49,7 +47,7 @@ export default {
       this.$emit('onPick', this.picked);
     },
     openModal() {
-      this.$store.commit('calculator/OPEN_SYMPTOMS_MODAL', { symptom: this.name, status: true });
+      this.$store.commit('calculator/OPEN_SYMPTOMS_MODAL', { severity: this.name, status: true });
     },
   },
 };
