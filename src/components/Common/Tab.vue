@@ -57,10 +57,8 @@ export default {
       @click="changeTab(tab)"
     >
       <div class="tab-area">
-        <div class="no">
-          <div  class="ball">
-            {{tab.id}}
-          </div>
+        <div class="no" :class="{'checked': tab.complete}">
+          <div class="ball" v-if="!tab.complete">{{tab.id}}</div>
         </div>
         <div class="wordings">
           <div class="text">{{tab.name}}</div>
@@ -86,6 +84,26 @@ export default {
       border: 1px solid red;
   }
 
+  // tab active style
+  & > .active {
+    width: 184px;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+
+    & > .tab-area {
+      & > .no {
+        border: solid 1px #525ca3;
+        color: #525ca3;
+      }
+
+      & > .wordings {
+        & > .text {
+          color: #000000;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
   & > .tab {
     display: flex;
     flex-direction: column;
@@ -109,6 +127,7 @@ export default {
       align-items: flex-start;
 
       & > .no {
+        position: relative;
         width: 20px;
         height: 20px;
         margin-right: 5px;
@@ -125,8 +144,27 @@ export default {
         }
       }
 
+      & > .checked {
+        background-color: #bcbc1c;
+        border: 2px solid #bcbc1c;
+      }
+
+      & .checked::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 6px;
+        height: 12px;
+        border: solid white;
+        border-width: 0 1px 1px 0;
+        -webkit-transform: rotate(45deg) translate(-3px, 1px);
+        -ms-transform: rotate(45deg) translate(-3px, 1px);
+        transform: rotate(45deg) translate(-3px, 1px);
+      }
+
       & > .wordings {
         & > .text {
+          font-size: 15px;
           transform: translateY(-2px);
         }
 
@@ -147,26 +185,6 @@ export default {
       color: #ea5d45;
       position: absolute;
       top: 86px;
-    }
-  }
-
-  // tab active style
-  & > .active {
-    width: 184px;
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
-
-    & > .tab-area {
-      & > .no {
-        border: solid 1px #525ca3;
-        color: #525ca3;
-      }
-
-      & > .wordings {
-        & > .text {
-          color: #000000;
-          font-weight: bold;
-        }
-      }
     }
   }
 

@@ -34,6 +34,7 @@ export default {
           isActive: true,
           component: 'Erythema',
           score: 0,
+          complete: false,
         },
         'Edema / papulation': {
           num: 2,
@@ -42,6 +43,7 @@ export default {
           isActive: false,
           component: 'EdemaPapulation',
           score: 0,
+          complete: false,
         },
         Excoriation: {
           num: 3,
@@ -50,6 +52,7 @@ export default {
           isActive: false,
           component: 'Excoriation',
           score: 0,
+          complete: false,
         },
         Lichenification: {
           num: 4,
@@ -58,6 +61,7 @@ export default {
           isActive: false,
           component: 'Lichenification',
           score: 0,
+          complete: false,
         },
       },
       gridData: [],
@@ -107,6 +111,16 @@ export default {
         console.log('執行', value);
       },
     },
+    checked: {
+      get() {
+        const isEASIFinish = Object.values(this.tabData).every(item => item.complete === true);
+        const isAreaFinsih = parseInt(this.input, 10) || false;
+        return isAreaFinsih && isEASIFinish;
+      },
+      set(value) {
+        console.log(value);
+      },
+    },
   },
   watch: {
     selected() {
@@ -134,6 +148,11 @@ export default {
     },
     summary() {
       this.$emit('changeBodyScore', this.summary);
+    },
+    checked() {
+      if (this.checked) {
+        this.$emit('changeTabStatus', this.checked);
+      }
     },
   },
   created() {
@@ -174,6 +193,7 @@ export default {
     },
     changeScore(e) {
       this.tabData[this.symptomName].score = parseInt(e, 10);
+      this.tabData[this.symptomName].complete = true;
     },
   },
 };
@@ -219,13 +239,10 @@ export default {
           @click="changeTab(tabItem)"
         >
           <div class="top" @click="openAccordion(tabItem)">
-            <!-- TODO: 移除 :class="{'checked': tabFinish[tabItem.num - 1]} -->
-            <div class="no">
-              <div>{{tabItem.num}}</div>
+            <div class="no" :class="{'checked': tabItem.complete}">
+              <div v-if="!tabItem.complete">{{tabItem.num}}</div>
             </div>
             <div class="wordings">
-              <!-- TODO: 移除 <div class="text">{{tabItem.name}}:
-              {{`${symptom[tabItem.id]}.0`}}</div>-->
               <div class="text">{{tabItem.name}}: {{tabItem.score}}.0</div>
             </div>
             <svg class="svg-circleplus" viewBox="0 0 100 100">
@@ -236,8 +253,6 @@ export default {
               />
             </svg>
           </div>
-          <!--for moible grid -->
-          <!-- <div class="bottom" v-if="accordionOpen[tabItem.num]"> -->
           <div class="bottom">
             <Accordion
               class="custom-accordion"
@@ -493,6 +508,7 @@ export default {
           }
 
           & > .no {
+            position: relative;
             width: 20px;
             height: 20px;
             margin-right: 5px;
@@ -522,6 +538,7 @@ export default {
           & .checked::after {
             content: "";
             position: absolute;
+            top: 0;
             width: 6px;
             height: 12px;
             border: solid white;
@@ -576,10 +593,8 @@ export default {
       }
 
       & > .active {
-        @media screen and (min-width: 769px) {
-          width: 224px;
-          box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
-        }
+        width: 224px;
+        box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
 
         & > .no {
           border: solid 1px #525ca3;

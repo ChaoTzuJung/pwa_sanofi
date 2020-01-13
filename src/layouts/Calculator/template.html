@@ -67,7 +67,6 @@
         <!-- :is="currentTabComponent" -->
         <component 
             v-bind="{
-                selectTab: selectTab,
                 goToNextSlide: goToNextSlide,
                 goToFirstSlide: goToFirstSlide
             }"
@@ -77,6 +76,7 @@
             :trunkScore="tabs.TrunkSection.score"
             :lowerScore="tabs.LowerExtremitiesSection.score"
             @changeBodyScore="changeBodyScore"
+            @changeTabStatus="changeTabStatus"
         >
         </component>
     </keep-alive>
