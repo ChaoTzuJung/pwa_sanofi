@@ -86,7 +86,7 @@ export default {
           <div class="radiobox">
             <Radio
               class="custom-radio"
-              :name="grid.name"
+              :name="grid.name + ` - ${accordionName}`"
               :value="grid.score"
               :checkedValue="picked"
               @input="onPickHandler"

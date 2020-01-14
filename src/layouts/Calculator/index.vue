@@ -139,6 +139,9 @@ export default {
     changeTabStatus(status) {
       this.tabs[this.currentTabComponent].complete = status;
     },
+    goToResult(tabName) {
+      this.currentTabComponent = tabName;
+    },
   },
 };
 </script>

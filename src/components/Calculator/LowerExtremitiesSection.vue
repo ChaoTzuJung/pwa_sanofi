@@ -194,6 +194,9 @@ export default {
       this.tabData[this.symptomName].score = parseInt(e, 10);
       this.tabData[this.symptomName].complete = true;
     },
+    goToResult() {
+      this.$emit('goToResult', 'ResultSection');
+    },
   },
 };
 </script>
@@ -271,8 +274,14 @@ export default {
           :checkedValue="tabData[symptomName].score"
           :is="currentTabComponent"
           @changeScore="changeScore"
+          @goToResult="goToResult"
         ></component>
       </keep-alive>
+      <Button
+        class="custom-button"
+        text="Get Results"
+        @click.native="goToResult"
+      />
     </div>
   </div>
 </template>
@@ -595,6 +604,11 @@ export default {
         width: 224px;
         box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
 
+        @media screen and (max-width: 769px) {
+          width: auto;
+          box-shadow: none;
+        }
+
         & > .no {
           border: solid 1px #525ca3;
           color: #525ca3;
@@ -647,6 +661,17 @@ export default {
 
     & > .button {
       margin: 20px 0 80px 0;
+    }
+
+    & > .custom-button {
+        display: none;
+
+        @media screen and (max-width: 769px) {
+          display: block;
+          width: 235px;
+          height: 56px;
+          margin: 20px auto 80px auto;
+        }
     }
   }
 }

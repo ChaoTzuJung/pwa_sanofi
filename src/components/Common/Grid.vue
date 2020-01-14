@@ -1,10 +1,12 @@
 <script>
 /* eslint-disable vue/no-parsing-error */
+import Button from 'components/Common/Button.vue';
 import SymptomCard from 'components/Common/SymptomCard.vue';
 
 export default {
   name: 'Grid',
   components: {
+    Button,
     SymptomCard,
   },
   props: {
@@ -37,6 +39,9 @@ export default {
     },
   },
   methods: {
+    goToResult() {
+      this.$emit('goToResult', 'ResultSection');
+    },
   },
 };
 </script>
@@ -56,6 +61,13 @@ export default {
       @onPick="tabName = $event"
       >
     </SymptomCard>
+    <!-- 桌機版 goToResult -->
+    <Button
+      class="custom-button"
+      v-if="symptom === 'Lichenification'"
+      text="Get Results"
+      @click.native="goToResult"
+    />
   </div>
 </template>
 
@@ -78,6 +90,12 @@ export default {
     &:nth-child(2n + 1) {
       padding-left: 0;
     }
+  }
+
+  & > .custom-button {
+    width: 235px;
+    height: 56px;
+    margin: 20px auto;
   }
 }
 </style>

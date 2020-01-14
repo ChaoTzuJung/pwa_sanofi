@@ -8,6 +8,11 @@ export default {
       require: true,
       type: Object,
     },
+    current: {
+      require: false,
+      type: String,
+      default: 'HeadNeckSection',
+    },
   },
   data() {
     return {
@@ -15,6 +20,12 @@ export default {
     };
   },
   computed: {
+  },
+  watch: {
+    // 針對桌機版 Get result 點擊後，TAB 需要自動切換到 Result Tab
+    current() {
+      this.currentTabComponent = this.current;
+    },
   },
   methods: {
     changeTab(tab) {
@@ -53,7 +64,10 @@ export default {
       v-for="tab in Object.values(tabs)"
       :key="tab.name"
       class="tab"
-      :class="{'active': tab.component === currentTabComponent}"
+      :class="{
+        'active': tab.component === currentTabComponent,
+        'valid': !tab.complete
+      }"
       @click="changeTab(tab)"
     >
       <div class="tab-area">
@@ -65,9 +79,8 @@ export default {
           <div v-if="tab.score !== null" class="score">score: {{tab.score}}</div>
         </div>
       </div>
-      <!-- <div v-if="valid(tab)" class="valid-text">*Required fields.</div> -->
+      <div v-if="!tab.complete" class="valid-text">*Required fields.</div>
     </div>
-    <!-- TODO: 移除 :class="{'active': $store.state.body.Result.isSelect} -->
   </div>
 </template>
 
@@ -81,7 +94,6 @@ export default {
 
   @media screen and (max-width: 769px) {
       display: none;
-      border: 1px solid red;
   }
 
   // tab active style

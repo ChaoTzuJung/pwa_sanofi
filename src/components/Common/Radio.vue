@@ -44,21 +44,18 @@ export default {
 </script>
 
 <template>
-    <label
-      :for="name"
-      class="label"
-      :class="{'labelWidth': customLabelWidth}"
+  <!-- :class="{'labelWidth': customLabelWidth}" -->
+  <label :for="name" class="label">
+    <input
+      type="radio"
+      :name="name"
+      :value="value"
+      :checked="canCheckedRadio"
+      @input="inputHandler"
     >
-      <input
-        type="radio"
-        :name="name"
-        :value="value"
-        :checked="canCheckedRadio"
-        @input="inputHandler"
-      >
-      <span class="checkmark" :style="cssVars"></span>
-      <span v-if="label" class="text">{{label}}</span>
-    </label>
+    <span class="checkmark" :style="cssVars"></span>
+    <span v-if="label" class="text">{{label}}</span>
+  </label>
 </template>
 
 
@@ -81,27 +78,21 @@ export default {
       height: 100%;
       width:  100%;
       z-index: 100;
-      // 抵銷 border
-      margin: 1px;
+      margin: 1px; // 抵銷 border
       cursor: pointer;
 
-      // 當點擊時的顏色
+      // 當點擊時黃底黃邊
       &:checked ~ .checkmark {
         background-color: var(--main-color);
       }
 
-      // 當點擊時的勾勾顯示
+      // 當點擊時的勾勾要顯示
       &:checked ~ .checkmark:after {
         display: block;
       }
     }
 
-    & > .text {
-      margin-right: auto;
-      margin-left: 28px;
-    }
-
-    // ratio 製作
+    // 預設是白底黃邊
     & > .checkmark {
       position: absolute;
       top: 0;
@@ -128,13 +119,18 @@ export default {
         transform: rotate(45deg);
       }
     }
-  }
 
-  .labelWidth {
-    width: 100px;
-
-    @media screen and (min-width: 769px) {
-      width: auto;
+    & > .text {
+      margin-right: auto;
+      margin-left: 28px;
     }
   }
+
+/* .labelWidth {
+  width: 100px;
+
+  @media screen and (min-width: 769px) {
+    width: auto;
+  }
+} */
 </style>

@@ -1,6 +1,5 @@
 <script>
-const IMG_PATH = 'https://s3-ap-northeast-1.amazonaws.com/sanofi.surveycake.com';
-const Info = `${IMG_PATH}/asset/pic/2019-10-14-06-38-50-e306c514c682e25ea941341359f47ee5.png`;
+import Info from 'assets/images/info.svg';
 
 export default {
   name: 'Info',

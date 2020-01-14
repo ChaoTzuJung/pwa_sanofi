@@ -19,35 +19,28 @@ export default {
       type: Number,
     },
   },
-  data() {
-    return {
-
-    };
-  },
-  computed: {
-
-  },
-  watch: {
-  },
-  created() {
-
-  },
   methods: {
     changeScore(e) {
       this.$emit('changeScore', e);
+    },
+    goToResult(e) {
+      this.$emit('goToResult', e);
     },
   },
 };
 </script>
 
 <template>
-  <Grid
-    :symptom="symptom"
-    :gridData="gridData"
-    :checkedValue="checkedValue"
-    :score="checkedValue"
-    @changeScore="changeScore"
-  />
+  <div>
+    <Grid
+      :symptom="symptom"
+      :gridData="gridData"
+      :checkedValue="checkedValue"
+      :score="checkedValue"
+      @changeScore="changeScore"
+      @goToResult="goToResult"
+    />
+  </div>
 </template>
 
 <style scoped lang="scss">

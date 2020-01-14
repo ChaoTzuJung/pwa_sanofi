@@ -596,6 +596,11 @@ export default {
         width: 224px;
         box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
 
+        @media screen and (max-width: 769px) {
+          width: auto;
+          box-shadow: none;
+        }
+
         & > .no {
           border: solid 1px #525ca3;
           color: #525ca3;

@@ -5,8 +5,8 @@ import Radio from 'components/Common/Radio.vue';
 import Modal from 'components/Common/Modal.vue';
 import Slider from 'components/Common/Slider.vue';
 
-const IMG_PATH = 'https://s3-ap-northeast-1.amazonaws.com/sanofi.surveycake.com';
-const Question = `${IMG_PATH}/asset/pic/2019-10-14-06-39-08-541a7391941d878f29d1dc7f071cee7f.png`;
+
+import Question from 'assets/images/question.svg';
 
 export default {
   name: 'ResultSection',
@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      radioValid: false,
+      isValidationFail: false,
       Question,
       IGA: '',
       igaData: [
@@ -97,7 +97,6 @@ export default {
           paddingBottom: '26px',
         },
       },
-      showModal: false,
       tableData: [
         {
           score: 'Score',
@@ -126,11 +125,6 @@ export default {
       ],
     };
   },
-  // watch: {
-  //   BSA() {
-  //     this.BSA = this.AreaSumPercent;
-  //   },
-  // },
   computed: {
     ...mapState({
       headNeckAreaPercent: state => state.patient.HeadNeck.area.areaPercent,
@@ -145,10 +139,11 @@ export default {
       lowerExtremitiesAreaPoint: 'patient/lowerExtremitiesAreaPoint',
     }),
     totalBodyScore() {
-      return parseFloat(this.headneckScore, 10)
+      return (parseFloat(this.headneckScore, 10)
         + parseFloat(this.upperScore, 10)
         + parseFloat(this.trunkScore, 10)
-        + parseFloat(this.lowerScore, 10);
+        + parseFloat(this.lowerScore, 10))
+        .toFixed(1);
     },
     Interpretation() {
       let result;
@@ -219,30 +214,17 @@ export default {
     window.scroll(0, 0);
   },
   methods: {
-    switchTab(component) {
-      this.$store.commit('changeTab', { sectionName: component });
-    },
-    selectTab() {
-      this.$attrs.selectTab('HeadNeck');
-      this.$attrs.goToFirstSlide();
-    },
-    sendResultToStore() {
-      this.$store.commit('setBodyEasiScore', this.totalBodyScore);
-      this.$store.commit('setBodyInterpretationScore', this.Interpretation);
-    },
-    valid(IGA) {
-      if (IGA) {
-        this.radioValid = false;
-        this.sendResultToStore();
-        this.$store.commit('savePatientBsaAndIga', { BSA: this.BSA, IGA: this.IGA });
-        // 產生 uuid後不給上一頁
-        this.$router.push('/patient');
-      } else {
-        this.radioValid = true;
+    goToPatient() {
+      if (!this.IGA) {
+        this.isValidationFail = true;
+        return;
       }
+      this.isValidationFail = false;
+      // TODO: 儲存 Easi(totalBodyScore) 與 Interpretation 與 BSA 與 IGA 到 vuex
+      this.$router.push('/patient');
     },
     openModal() {
-      this.showModal = true;
+      this.$store.commit('calculator/OPEN_SYMPTOMS_MODAL', { severity: 'table', status: true });
     },
     sliderChangeHandler(newSliderValue) {
       this.BSA = newSliderValue;
@@ -250,13 +232,16 @@ export default {
     onPickHandler(e) {
       this.IGA = e;
     },
+    backToHeadNeck() {
+      this.$emit('changeTab', { component: 'HeadNeckSection' });
+    },
   },
 };
 </script>
 
 <template>
   <div class="result-section">
-    <Modal :open="showModal" @close="(e) => showModal = e">
+    <Modal>
       <div slot="modal-content">
         <div class="modal-title">Investigator Global Assessment scale</div>
         <div class="modal-content">
@@ -327,7 +312,7 @@ export default {
       <hr class="mobile">
     </div>
     <div class="slider-section">
-      <div class="row" :class="{ 'change-margin': radioValid }">
+      <div class="row" :class="{ 'change-margin': isValidationFail }">
         <div class="label">
           IGA (Investigator Global Assessment)
           <img :src="Question" @click="openModal" />
@@ -345,7 +330,7 @@ export default {
           >
           </Radio>
         </div>
-        <div class="error error2" v-if="radioValid">*Required fields.</div>
+        <div class="error error2" v-if="isValidationFail">*Required fields.</div>
       </div>
       <div class="row">
         <Slider
@@ -356,10 +341,10 @@ export default {
       </div>
     </div>
     <div class="button-section">
-      <div class="border-button" @click="switchTab('HeadNeckSection');selectTab()">
+      <div class="border-button" @click="backToHeadNeck">
         <a>Back to calculator</a>
       </div>
-      <Button text="Generate the report" :width="235" @click.native="valid(IGA)" />
+      <Button text="Generate the report" :width="235" @click.native="goToPatient" />
     </div>
   </div>
 </template>
