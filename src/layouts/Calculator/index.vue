@@ -26,6 +26,7 @@ export default {
   },
   data() {
     return {
+      canCheckTab: false,
       tabs: {
         HeadNeckSection: {
           name: 'Head & Neck',
@@ -65,7 +66,7 @@ export default {
           component: 'ResultSection',
           abbreviation: 'result',
           score: null,
-          complete: false,
+          complete: true,
         },
       },
       swiperOption: {
@@ -93,38 +94,20 @@ export default {
     ...mapState({
       patient: state => state.patient,
     }),
+    valid() {
+      return tab => !tab.complete && tab.name !== 'Result' && this.canCheckTab;
+    },
+    allTabComplete() {
+      return Object.values(this.tabs).every(item => item.complete === true);
+    },
   },
   methods: {
-    // 讓 activeTab 改變 (Head/UpperExtremities/Trunk/...)，下面畫面動態渲染
-    // switchTab(component) {
-    //   this.$store.commit('changeTab', { sectionName: component });
-    // },
-    // valid(tab) {
-    //   return (!this.body[tab.abbreviation].areaIsCompleted
-    //   || !this.body[tab.abbreviation].allSymptomIsCompleted)
-    //   && this.body[tab.abbreviation].checked;
-    // },
-    checkTab(evt) {
-      evt.stopPropagation();
-      this.$store.commit('checkTab', { check: true });
-      // this.goToResult();
-    },
-    stopCheck() {
-      this.$store.commit('checkTab', { check: false });
-    },
-    // goToResult() {
-    //   if (this.haveCalculatorCompleted) {
-    //     this.selectTab('Result');
-    //     this.$store.commit('changeTab', { sectionName: 'ResultSection' });
-    //     // 讓回上一步調整 area score，回到result頁，分數會自動調整
-    //     const BSA = this.patient.HeadNeck.areaPercent * 0.1
-    //     + this.patient.UpperExtremities.areaPercent * 0.2
-    //     + this.patient.Trunk.areaPercent * 0.3
-    //     + this.patient.LowerExtremities.areaPercent * 0.4;
-    //     this.$store.commit('savePatientBsaAndIga', { BSA, IGA: null });
-    //   }
-    // },
     changeTab(tab) {
+      if (tab.name === 'Result' && !this.allTabComplete) {
+        this.canCheckTab = true;
+        return;
+      }
+
       this.currentTabComponent = tab.component;
     },
     goToNextSlide() {

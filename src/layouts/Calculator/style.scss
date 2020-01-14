@@ -132,6 +132,10 @@
                             margin-top: 8px;
                         }
                     }
+
+                    & > .valid {
+                        border: solid 1px #ea5d45 !important;
+                    }
     
                     & > .active {
                         box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
@@ -150,10 +154,6 @@
                             }
                         }
                     }
-                }
-    
-                & > .valid {
-                    border: solid 1px #ea5d45 !important;
                 }
             }
         }

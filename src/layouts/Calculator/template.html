@@ -37,8 +37,9 @@
     </div> -->
     <Tab
         :tabs="tabs"
-        @changeTab="changeTab"
         :current="currentTabComponent"
+        :canCheckTab="canCheckTab"
+        @changeTab="changeTab"
     >
     </Tab>
     <div class="swiper">
@@ -47,7 +48,13 @@
                 v-for="tab in tabs"
                 :key="tab.name"
             >
-                <div class="tab-container" :class="{'active': tab.component === currentTabComponent}">
+                <div
+                    class="tab-container"
+                    :class="{
+                        'active': tab.component === currentTabComponent,
+                        'valid': valid(tab)
+                    }"
+                >
                     <div
                         class="tab-area"
                         @click="changeTab(tab)"
@@ -60,7 +67,7 @@
                             <div class="score" v-if="tab.score !== null">score: {{tab.score}}</div>
                         </div>
                     </div>
-                    <!-- <div v-if="valid(tab)" class="valid-text">*Required fields.</div> -->
+                    <div v-if="valid(tab)" class="valid-text">*Required fields.</div>
                 </div>
             </swiper-slide>
         </swiper>

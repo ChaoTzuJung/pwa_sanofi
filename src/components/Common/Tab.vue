@@ -17,9 +17,16 @@ export default {
   data() {
     return {
       currentTabComponent: 'HeadNeckSection',
+      canCheckTab: false,
     };
   },
   computed: {
+    valid() {
+      return tab => !tab.complete && tab.name !== 'Result' && this.canCheckTab;
+    },
+    allTabComplete() {
+      return Object.values(this.tabs).every(item => item.complete === true);
+    },
   },
   watch: {
     // 針對桌機版 Get result 點擊後，TAB 需要自動切換到 Result Tab
@@ -29,31 +36,17 @@ export default {
   },
   methods: {
     changeTab(tab) {
+      if (tab.name === 'Result' && !this.allTabComplete) {
+        this.canCheckTab = true;
+        return;
+      }
+
       this.currentTabComponent = tab.component;
       this.$emit('changeTab', tab);
-      if (tab.name === 'Result') this.checkTab();
     },
     changeBodyScore(e) {
       this.tabs[this.currentTabComponent].score = parseFloat(e, 10).toFixed(1);
     },
-    checkTab() {
-      console.log('checkTab');
-      // evt.stopPropagation();
-      // this.$store.commit('checkTab', { check: true });
-      // this.goToResult();
-    },
-    // goToResult() {
-    //   if (this.haveCalculatorCompleted) {
-    //     this.selectTab('Result');
-    //     this.$store.commit('changeTab', { sectionName: 'ResultSection' });
-    //     // 讓回上一步調整 area score，回到result頁，分數會自動調整
-    //     const BSA = this.patient.HeadNeck.areaPercent * 0.1
-    //     + this.patient.UpperExtremities.areaPercent * 0.2
-    //     + this.patient.Trunk.areaPercent * 0.3
-    //     + this.patient.LowerExtremities.areaPercent * 0.4;
-    //     this.$store.commit('savePatientBsaAndIga', { BSA, IGA: null });
-    //   }
-    // },
   },
 };
 </script>
@@ -66,7 +59,7 @@ export default {
       class="tab"
       :class="{
         'active': tab.component === currentTabComponent,
-        'valid': !tab.complete
+        'valid': valid(tab)
       }"
       @click="changeTab(tab)"
     >
@@ -79,7 +72,12 @@ export default {
           <div v-if="tab.score !== null" class="score">score: {{tab.score}}</div>
         </div>
       </div>
-      <div v-if="!tab.complete" class="valid-text">*Required fields.</div>
+      <div
+        class="valid-text"
+        v-if="valid(tab)"
+      >
+        *Required fields.
+      </div>
     </div>
   </div>
 </template>
