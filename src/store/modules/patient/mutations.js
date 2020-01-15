@@ -5,6 +5,48 @@ export default {
   SAVE_BSA_PERCENT(state, payload) {
     state.BSA = payload;
   },
+  SAVE_HEADNECK_DATA(state, data) {
+    state.HeadNeck.area.areaScore = data.HeadNeckAreaScore;
+    state.HeadNeck.area.areaPercent = data.HeadNeckAreaPercent;
+    state.HeadNeck.symptom.Erythema = data.HeadNeckErythema;
+    state.HeadNeck.symptom.EdemaPapulation = data.HeadNeckEdema;
+    state.HeadNeck.symptom.Excoriation = data.HeadNeckExcoriation;
+    state.HeadNeck.symptom.Lichenification = data.HeadNeckLichenification;
+    state.HeadNeck.bodypartScore = data.HeadNeckScore;
+  },
+  SAVE_UPPER_DATA(state, data) {
+    state.UpperExtremities.area.areaScore = data.upperAreaScore;
+    state.UpperExtremities.area.areaPercent = data.upperAreaPercent;
+    state.UpperExtremities.symptom.Erythema = data.upperErythema;
+    state.UpperExtremities.symptom.EdemaPapulation = data.upperEdema;
+    state.UpperExtremities.symptom.Excoriation = data.upperExcoriation;
+    state.UpperExtremities.symptom.Lichenification = data.upperLichenification;
+    state.UpperExtremities.bodypartScore = data.upperScore;
+  },
+  SAVE_TRUNK_DATA(state, data) {
+    state.Trunk.area.areaScore = data.trunkAreaScore;
+    state.Trunk.area.areaPercent = data.trunkAreaPercent;
+    state.Trunk.symptom.Erythema = data.trunkErythema;
+    state.Trunk.symptom.EdemaPapulation = data.trunkEdema;
+    state.Trunk.symptom.Excoriation = data.trunkExcoriation;
+    state.Trunk.symptom.Lichenification = data.trunkLichenification;
+    state.Trunk.bodypartScore = data.trunkScore;
+  },
+  SAVE_LOWER_DATA(state, data) {
+    state.LowerExtremities.area.areaScore = data.lowerAreaScore;
+    state.LowerExtremities.area.areaPercent = data.lowerAreaPercent;
+    state.LowerExtremities.symptom.Erythema = data.lowerErythema;
+    state.LowerExtremities.symptom.EdemaPapulation = data.lowerEdema;
+    state.LowerExtremities.symptom.Excoriation = data.lowerExcoriation;
+    state.LowerExtremities.symptom.Lichenification = data.lowerLichenification;
+    state.LowerExtremities.bodypartScore = data.lowerScore;
+  },
+  SAVE_RESULT_DATA(state, data) {
+    state.interpretation = data.interpretation;
+    state.EASI = data.EASI;
+    state.BSA = data.BSA;
+    state.IGA = data.IGA;
+  },
 };
 
 // handLoadingState(state, bool){

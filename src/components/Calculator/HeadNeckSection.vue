@@ -158,32 +158,31 @@ export default {
     this.gridData = generateGrids('Erythema', 'Head & Neck');
   },
   activated() {
+    console.log('[HEADNECK] activated');
     window.scrollTo(0, 0);
+  },
+  deactivated() {
+    console.log('[HEADNECK] deactivated');
+    const headneckData = {
+      HeadNeckAreaScore: this.areaPoint,
+      HeadNeckAreaPercent: this.input,
+      HeadNeckErythema: this.tabData.Erythema.score,
+      HeadNeckEdema: this.tabData['Edema / papulation'].score,
+      HeadNeckExcoriation: this.tabData.Excoriation.score,
+      HeadNeckLichenification: this.tabData.Lichenification.score,
+      HeadNeckScore: this.summary,
+    };
+    this.$store.commit('patient/SAVE_HEADNECK_DATA', headneckData);
+  },
+  destroyed() {
+    console.log('[HEADNECK] destroyed');
   },
   methods: {
     openAccordion(tabItem) {
       // 點擊 Accordion head 打開 Accordion content
       this.accordionOpen[tabItem.name] = !this.accordionOpen[tabItem.name];
     },
-    // 切換到隔壁的Tab
-    SwitchTabToNext(component) {
-      this.$store.commit('changeTab', { sectionName: `${component}Section` });
-      this.$attrs.selectTab(component);
-    },
-    goToNextSlide() {
-      this.$attrs.goToNextSlide();
-    },
     changeTab(tabItem) {
-      const headneckData = {
-        HeadNeckAreaScore: this.areaPoint,
-        HeadNeckAreaPercent: this.input,
-        HeadNeckScore: this.summary,
-        HeadNeckErythema: this.tabData.Erythema.score,
-        HeadNeckEdema: this.tabData['Edema /  papulation'].score,
-        HeadNeckExcoriation: this.tabData.Excoriation.score,
-        HeadNeckLichenification: this.tabData.Lichenification.score,
-      };
-      this.$store.commit('SAVE_HEADNECK_DATA', headneckData);
       this.symptomName = tabItem.name;
       this.currentTabComponent = tabItem.component;
       // 換資料注入不同圖片跟內文

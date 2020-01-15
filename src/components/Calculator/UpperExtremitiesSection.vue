@@ -155,33 +155,31 @@ export default {
     this.gridData = generateGrids('Erythema', 'Head & Neck');
   },
   activated() {
+    console.log('[UPPER] activated');
     window.scrollTo(0, 0);
+  },
+  deactivated() {
+    console.log('[UPPER] deactivated');
+    const upperData = {
+      upperAreaScore: this.areaPoint,
+      upperAreaPercent: this.input,
+      upperErythema: this.tabData.Erythema.score,
+      upperEdema: this.tabData['Edema / papulation'].score,
+      upperExcoriation: this.tabData.Excoriation.score,
+      upperLichenification: this.tabData.Lichenification.score,
+      upperScore: this.summary,
+    };
+    this.$store.commit('patient/SAVE_UPPER_DATA', upperData);
+  },
+  destroyed() {
+    console.log('[UPPER] destroyed');
   },
   methods: {
     openAccordion(tabItem) {
       // 點擊 Accordion head 打開 Accordion content
       this.accordionOpen[tabItem.name] = !this.accordionOpen[tabItem.name];
     },
-    // 切換到隔壁的Tab
-    SwitchTabToNext(component) {
-      this.$store.commit('changeTab', { sectionName: `${component}Section` });
-      this.$attrs.selectTab(component);
-    },
-    goToNextSlide() {
-      this.$attrs.goToNextSlide();
-    },
     changeTab(tabItem) {
-      const upperData = {
-        upperAreaScore: this.areaPoint,
-        upperAreaPercent: this.input,
-        upperScore: this.summary,
-        upperErythema: this.tabData.Erythema.score,
-        upperEdema: this.tabData['Edema /  papulation'].score,
-        upperExcoriation: this.tabData.Excoriation.score,
-        upperLichenification: this.tabData.Lichenification.score,
-      };
-      this.$store.commit('SAVE_UPPER_DATA', upperData);
-
       this.symptomName = tabItem.name;
       this.currentTabComponent = tabItem.component;
       // 換資料注入不同圖片跟內文

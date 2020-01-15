@@ -226,18 +226,9 @@ export default {
         EASI: this.EASI,
         BSA: this.BSA, // TODO: 更新不會變
         IGA: this.IGA,
-
-        TrunkAreaScore: this.trunkAreaPoint,
-        TrunkAreaPercent: this.trunkAreaPercent,
-        TrunkScore: this.trunkneckScore,
-        LowerAreaScore: this.lowerExtremitiesAreaPoint,
-        LowerAreaPercent: this.lowerExtremitiesAreaPercent,
-        LowerScore: this.lowerScore,
       };
 
-      this.$store.commit('SAVE_CACULATOR_DATA', patient);
-      // TODO: 儲存 Easi(totalBodyScore) 與 Interpretation 與 BSA 與 IGA 到 vuex
-
+      this.$store.commit('patient/SAVE_RESULT_DATA', patient);
       this.$router.push('/patient');
     },
     openModal() {
