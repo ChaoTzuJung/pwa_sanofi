@@ -220,7 +220,24 @@ export default {
         return;
       }
       this.isValidationFail = false;
+
+      const patient = {
+        interpretation: this.interpretation,
+        EASI: this.EASI,
+        BSA: this.BSA, // TODO: 更新不會變
+        IGA: this.IGA,
+
+        TrunkAreaScore: this.trunkAreaPoint,
+        TrunkAreaPercent: this.trunkAreaPercent,
+        TrunkScore: this.trunkneckScore,
+        LowerAreaScore: this.lowerExtremitiesAreaPoint,
+        LowerAreaPercent: this.lowerExtremitiesAreaPercent,
+        LowerScore: this.lowerScore,
+      };
+
+      this.$store.commit('SAVE_CACULATOR_DATA', patient);
       // TODO: 儲存 Easi(totalBodyScore) 與 Interpretation 與 BSA 與 IGA 到 vuex
+
       this.$router.push('/patient');
     },
     openModal() {
@@ -323,9 +340,9 @@ export default {
             :key="item.text"
             :name="item.text"
             :label="item.text"
-            color="#525ca3"
             :value="item.text"
             :checkedValue="IGA"
+            color="#525ca3"
             @input="onPickHandler"
           >
           </Radio>

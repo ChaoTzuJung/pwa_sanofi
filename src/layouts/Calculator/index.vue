@@ -81,11 +81,7 @@ export default {
           },
         },
       },
-      headNeck: 0,
-      upperExtremities: 0,
-      trunk: 0,
-      lowerExtremities: 0,
-      currentTabComponent: 'HeadNeckSection',
+      currentSectionComponent: 'HeadNeckSection',
     };
   },
   computed: {
@@ -101,12 +97,13 @@ export default {
   },
   methods: {
     changeTab(tab) {
-      if (tab.name === 'Result' && !this.allTabComplete) {
-        this.canCheckTab = true;
-        return;
-      }
+      // NOTE:
+      // if (tab.name === 'Result' && !this.allTabComplete) {
+      //   this.canCheckTab = true;
+      //   return;
+      // }
 
-      this.currentTabComponent = tab.component;
+      this.currentSectionComponent = tab.component; // 切換Tab下的 section 內容
     },
     goToNextSlide() {
       this.$refs.mySwiper.swiper.slideNext();
@@ -115,13 +112,13 @@ export default {
       this.$refs.mySwiper.swiper.slideTo(0);
     },
     changeBodyScore(e) {
-      this.tabs[this.currentTabComponent].score = parseFloat(e, 10).toFixed(1);
+      this.tabs[this.currentSectionComponent].score = parseFloat(e, 10).toFixed(1);
     },
     changeTabStatus(status) {
-      this.tabs[this.currentTabComponent].complete = status;
+      this.tabs[this.currentSectionComponent].complete = status;
     },
     goToResult(tabName) {
-      this.currentTabComponent = tabName;
+      this.currentSectionComponent = tabName;
     },
   },
 };

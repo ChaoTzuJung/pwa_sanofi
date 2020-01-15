@@ -61,7 +61,7 @@ export default {
       @onPick="tabName = $event"
       >
     </SymptomCard>
-    <!-- 桌機版 goToResult -->
+    <!-- 桌機版 Get Results -->
     <Button
       class="custom-button"
       v-if="symptom === 'Lichenification'"

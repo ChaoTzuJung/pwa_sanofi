@@ -1,17 +1,18 @@
 <script>
-const IMG_PATH = 'https://s3-ap-northeast-1.amazonaws.com/sanofi.surveycake.com';
-const Footer = `${IMG_PATH}/asset/pic/2019-10-14-06-59-23-c895ad77f60144cb419516f9bc512a16.png`;
-const smallFooter = `${IMG_PATH}/asset/pic/2019-10-14-07-03-59-38a017df7c4c4f2e4e8ef496e56ae4e2.png`;
+import moment from 'moment';
+import footerLogo from 'assets/images/footer-logo.svg';
+import footerLogoSm from 'assets/images/footer-logo-sm.svg';
 
 export default {
   name: 'Footer',
   data() {
     return {
-      Footer,
-      smallFooter,
+      footerLogo,
+      footerLogoSm,
       accordionOpen1: false,
       accordionOpen2: false,
       version: 'v1.1',
+      year: moment().format('YYYY'),
     };
   },
   methods: {
@@ -53,7 +54,7 @@ export default {
         assessment of reliability in atopic dermatitis.
         Experimental dermatology, 10(1), 11-18.</div>
       <div class="addon left desktop">
-        <img :src="Footer">
+        <img :src="footerLogo">
         <span>SATW.DUP.19.10.0345 {{version}}</span>
       </div>
       <hr class="mobile">
@@ -80,15 +81,15 @@ export default {
         computation of EASI. These materials have been prepared for
         medical and scientific information sharing/exchange purposes and
         not intended to encourage the use of any products.</div>
-      <div class="addon right desktop">Copyright © 2019 EASIscore. All rights reserved</div>
+      <div class="addon right desktop">Copyright © {{year}} EASIscore. All rights reserved</div>
       <hr class="mobile">
     </div>
     <div class="block mobile">
       <div class="mobile-logo">
         <div class="satw">
-          <img class="mobile" :src="smallFooter"><span>SATW.DUP.19.10.0345</span>
+          <img class="mobile" :src="footerLogoSm"><span>SATW.DUP.19.10.0345</span>
         </div>
-        <div class="addon mobile">Copyright © 2019 EASIscore. All rights reserved</div>
+        <div class="addon mobile">Copyright © {{year}} EASIscore. All rights reserved</div>
       </div>
     </div>
   </div>
@@ -235,6 +236,7 @@ export default {
 
       @media screen and (min-width: 769px) {
         display: flex;
+        align-items: end;
       }
     }
 

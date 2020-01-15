@@ -1,0 +1,73 @@
+<div class="patient">
+	<div class="title">Patient Information</div>
+		<div class="form">
+			<div class="row">
+				<label class="label" for="identifier">Patient Identifier/Number:</label>
+				<input 
+					class="value"
+					:class="{'valid': isValidFail}"
+					type="text"
+					id="identifier"
+					placeholder="Please enter English only"
+					autocomplete="off"
+					v-model.lazy="patient.name"
+				/>
+				<div class="error" v-if="isValidFail">*Required fields.</div>
+			</div>
+			<div class="row">
+				<div class="label">Patient Age:</div>
+				<div class="value">
+					<Radio
+						v-for="age in ages"
+						:key="age.label"
+						:name="age.label"
+						:label="age.label"
+						:value="age.val"
+						:checkedValue="patient.age"
+						color="#525ca3"
+						@input="handleAgeChange"
+					>
+					</Radio>
+				</div>
+			</div>
+			<div class="row">
+				<div class="label">Gender</div>
+				<div class="value">
+					<Radio
+						v-for="gender in genders"
+						:key="gender.label"
+						:name="gender.label"
+						:label="gender.label"
+						:value="gender.val"
+						:checkedValue="patient.gender"
+						color="#525ca3"
+						@input="handleGenderChange"
+					>
+					</Radio>
+				</div>
+			</div>
+			<div class="button-section">
+				<Button
+					class="custom-button"
+					text="Generate the text report"
+					color="white"
+					:border="true"
+					:width="269"
+					:isLoading="isLoading"
+					@click.native="generateReport('Text Report')"
+				/>
+				<Button
+					class="custom-button"
+					text="Generate the full report"
+					:width="269"
+					:isLoading="isLoading"
+					@click.native="generateReport('Full Report')"
+				/>
+		</div>
+	</div>
+	<Loading
+		:active.sync="isLoading"
+		color="#525CA3"
+	>
+	</Loading>
+</div>

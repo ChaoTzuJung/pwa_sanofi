@@ -31,7 +31,6 @@ export default {
           num: 1,
           name: 'Erythema',
           id: '0',
-          isActive: true,
           component: 'Erythema',
           score: 0,
           complete: false,
@@ -40,7 +39,6 @@ export default {
           num: 2,
           name: 'Edema / papulation',
           id: '1',
-          isActive: false,
           component: 'EdemaPapulation',
           score: 0,
           complete: false,
@@ -49,7 +47,6 @@ export default {
           num: 3,
           name: 'Excoriation',
           id: '2',
-          isActive: false,
           component: 'Excoriation',
           score: 0,
           complete: false,
@@ -58,7 +55,6 @@ export default {
           num: 4,
           name: 'Lichenification',
           id: '3',
-          isActive: false,
           component: 'Lichenification',
           score: 0,
           complete: false,
@@ -161,15 +157,6 @@ export default {
     window.scrollTo(0, 0);
   },
   methods: {
-    selectTab(id) {
-      this.tabData.forEach((tabItem) => {
-        if (tabItem.id === id) {
-          tabItem.isActive = true;
-        } else {
-          tabItem.isActive = false;
-        }
-      });
-    },
     openAccordion(tabItem) {
       // 點擊 Accordion head 打開 Accordion content
       this.accordionOpen[tabItem.name] = !this.accordionOpen[tabItem.name];
@@ -183,12 +170,21 @@ export default {
       this.$attrs.goToNextSlide();
     },
     changeTab(tabItem) {
-      tabItem.isActive = true;
+      const trunkData = {
+        trunkAreaScore: this.areaPoint,
+        trunkAreaPercent: this.input,
+        trunkScore: this.summary,
+        trunkErythema: this.tabData.Erythema.score,
+        trunkEdema: this.tabData['Edema /  papulation'].score,
+        trunkExcoriation: this.tabData.Excoriation.score,
+        trunkLichenification: this.tabData.Lichenification.score,
+      };
+      this.$store.commit('SAVE_TRUNK_DATA', trunkData);
+
       this.symptomName = tabItem.name;
       this.currentTabComponent = tabItem.component;
       // 換資料注入不同圖片跟內文
       this.gridData = generateGrids(tabItem.name, 'Head & Neck');
-      // this.selectTab(tabItem.id);
     },
     changeScore(e) {
       this.tabData[this.symptomName].score = parseInt(e, 10);

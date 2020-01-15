@@ -1,43 +1,9 @@
 <div class="calculator-area">
     <div class="title">Calculator</div>
     <div class="description">Determine the severity of atopic dermatitis in each of the four body regions.</div>
-    <!-- <div class="tabs desktop">
-        @click="switchTab(tab.component); selectTab(tab.abbreviation)"
-        <div
-            v-for="(tab,index) in Object.values(tabs)"
-            :key="tab.name"
-            class="tab"
-            :class="{'active': tab.component === currentTabComponent}"
-            @click="changeTab(tab)"
-        >
-            <div class="tab-area">
-                <div class="no">
-                    <div  class="ball">
-                        {{tab.id}}
-                    </div>
-                </div>
-                <div class="wordings">
-                    <div class="text">{{tab.name}}</div>
-                    <div class="score">score: {{tab.score}}</div>
-                </div>
-            </div>
-            TODO: 移除 <div v-if="valid(tab)" class="valid-text">*Required fields.</div>
-        </div>
-            TODO: 移除 :class="{'active': $store.state.body.Result.isSelect}
-        <div class="tab" @click="checkTab">
-            <div class="tab-area">
-                <div class="no">
-                    <div class="ball">5</div>
-                </div>
-                <div class="wordings">
-                    <div class="text">Result</div>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <Tab
         :tabs="tabs"
-        :current="currentTabComponent"
+        :current="currentSectionComponent"
         :canCheckTab="canCheckTab"
         @changeTab="changeTab"
     >
@@ -51,7 +17,7 @@
                 <div
                     class="tab-container"
                     :class="{
-                        'active': tab.component === currentTabComponent,
+                        'active': tab.component === currentSectionComponent,
                         'valid': valid(tab)
                     }"
                 >
@@ -73,13 +39,12 @@
         </swiper>
     </div>
     <keep-alive>
-        <!-- :is="currentTabComponent" -->
         <component 
             v-bind="{
                 goToNextSlide: goToNextSlide,
                 goToFirstSlide: goToFirstSlide
             }"
-            :is="currentTabComponent"
+            :is="currentSectionComponent"
             :headneckScore="tabs.HeadNeckSection.score"
             :upperScore="tabs.UpperExtremitiesSection.score"
             :trunkScore="tabs.TrunkSection.score"

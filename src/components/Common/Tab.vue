@@ -36,12 +36,13 @@ export default {
   },
   methods: {
     changeTab(tab) {
-      if (tab.name === 'Result' && !this.allTabComplete) {
-        this.canCheckTab = true;
-        return;
-      }
+      // NOTE:
+      // if (tab.name === 'Result' && !this.allTabComplete) {
+      //   this.canCheckTab = true;
+      //   return;
+      // }
 
-      this.currentTabComponent = tab.component;
+      this.currentTabComponent = tab.component; // 單純切換 Tab active 樣式
       this.$emit('changeTab', tab);
     },
     changeBodyScore(e) {
