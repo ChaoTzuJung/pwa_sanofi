@@ -64,7 +64,7 @@
                         </div>
                         <div class="wordings">
                             <div class="text">{{tab.name}}</div>
-                            <div class="score" v-if="tab.score !== null">score: {{tab.score}}</div>
+                            <div class="score" v-if="tab.hasOwnProperty('score')">score: {{tab.score}}</div>
                         </div>
                     </div>
                     <div v-if="valid(tab)" class="valid-text">*Required fields.</div>

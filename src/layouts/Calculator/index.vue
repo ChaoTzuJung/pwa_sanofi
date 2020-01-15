@@ -65,8 +65,6 @@ export default {
           id: '5',
           component: 'ResultSection',
           abbreviation: 'result',
-          score: null,
-          complete: true,
         },
       },
       swiperOption: {

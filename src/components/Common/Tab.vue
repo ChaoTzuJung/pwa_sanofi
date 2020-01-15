@@ -69,7 +69,7 @@ export default {
         </div>
         <div class="wordings">
           <div class="text">{{tab.name}}</div>
-          <div v-if="tab.score !== null" class="score">score: {{tab.score}}</div>
+          <div v-if="tab.hasOwnProperty('score')" class="score">score: {{tab.score}}</div>
         </div>
       </div>
       <div
