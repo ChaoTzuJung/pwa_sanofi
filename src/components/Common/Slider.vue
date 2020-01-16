@@ -90,6 +90,7 @@ export default {
             <vue-slider
                 v-model="sliderValue"
                 :marks="marks"
+                :lazy="true"
                 v-bind="options"
                 :tooltip-formatter="`${sliderValue}%`"
             >

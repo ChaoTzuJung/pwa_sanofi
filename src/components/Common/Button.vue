@@ -1,5 +1,5 @@
 <script>
-import Spinner from 'components/Common/Spinner.vue';
+// import Spinner from 'components/Common/Spinner.vue';
 
 export default {
   name: 'Button',
@@ -19,42 +19,43 @@ export default {
     width: {
       type: Number,
     },
-    isLoading: {
-      type: Boolean,
-    },
+    // isLoading: {
+    //   type: Boolean,
+    // },
     color: {
       type: String,
       default: '#bcbc1c',
     },
   },
   components: {
-    Spinner,
+    // Spinner,
   },
   computed: {
-    spinnerColor() {
-      if (this.border) {
-        return '#bcbc1c';
-      }
-      return '#FFFFFF';
-    },
+    // spinnerColor() {
+    //   if (this.border) {
+    //     return '#bcbc1c';
+    //   }
+    //   return '#FFFFFF';
+    // },
   },
 };
 </script>
 
 <template>
-    <div
-        class="button"
-        :class="{ 'borderButton': border }"
+  <div
+    class="button"
+    :class="{ 'borderButton': border }"
+  >
+    <!-- :class="{ loading: isLoading }" -->
+    <router-link
+      :to="link"
+      :style="{ width: `${width}px`, background: `${color}` }"
     >
-        <router-link
-        :to="link"
-        :style="{ width: `${width}px`, background: `${color}` }"
-        :class="{ loading: isLoading }"
-        >
-            <Spinner v-if="isLoading" :color="spinnerColor"></Spinner>
-            <div v-else>{{text}}</div>
-        </router-link>
-    </div>
+      <!-- <Spinner v-if="isLoading" :color="spinnerColor"></Spinner>
+      <div v-else>{{text}}</div> -->
+      <div>{{text}}</div>
+    </router-link>
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -95,9 +96,9 @@ export default {
     }
   }
 
-  & > .loading {
+  /* & > .loading {
     cursor: wait;
-  }
+  } */
 }
 
 .borderButton {

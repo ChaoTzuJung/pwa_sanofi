@@ -19,25 +19,26 @@ export default {
   props: {
     headneckScore: {
       require: true,
-      type: Number,
+      type: String,
     },
     upperScore: {
       require: true,
-      type: Number,
+      type: String,
     },
     trunkScore: {
       require: true,
-      type: Number,
+      type: String,
     },
     lowerScore: {
       require: true,
-      type: Number,
+      type: String,
     },
   },
   data() {
     return {
       isValidationFail: false,
       Question,
+      BSA: 0,
       IGA: '',
       igaData: [
         { text: '0 - Clear', value: 0 },
@@ -196,22 +197,27 @@ export default {
         },
       ];
     },
-    BSA: {
-      get() {
-        return parseInt((this.headNeckAreaPercent * 0.1)
-        + (this.upperExtremitiesAreaPercent * 0.2)
-        + (this.trunkAreaPercent * 0.3)
-        + (this.lowerExtremitiesAreaPercent * 0.4), 10);
-      },
-      set(value) {
-        // TODO: 發 commit 到 vuex
-        this.$store.commit('patient/SAVE_BSA_PERCENT', value);
-        // this.BSA = value; // Not work
-      },
-    },
+    // BSA: {
+    //   get() {
+    //     return parseInt((this.headNeckAreaPercent * 0.1)
+    //     + (this.upperExtremitiesAreaPercent * 0.2)
+    //     + (this.trunkAreaPercent * 0.3)
+    //     + (this.lowerExtremitiesAreaPercent * 0.4), 10);
+    //   },
+    //   set(value) {
+    //     // TODO: 發 commit 到 vuex
+    //     // this.$store.commit('patient/SAVE_BSA_PERCENT', value);
+    //     console.log('BSA', value);
+    //     this.BSA = value;
+    //   },
+    // },
   },
   activated() {
     window.scroll(0, 0);
+    this.BSA = parseInt((this.headNeckAreaPercent * 0.1)
+        + (this.upperExtremitiesAreaPercent * 0.2)
+        + (this.trunkAreaPercent * 0.3)
+        + (this.lowerExtremitiesAreaPercent * 0.4), 10);
   },
   methods: {
     goToPatient() {
@@ -222,8 +228,8 @@ export default {
       this.isValidationFail = false;
 
       const patient = {
-        interpretation: this.interpretation,
-        EASI: this.EASI,
+        interpretation: this.Interpretation,
+        EASI: this.totalBodyScore,
         BSA: this.BSA, // TODO: 更新不會變
         IGA: this.IGA,
       };
@@ -234,7 +240,7 @@ export default {
     openModal() {
       this.$store.commit('calculator/OPEN_SYMPTOMS_MODAL', { severity: 'table', status: true });
     },
-    sliderChangeHandler(newSliderValue) {
+    handleSliderChange(newSliderValue) {
       this.BSA = newSliderValue;
     },
     onPickHandler(e) {
@@ -344,7 +350,7 @@ export default {
         <Slider
           label="BSA (Body Surface Area)"
           :BSA="BSA"
-          @onChangeSlider="sliderChangeHandler"
+          @onChangeSlider="handleSliderChange"
         />
       </div>
     </div>
