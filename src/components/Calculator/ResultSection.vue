@@ -197,20 +197,6 @@ export default {
         },
       ];
     },
-    // BSA: {
-    //   get() {
-    //     return parseInt((this.headNeckAreaPercent * 0.1)
-    //     + (this.upperExtremitiesAreaPercent * 0.2)
-    //     + (this.trunkAreaPercent * 0.3)
-    //     + (this.lowerExtremitiesAreaPercent * 0.4), 10);
-    //   },
-    //   set(value) {
-    //     // TODO: 發 commit 到 vuex
-    //     // this.$store.commit('patient/SAVE_BSA_PERCENT', value);
-    //     console.log('BSA', value);
-    //     this.BSA = value;
-    //   },
-    // },
   },
   activated() {
     window.scroll(0, 0);
