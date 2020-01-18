@@ -47,6 +47,12 @@ export default {
     state.BSA = data.BSA;
     state.IGA = data.IGA;
   },
+  SAVE_PATIENT_DATA(state, data) {
+    state.patientName = data.name;
+    state.age = data.age;
+    state.gender = data.gender;
+    state.reportDate = data.reportDate;
+  },
 };
 
 // handLoadingState(state, bool){

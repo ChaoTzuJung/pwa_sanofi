@@ -1,0 +1,39 @@
+<div class="report">
+    <Dialog
+        :type="DialogType"
+        :isDialogOpen="isDialogOpen"
+        @closeDialog="closeDialog"
+        @callback="backToHome">
+    </Dialog>
+    <div class="title">{{reportType}}</div>
+    <div class="button-section">
+        <Button
+            :text="reportButtonText"
+            :border="true"
+            color="white"
+            @click.native="switchReport"
+        />
+        <Button
+            text="Mail me the report"
+            @click.native="showMail"
+        />
+        <Button 
+            text="Next Calculation"
+            color="#525ca3"
+            @click.native="openDialog('comfirm')"
+        />
+    </div>
+    <router-link to="/patient" replace>
+        Back to patient information
+    </router-link>
+    <hr>
+    <router-view
+        :showMailForm="showMailForm"
+        @openDialog="openDialog"
+    >
+    </router-view>
+	<Loading
+		:active.sync="isLoading"
+		color="#525CA3"
+	/>
+</div>

@@ -1,0 +1,103 @@
+.report {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+
+    @media screen and (min-width: 769px) {
+        padding: 0;
+    }
+
+    & > .title {
+        margin: 40px 0;
+        font-size: 24px;
+        font-weight: 300;
+        line-height: 1.33;
+        letter-spacing: 0.5px;
+        color: #000000;
+    }
+
+    & > .button-section {
+        display: flex;
+        flex-direction: column-reverse;
+
+        @media screen and (min-width: 769px) {
+            flex-direction: row;
+        }
+
+        & div:nth-child(1), div:nth-child(2), {
+        height: 50px;
+
+            @media screen and (min-width: 769px) {
+                margin-right: 10px;
+            }
+        }
+
+        & div:nth-child(2), div:nth-child(3), {
+            margin-bottom: 20px;
+            height: 50px;
+            width: 235px;
+
+            @media screen and (min-width: 769px) {
+                margin-left: 10px;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    & > a {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 1.4;
+        text-align: center;
+        color: rgba(0, 0, 0, 0.5);
+        margin-top: 20px;
+
+        @media screen and (min-width: 769px) {
+            margin-top: 40px;
+        }
+    }
+
+    & > hr {
+        height: 1px;
+        background-color: #eeeeee;
+        margin: 40px 0;
+
+        &:first-of-type {
+            width: 100%;
+            margin: 20px 0;
+
+            @media screen and (min-width: 769px) {
+                width: 1024px;
+                margin: 40px 0;
+            }
+        }
+
+        &:last-of-type {
+            width: 100%;
+            margin: 20px 0;
+
+            @media screen and (min-width: 769px) {
+                width: 1024px;
+                margin: 40px 0;
+            }
+        }
+    }
+
+    & > .desktop {
+        display: none;
+
+        @media screen and (min-width: 769px) {
+            display: block;
+        }
+    }
+
+    & > .mobile {
+        display: block;
+
+        @media screen and (min-width: 769px) {
+            display: none;
+        }
+    }
+}

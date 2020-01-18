@@ -262,6 +262,7 @@ export default {
       <keep-alive>
         <component
           class="tab-content"
+          bodypart="UpperExtremities"
           :symptom="symptomName"
           :gridData="gridData"
           :checkedValue="tabData[symptomName].score"

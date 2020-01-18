@@ -7,6 +7,10 @@ export default {
     Grid,
   },
   props: {
+    bodypart: {
+      require: true,
+      type: String,
+    },
     symptom: {
       require: true,
       type: String,
@@ -42,6 +46,7 @@ export default {
 
 <template>
   <Grid
+    :bodypart="bodypart"
     :symptom="symptom"
     :gridData="gridData"
     :checkedValue="checkedValue"

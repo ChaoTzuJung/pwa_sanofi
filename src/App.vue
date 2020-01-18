@@ -1,7 +1,7 @@
 <script>
-import Header from 'components/Header.vue';
-import Footer from 'components/Footer.vue';
-import Dialog from 'components/Dialog.vue';
+import Header from 'components/Common/Header.vue';
+import Footer from 'components/Common/Footer.vue';
+import Dialog from 'components/Common/Dialog.vue';
 
 export default {
   name: 'App',

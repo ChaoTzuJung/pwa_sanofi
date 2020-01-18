@@ -10,6 +10,10 @@ export default {
     SymptomCard,
   },
   props: {
+    bodypart: {
+      require: true,
+      type: String,
+    },
     symptom: {
       require: true,
       type: String,
@@ -64,7 +68,7 @@ export default {
     <!-- 桌機版 Get Results -->
     <Button
       class="custom-button"
-      v-if="symptom === 'Lichenification'"
+      v-if="symptom === 'Lichenification' && bodypart === 'LowerExtremities'"
       text="Get Results"
       @click.native="goToResult"
     />

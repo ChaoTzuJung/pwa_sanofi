@@ -1,6 +1,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import moment from 'moment';
+import uuidv4 from 'uuid/v4';
 import Button from 'components/Common/Button.vue';
 import Radio from 'components/Common/Radio.vue';
 
@@ -17,6 +18,7 @@ export default {
         age: '',
         gender: '',
         reportDate: '',
+        id: uuidv4(),
       },
       isValidFail: false,
       reportType: '',
@@ -74,14 +76,16 @@ export default {
     handleGenderChange(value) {
       this.patient.gender = value;
     },
-    generateReport(reportType) {
+    async generateReport(type) {
       if (!this.patient.name) {
         this.isValidFail = true;
         return;
       }
-      console.log(reportType);
-      this.updateLoading(true, { root: true });
+      // TODO: BackEndWrapper
+      // this.updateLoading(true, { root: true });
+      this.$store.commit('patient/SAVE_PATIENT_DATA', this.patient);
       this.isValidFail = false;
+      this.$router.push(`/report/${type}`);
     },
   },
 };

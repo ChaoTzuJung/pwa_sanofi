@@ -48,10 +48,12 @@ export default {
   <label :for="name" class="label">
     <input
       type="radio"
+      tabindex="3"
       :name="name"
       :value="value"
       :checked="canCheckedRadio"
       @input="inputHandler"
+      @keyup.enter="inputHandler"
     >
     <span class="checkmark" :style="cssVars"></span>
     <span v-if="label" class="text">{{label}}</span>

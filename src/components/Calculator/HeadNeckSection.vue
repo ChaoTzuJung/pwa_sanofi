@@ -183,6 +183,7 @@ export default {
       this.accordionOpen[tabItem.name] = !this.accordionOpen[tabItem.name];
     },
     changeTab(tabItem) {
+      console.log(tabItem);
       this.symptomName = tabItem.name;
       this.currentTabComponent = tabItem.component;
       // 換資料注入不同圖片跟內文
@@ -226,6 +227,7 @@ export default {
           id="name"
           v-model.trim.number.lazy="input"
           autocomplete="off"
+          tabindex="1"
         />
       </div>
       <div class="additional">*Estimate the percentage involvement of this body region.</div>
@@ -239,6 +241,8 @@ export default {
           v-for="tabItem in Object.values(tabData)"
           :key="tabItem.name"
           @click="changeTab(tabItem)"
+          @keyup.enter="changeTab(tabItem)"
+          tabindex="2"
         >
           <div class="top" @click="openAccordion(tabItem)">
             <div class="no" :class="{'checked': tabItem.complete}">
@@ -269,6 +273,7 @@ export default {
       <keep-alive>
         <component
           class="tab-content"
+          bodypart="HeadNeck"
           :symptom="symptomName"
           :gridData="gridData"
           :checkedValue="tabData[symptomName].score"

@@ -1,6 +1,6 @@
 const state = () => ({
-  patientId: '', // sessionId
-  patientName: '', // name
+  patientId: '',
+  patientName: '',
   reportDate: '',
   age: '',
   gender: '',

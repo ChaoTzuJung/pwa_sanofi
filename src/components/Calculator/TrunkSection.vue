@@ -260,6 +260,7 @@ export default {
       <keep-alive>
         <component
           class="tab-content"
+          bodypart="Trunk"
           :symptom="symptomName"
           :gridData="gridData"
           :checkedValue="tabData[symptomName].score"

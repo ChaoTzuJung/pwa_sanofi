@@ -62,7 +62,9 @@ export default {
         'active': tab.component === currentTabComponent,
         'valid': valid(tab)
       }"
+      tabindex="4"
       @click="changeTab(tab)"
+      @keyup.enter="changeTab(tab)"
     >
       <div class="tab-area">
         <div class="no" :class="{'checked': tab.complete}">

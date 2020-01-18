@@ -233,6 +233,7 @@ export default {
       this.IGA = e;
     },
     backToHeadNeck() {
+      this.$emit('goToFirstSlide');
       this.$emit('changeTab', { component: 'HeadNeckSection' });
     },
   },
