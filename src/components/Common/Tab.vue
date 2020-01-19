@@ -62,7 +62,6 @@ export default {
         'active': tab.component === currentTabComponent,
         'valid': valid(tab)
       }"
-      tabindex="4"
       @click="changeTab(tab)"
       @keyup.enter="changeTab(tab)"
     >

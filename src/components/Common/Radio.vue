@@ -48,7 +48,6 @@ export default {
   <label :for="name" class="label">
     <input
       type="radio"
-      tabindex="3"
       :name="name"
       :value="value"
       :checked="canCheckedRadio"

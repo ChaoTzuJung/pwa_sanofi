@@ -13,8 +13,8 @@ export default {
     },
     score: {
       require: true,
-      type: Number,
-      default: 0,
+      type: String,
+      default: '00.00',
     },
     AreaScore: {
       require: true,
@@ -49,7 +49,7 @@ export default {
   },
   data() {
     return {
-      cardOpen: true,
+      cardOpen: false,
     };
   },
   computed: {
@@ -137,40 +137,39 @@ export default {
       }
       return result;
     },
-    isMobile() {
-      if (window.screen.width < 768 || document.documentElement.clientWidth < 768) {
-        return true;
-      }
-      return false;
-    },
+    // isMobile() {
+    //   if (window.screen.width < 768 || document.documentElement.clientWidth < 768) {
+    //     return true;
+    //   }
+    //   return false;
+    // },
   },
   methods: {
     openCard() {
-      if (window.screen.width < 768 || document.documentElement.clientWidth < 768) {
-        this.cardOpen = !this.cardOpen;
-      }
+      this.cardOpen = !this.cardOpen;
     },
   },
 };
 </script>
 
 <template>
-  <div class="card" :style="(!isMobile || !cardOpen) ? {'height': '264px'} : ''">
+  <div class="card" :class=" cardOpen ? 'extand-card' : ''">
     <div class="card-title" @click="openCard">
       <div class="title">
         <div class="head" :style="{'color': color}">
           {{title}}
-          <svg class="svg-circleplus mobile" viewBox="0 0 100 100">
+          <svg class="svg-circleplus mobile" viewBox="0 0 100 100" v-if="openCard">
             <line x1="10" y1="50" x2="90" y2="50" stroke-width="7.5"></line>
-            <line
-              x1="50" y1="10" x2="50" y2="90" stroke-width="7.5"
-              v-if="!(!isMobile || !cardOpen)">
-            </line>
+            <line x1="50" y1="10" x2="50" y2="90" stroke-width="7.5"></line>
+          </svg>
+          <svg class="svg-circleplus mobile" viewBox="0 0 100 100" v-else>
+            <line x1="10" y1="50" x2="90" y2="50" stroke-width="7.5"></line>
           </svg>
         </div>
       </div>
     </div>
-    <div class="card-body" v-if="!isMobile || !cardOpen">
+    <!--  v-if="!isMobile || !cardOpen" -->
+    <div class="card-body" :class=" cardOpen ? 'show-card-body' : ''">
       <div class="left">
         <div class="key">Redness/Erythema</div>
         <div class="key">Edema/Papulation</div>
@@ -186,7 +185,8 @@ export default {
         <div class="value">{{`${AreaScore}(${AreaPercent}%)`}}</div>
       </div>
     </div>
-    <div class="text" :style="(!isMobile || !cardOpen) ? {'margin-top': '8px'} : ''">
+    <!-- :style="(!isMobile || !cardOpen) ? {'margin-top': '8px'} : ''" -->
+    <div class="text">
       Score per body region:
       <span class="score">{{score}}</span>
     </div>
@@ -195,22 +195,27 @@ export default {
 
 <style scoped lang="scss">
 .card {
-  width: 100%;
-  height: 86px;
+  width: 328px;
+  height: 264px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
   background-color: #ffffff;
-  padding: 20px 24px;
-  margin-bottom: 20px;
+  margin-bottom: 0;
+  padding: 15px;
 
-  @media screen and (min-width: 769px) {
-    width: 340px;
-    height: 264px;
-    margin-bottom: 0;
+  @media screen and (max-width: 944px) {
+    width: 100%;
+    height: 86px;
+    margin-bottom: 20px;
+    padding: 16px 24px;
   }
 
   & > .card-title {
     display: flex;
-    margin-bottom: 8px;
+    margin-bottom: 15px;
+
+    @media screen and (max-width: 944px) {
+      margin-bottom: 8px;
+    }
 
     & > .title {
       display: flex;
@@ -218,7 +223,7 @@ export default {
       justify-content: space-between;
       width: 100%;
 
-      @media screen and (min-width: 769px) {
+      @media screen and (min-width: 944px) {
         width: auto;
         margin-right: 40px;
       }
@@ -227,14 +232,13 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
-
         font-weight: 700;
         font-size: 16px;
         line-height: 1.5;
-        margin-bottom: 5px;
+        /* margin-bottom: 5px; */
         cursor: pointer;
 
-        @media screen and (min-width: 769px) {
+        @media screen and (min-width: 944px) {
           display: block;
           cursor: none;
         }
@@ -251,35 +255,54 @@ export default {
     display: flex;
     justify-content: space-between;
 
+    @media screen and (max-width: 944px) {
+      width: calc(100% - 27px);
+      display: none;
+    }
+
     & > .left {
-      @media screen and (min-width: 769px) {
-        margin-right: 42px;
+      @media screen and (min-width: 944px) {
+        margin-right: 26px;
       }
 
       & .key {
-        margin-bottom: 8px;
+        margin-bottom: 15px;
         font-weight: 300;
         font-size: 14px;
         color: #66757d;
         white-space: nowrap;
+
+        @media screen and (max-width: 944px) {
+          line-height: 1.57;
+          margin-bottom: 8px;
+        }
       }
     }
 
     & > .right {
-      @media screen and (min-width: 769px) {
+      @media screen and (min-width: 944px) {
         margin-right: 69px;
       }
 
       & .value {
-        margin-bottom: 5px;
+        margin-bottom: 13px;
         font-weight: 300;
         font-size: 16px;
         color: #000000;
         white-space: nowrap;
+        transform: translateY(-10%);
+
+        @media screen and (max-width: 944px) {
+          font-size: 14px;
+          transform: translateY(0%);
+        }
       }
     }
   }
 
+  & .show-card-body {
+    display: flex;
+  }
 
   & > .text {
     display: flex;
@@ -289,8 +312,8 @@ export default {
     line-height: 1.57;
     color: #333333;
 
-    @media screen and (min-width: 769px) {
-      display: block;
+    @media screen and (max-width: 944px) {
+      margin-top: 8px;
     }
 
     & .score {
@@ -301,18 +324,26 @@ export default {
       line-height: 1;
       color: #000000;
 
-      @media screen and (min-width: 769px) {
+      @media screen and (min-width: 944px) {
         font-size: 32px;
-        margin-left: 34px;
+        margin-left: 20px;
       }
     }
+  }
+}
+
+.extand-card {
+  height: 264px;
+
+  @media screen and (max-width: 944px) {
+    height: 244px;
   }
 }
 
 .desktop {
   display: none;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: 944px) {
     display: block;
   }
 }
@@ -320,7 +351,7 @@ export default {
 .mobile {
   display: block;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: 944px) {
     display: none;
   }
 }

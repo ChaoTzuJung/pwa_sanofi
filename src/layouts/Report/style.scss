@@ -3,10 +3,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 20px;
+    padding: 0;
 
-    @media screen and (min-width: 769px) {
-        padding: 0;
+    @media screen and (max-width: 944px) {
+        padding: 0 20px;
     }
 
     & > .title {
@@ -20,28 +20,26 @@
 
     & > .button-section {
         display: flex;
-        flex-direction: column-reverse;
 
-        @media screen and (min-width: 769px) {
-            flex-direction: row;
+        @media screen and (max-width: 944px) {
+            flex-direction: column-reverse;
         }
 
-        & div:nth-child(1), div:nth-child(2), {
-        height: 50px;
+        & .button:nth-child(1), .button:nth-child(2) {
+            height: 50px;
+            margin-right: 20px;
 
-            @media screen and (min-width: 769px) {
-                margin-right: 10px;
+            @media screen and (max-width: 944px) {
+                margin-right: 0;
             }
         }
 
-        & div:nth-child(2), div:nth-child(3), {
-            margin-bottom: 20px;
+        & .button:nth-child(2), .button:nth-child(3) {
             height: 50px;
             width: 235px;
 
-            @media screen and (min-width: 769px) {
-                margin-left: 10px;
-                margin-bottom: 0;
+            @media screen and (max-width: 944px) {
+                margin-bottom: 20px;
             }
         }
     }
@@ -52,52 +50,36 @@
         line-height: 1.4;
         text-align: center;
         color: rgba(0, 0, 0, 0.5);
-        margin-top: 20px;
+        margin-top: 40px;
 
-        @media screen and (min-width: 769px) {
-            margin-top: 40px;
+        @media screen and (max-width: 944px) {
+            margin-top: 20px;
         }
     }
 
     & > hr {
-        height: 1px;
-        background-color: #eeeeee;
+        height: 0;
         margin: 40px 0;
+        border: 0.5px solid #eeeeee;
 
         &:first-of-type {
-            width: 100%;
-            margin: 20px 0;
+            width: 800px;
+            margin: 40px 0;
 
-            @media screen and (min-width: 769px) {
-                width: 1024px;
-                margin: 40px 0;
+            @media screen and (max-width: 944px) {
+                width: 100%;
+                margin: 20px 0;
             }
         }
 
         &:last-of-type {
-            width: 100%;
-            margin: 20px 0;
+            width: 800px;
+            margin: 40px 0;
 
-            @media screen and (min-width: 769px) {
-                width: 1024px;
-                margin: 40px 0;
+            @media screen and (max-width: 944px) {
+                width: 100%;
+                margin: 20px 0;
             }
-        }
-    }
-
-    & > .desktop {
-        display: none;
-
-        @media screen and (min-width: 769px) {
-            display: block;
-        }
-    }
-
-    & > .mobile {
-        display: block;
-
-        @media screen and (min-width: 769px) {
-            display: none;
         }
     }
 }

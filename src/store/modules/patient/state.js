@@ -20,7 +20,7 @@ const state = () => ({
       Excoriation: 0,
       Lichenification: 0,
     },
-    bodypartScore: 0,
+    bodypartScore: '0',
   },
   UpperExtremities: {
     id: '2',
@@ -34,7 +34,7 @@ const state = () => ({
       Excoriation: 0,
       Lichenification: 0,
     },
-    bodypartScore: 0,
+    bodypartScore: '0',
   },
   Trunk: {
     id: '3',
@@ -48,7 +48,7 @@ const state = () => ({
       Excoriation: 0,
       Lichenification: 0,
     },
-    bodypartScore: 0,
+    bodypartScore: '0',
   },
   LowerExtremities: {
     id: '4',
@@ -62,7 +62,7 @@ const state = () => ({
       Excoriation: 0,
       Lichenification: 0,
     },
-    bodypartScore: 0,
+    bodypartScore: '0',
   },
 });
 

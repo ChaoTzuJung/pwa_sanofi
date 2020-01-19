@@ -39,6 +39,7 @@ export default {
       this.isDialogOpen = false;
     },
     backToHome() {
+      // TODO:
       this.$store.commit('RESET_STORE_DATA');
       this.$router.push('/');
     },

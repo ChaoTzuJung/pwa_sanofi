@@ -117,22 +117,19 @@ export default {
             }
 
             & > button {
-                padding: 8px 8px 4px 8px;
+                padding: 8px 20px;
                 outline: none;
                 border: none;
-                color: #bcbc1c;
-                cursor: pointer;
+                color: #FFF;
+                background: #bcbc1c;
                 font-family: 'itc-avant-garde-gothic-pro', Arial, sans-serif;
                 font-size: 1rem;
-
-                &:hover {
-                    background: rgba(0, 0, 0, 0.12);
-                    border-radius: 4px;
-                }
+                border-radius: 19px;
+                cursor: pointer;
 
                 &:nth-child(2n) {
                     margin-left: 8px;
-                    color: #525ca3;
+                    background: #525ca3;
                 }
             }
         }

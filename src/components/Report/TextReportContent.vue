@@ -31,20 +31,11 @@ export default {
       LowerExtremities: state => state.patient.LowerExtremities,
     }),
   },
-  methods: {
-    // TODO:
-    openDialog() {
-      this.$emit('openDialog', 'alert');
-    },
-  },
 };
 </script>
 
 <template>
   <div class="text-report">
-    <div class="mobile">
-      <Form :isFormShow="showMailForm" @openDialog="openDialog" />
-    </div>
     <div class="block">
       <div class="title">Infomation</div>
       <div class="item">
@@ -130,30 +121,21 @@ export default {
       EASI score:
       <div class="value">{{this.EASI}}</div>
     </div>
-
-    <div class="desktop">
-      <Form :isFormShow="showMailForm" @openDialog="openDialog" />
-    </div>
+    <Form :isFormShow="showMailForm" />
   </div>
 </template>
 
 <style scoped lang="scss">
 .text-report {
-
   & > .block {
     width: 100%;
 
-    @media screen and (min-width: 769px) {
+    @media screen and (min-width: 944px) {
       width: 800px;
     }
 
     &:nth-of-type(2n + 1) {
       margin-bottom: 24px;
-      & > .item {
-        /* &:nth-child(4) {
-          margin-bottom: 24px;
-        } */
-      }
     }
 
     &:nth-of-type(2n) {
@@ -182,22 +164,6 @@ export default {
         opacity: 1;
         color: rgba(3, 3, 3, 1);
       }
-    }
-  }
-
-  & > .desktop {
-    display: none;
-
-    @media screen and (min-width: 769px) {
-      display: block;
-    }
-  }
-
-  & > .mobile {
-    display: block;
-
-    @media screen and (min-width: 769px) {
-      display: none;
     }
   }
 

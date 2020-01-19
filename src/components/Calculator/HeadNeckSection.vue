@@ -227,7 +227,6 @@ export default {
           id="name"
           v-model.trim.number.lazy="input"
           autocomplete="off"
-          tabindex="1"
         />
       </div>
       <div class="additional">*Estimate the percentage involvement of this body region.</div>
@@ -242,7 +241,6 @@ export default {
           :key="tabItem.name"
           @click="changeTab(tabItem)"
           @keyup.enter="changeTab(tabItem)"
-          tabindex="2"
         >
           <div class="top" @click="openAccordion(tabItem)">
             <div class="no" :class="{'checked': tabItem.complete}">

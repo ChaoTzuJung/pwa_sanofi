@@ -91,18 +91,12 @@ export default {
       ];
     },
   },
-  methods: {
-    // TODO:
-    openDialog() {
-      this.$emit('openDialog', 'alert');
-    },
-  },
 };
 </script>
 
 <template>
   <div class="full-report">
-    <div class="report">
+    <div class="report" :class="!showMailForm ? 'add-margin' : ''">
       <div class="top">
         <div class="date">Report date: <span>{{this.reportDate}}</span></div>
         <div class="hello">Hello<br/>
@@ -126,11 +120,10 @@ export default {
           <div class="item-block">
             <div class="key">IGA:</div>
             <div class="value" v-if="this.IGA">
-              {{this.IGA.substr(0,1)}}: <span>{{this.IGA.substring(4)}}</span>
+              <span>{{this.IGA.substr(0,1)}}: </span>
+              <span class="bold">{{this.IGA.substring(4)}}</span>
             </div>
-            <div class="value" v-else>
-              {{this.IGA}}
-            </div>
+            <div class="value" v-else>{{this.IGA}}</div>
           </div>
         </div>
         <div class="item">
@@ -147,7 +140,7 @@ export default {
         </div>
       </div>
       <div class="bottom">
-        <div class="card-warp" :key="idx" v-for="(card, idx) in cardList">
+        <div class="card-wrap" :key="idx" v-for="(card, idx) in cardList">
           <Card
             class="custom-card"
             v-for="(item, idx) in card"
@@ -173,35 +166,36 @@ export default {
         </div>
       </div>
     </div>
-    <Form :isFormShow="showMailForm" @openDialog="openDialog" />
+    <Form :isFormShow="showMailForm" />
   </div>
 </template>
 
 <style scoped lang="scss">
 .full-report {
   & > .report {
-    width: 100%;
+    width: 944px;
     margin: 0 auto;
 
-    @media screen and (min-width: 769px) {
-      width: 944px;
-      margin-bottom: 80px;
+    @media screen and (max-width: 944px) {
+      width: 100%;
     }
 
     & > .top {
       display: flex;
       flex-direction: column;
-      width: 100%;
-      margin: 0 auto;
-      margin-bottom: 60px;
+      width: 800px;
+      margin: 0 auto 60px auto;
 
-      @media screen and (min-width: 769px) {
-        width: 944px;
+      @media screen and (max-width: 944px) {
+        flex-direction: column;
+        width: 100%;
+        margin: 0 auto 40px auto;
       }
 
       & > .date {
-        width: 944px;
-        text-align: left;
+        width: 800px;
+        margin-bottom: 20px;
+        text-align: right;
         font-size: 16px;
         font-weight: 300;
         line-height: 1.5;
@@ -209,16 +203,17 @@ export default {
         color: #030303;
         opacity: 0.5;
 
-        @media screen and (max-width: 769px) {
+        @media screen and (max-width: 944px) {
+          width: 100%;
+          margin-bottom: 10px;
+          text-align: left;
           align-self: flex-end;
-          margin-bottom: 20px;
-          margin-bottom: 20px;
         }
 
         & > span {
-          font-weight: bold;
+          font-weight: normal;
 
-          @media screen and (max-width: 769px) {
+          @media screen and (max-width: 944px) {
             display: block;
           }
         }
@@ -234,7 +229,7 @@ export default {
         & > span {
           font-weight: bold;
 
-          @media screen and (max-width: 769px) {
+          @media screen and (max-width: 944px) {
             display: block;
           }
         }
@@ -246,10 +241,10 @@ export default {
       flex-wrap: wrap;
       flex-direction: row;
       margin: 0 auto;
-      width: 100%;
+      width: 800px;
 
-      @media screen and (min-width: 769px) {
-        width: 944px;
+      @media screen and (max-width: 944px) {
+        width: 100%;
       }
 
       & > .item {
@@ -257,27 +252,36 @@ export default {
         flex-direction: column;
         width: 50%;
         height: 33%;
-
         font-weight: 300;
         font-size: 20px;
         line-height: 1.29;
+        margin-bottom: 20px;
         color: rgba(0, 0, 0, 0.5);
-        margin-bottom: 40px;
 
-        @media screen and (min-width: 769px) {
-          width: 33%;
+        @media screen and (min-width: 944px) {
+          width: 250px;
           height: 50%;
           font-size: 28px;
+          margin-right: 25px;
+          margin-bottom: 40px;
         }
 
         & > .item-block {
           display: flex;
           flex-direction: column;
 
+          & > .key {
+            line-height: 1.29;
+
+            @media screen and (max-width: 944px) {
+              line-height: 1.9;
+            }
+          }
+
           & > .value {
             color: #000;
 
-            & > span {
+            & .bold {
               font-weight: 500;
             }
           }
@@ -292,11 +296,16 @@ export default {
         }
 
         &:nth-child(3) {
+          margin-right: 0;
           align-items: flex-start;
+          position: relative;
 
-          & span {
-            font-weight: 500;
-          }
+          & > .value {
+            position: absolute;
+            left: -8px;
+            top: 29px;
+            width: 300px;
+          };
         }
 
         &:nth-child(4) {
@@ -318,7 +327,7 @@ export default {
           white-space: pre-wrap;
           font-size: 24px;
 
-          @media screen and (min-width: 769px) {
+          @media screen and (min-width: 944px) {
             font-size: 40px;
           }
         }
@@ -326,36 +335,36 @@ export default {
     }
 
     & > .bottom {
-      width: 100%;
+      width: 944px;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       margin-bottom: 0;
 
-      @media screen and (min-width: 769px) {
-        width: 944px;
-        margin-bottom: 40px;
-        flex-direction: column;
-        justify-content: space-between;
+      @media screen and (max-width: 944px) {
+        width: 100%;
+        justify-content: center;
       }
 
-      & > .card-warp {
+      & > .card-wrap {
         display: flex;
-        flex-direction: column;
         justify-content: space-between;
-        margin-bottom: 36px;
+        /* margin-bottom: 36px; */
+        margin-bottom: 0;
 
         &:first-child {
           margin-bottom: 0;
         }
 
-        @media screen and (min-width: 769px) {
+        @media screen and (max-width: 944px) {
           margin-bottom: 0;
-          flex-direction: row;
+          flex-direction: column;
+          justify-content: normal;
         }
 
         & > .custom-card {
           &:first-child {
-            @media screen and (min-width: 769px) {
+            @media screen and (min-width: 944px) {
               margin-bottom: 40px;
             }
           }
@@ -368,7 +377,7 @@ export default {
         left: 50%;
         transform: translate(-50%, 5%);
 
-        @media screen and (min-width: 769px) {
+        @media screen and (min-width: 944px) {
           display: block;
           height: 440px
         }
@@ -379,19 +388,23 @@ export default {
     & > .item {
       display: flex;
       flex-direction: column;
-      width: 50%;
-      height: 33%;
-
+      width: 250px;
+      height: 50%;
+      margin-bottom: 40px;
+      margin-right: 25px;
+      margin-left: 74px;
       font-weight: 300;
-      font-size: 20px;
+      font-size: 28px;
       line-height: 1.29;
       color: rgba(0, 0, 0, 0.5);
-      margin-bottom: 40px;
 
-      @media screen and (min-width: 769px) {
-        width: 33%;
-        height: 50%;
-        font-size: 28px;
+      @media screen and (max-width: 944px) {
+        width: 50%;
+        height: 33%;
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: 0;
+        font-size: 20px;
       }
 
       & > .item-block {
@@ -403,32 +416,12 @@ export default {
         }
       }
 
-      &:nth-child(1) {
-        align-items: flex-start;
-      }
+      & .key {
+        line-height: 1.29;
 
-      &:nth-child(2) {
-        align-items: flex-start;
-      }
-
-      &:nth-child(3) {
-        align-items: flex-start;
-
-        & span {
-          font-weight: 500;
+        @media screen and (max-width: 944px) {
+          line-height: 1.9;
         }
-      }
-
-      &:nth-child(4) {
-        align-items: flex-start;
-      }
-
-      &:nth-child(5) {
-        align-items: flex-start;
-      }
-
-      &:nth-child(6) {
-        align-items: flex-start;
       }
 
       & .value {
@@ -436,12 +429,20 @@ export default {
         line-height: 1.2;
         color: #000000;
         white-space: pre-wrap;
-        font-size: 24px;
 
-        @media screen and (min-width: 769px) {
-          font-size: 40px;
+
+        @media screen and (max-width: 944px) {
+          font-size: 24px;
+          line-height: 1.5;
         }
       }
+    }
+  }
+
+  & .add-margin {
+      margin-bottom: 40px;
+    @media screen and (max-width: 944px) {
+      margin-bottom: 80px;
     }
   }
 }

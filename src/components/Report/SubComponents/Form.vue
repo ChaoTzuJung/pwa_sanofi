@@ -72,7 +72,7 @@ export default {
     },
     async addReciever() {
       const checkedResult = await this.checkFormData();
-      if (checkedResult) {
+      if (checkedResult && this.reciever.email) {
         this.recievers.push({
           name: this.reciever.name,
           email: this.reciever.email,
@@ -177,7 +177,6 @@ export default {
         @click.native="sendData()"
       />
     </div>
-    <hr>
   </div>
 </template>
 
@@ -186,30 +185,29 @@ export default {
     width: 100%;
     margin: 0 auto;
 
-    @media screen and (min-width: 769px) {
+    @media screen and (min-width: 944px) {
         width: 800px;
     }
 
     hr {
-        &:first-child {
-            display: none;
+      border: 1px solid #eeeeee;
+      margin: 40px 0;
 
-            @media screen and (min-width: 769px) {
-            display: block;
-            }
-        }
-
-        @media screen and (min-width: 769px) {
-
-            &:last-child {
-                display: none;
-            }
-        }
+      @media screen and (max-width: 944px) {
+        margin: 20px 0;
+      }
     }
 
     & > .row {
         position: relative;
         margin-bottom: 20px;
+
+        &:nth-of-type(2) {
+          margin-bottom: 32px;
+          @media screen and (max-width: 944px) {
+            margin-bottom: 40px;
+          }
+        }
 
         & > .name {
             margin-bottom: 32px;
@@ -375,19 +373,15 @@ export default {
         }
     }
 
-    & > hr {
-        margin: 20px 0;
-    }
-
     & > .button {
         width: 100%;
         display: flex;
         margin-top: 40px;
-        margin-bottom: 20px;
+        margin-bottom: 80px;
         justify-content: center;
         align-items: center;
 
-        @media screen and (min-width: 769px) {
+        @media screen and (min-width: 944px) {
             justify-content: flex-end;
             align-items: flex-end;
             margin-top: 12px;
