@@ -1,14 +1,12 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 import Button from 'components/Common/Button.vue';
-import Dialog from 'components/Common/Dialog.vue';
 import TextReportContent from 'components/Report/TextReportContent.vue';
 import FullReportContent from 'components/Report/FullReportContent.vue';
 
 export default {
   components: {
     Button,
-    Dialog,
     TextReportContent,
     FullReportContent,
   },
@@ -32,16 +30,7 @@ export default {
       window.scrollTo(0, document.body.scrollHeight + 400);
     },
     openDialog(type) {
-      this.DialogType = type;
-      this.isDialogOpen = true;
-    },
-    closeDialog() {
-      this.isDialogOpen = false;
-    },
-    backToHome() {
-      // TODO:
-      this.$store.commit('RESET_STORE_DATA');
-      this.$router.push('/');
+      this.$store.commit('OPEN_DIALOG', { type, status: true });
     },
   },
   computed: {

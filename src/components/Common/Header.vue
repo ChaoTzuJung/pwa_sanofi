@@ -1,12 +1,17 @@
 <script>
 export default {
   name: 'Header',
+  methods: {
+    openDialog(type) {
+      this.$store.commit('OPEN_DIALOG', { type, status: true });
+    },
+  },
 };
 </script>
 
 <template>
   <header>
-    <a @click="$emit('openDialog')">
+    <a @click="openDialog('confirm')">
       <div class="logo"></div>
       <div class="separate"></div>
       <div class="sublogo"></div>

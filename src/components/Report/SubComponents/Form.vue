@@ -117,10 +117,10 @@ export default {
       const checkedResult = await this.checkFormData();
       if (checkedResult) {
         // eslint-disable-next-line no-alert
-        alert('sendData');
         this.clearInput();
         this.errorMessage = '';
         this.recievers = [];
+        this.$store.commit('OPEN_DIALOG', { type: 'alert', status: true });
       }
     },
   },

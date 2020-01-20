@@ -1,35 +1,40 @@
 <script>
+import { mapState } from 'vuex';
+
 export default {
-  props: ['isDialogOpen', 'type'],
   data() {
     return {
-      open: false,
+      open: this.isDialogOpen,
       DialogType: {
-        comfirm: {
+        confirm: {
           title: 'Reloading this page will lose your data.',
           content: 'Are you sure you want to start the next calculation?',
-          button: ['Stay on this Page', 'Next Calculation'],
-          callback: 2,
+          buttons: [
+            {
+              context: 'Stay on this Page',
+            },
+            {
+              context: 'Next Calculation',
+            },
+          ],
         },
         alert: {
           title: 'The report is successfully sent.',
           content: null,
-          button: ['Yes'],
+          buttons: [
+            {
+              context: 'Yes',
+            },
+          ],
         },
       },
     };
   },
-  methods: {
-    closeDialog(DialogType, idx) {
-      this.callback(DialogType, idx);
-      this.open = false;
-      this.$emit('closeDialog', false);
-    },
-    callback(DialogType, idx) {
-      if (DialogType[this.type].callback === idx + 1) {
-        this.$emit('callback');
-      }
-    },
+  computed: {
+    ...mapState({
+      isDialogOpen: state => state.isDialogOpen,
+      dialogType: state => state.dialogType,
+    }),
   },
   watch: {
     isDialogOpen() {
@@ -45,21 +50,32 @@ export default {
       }
     },
   },
+  methods: {
+    closeDialog(dialogType, event) {
+      this.$store.commit('OPEN_DIALOG', { type: dialogType, status: false });
+      if (event.target.textContent === 'Next Calculation') {
+        this.$store.dispatch('BACK_TO_HOMEPAGE');
+        // TODO: 回首頁 與 清空store
+      }
+    },
+  },
 };
 </script>
 
 <template>
   <dialog class="dialog-overlay" v-if="open">
     <div class="dialog-container">
-      <div class="title">{{DialogType[this.type].title}}</div>
-      <div class="text" v-if="DialogType[this.type].content">{{DialogType[this.type].content}}</div>
+      <div class="title">{{DialogType[dialogType].title}}</div>
+      <div class="text" v-if="DialogType[dialogType].content">
+        {{DialogType[dialogType].content}}
+      </div>
       <div class="actions" >
         <button
-          :key="btn"
-          v-for="(btn, idx) in DialogType[this.type].button"
-          @click="closeDialog(DialogType, idx)"
+          v-for="btn in DialogType[dialogType].buttons"
+          :key="btn.context"
+          @click="closeDialog(dialogType, $event)"
         >
-          {{btn}}
+          {{btn.context}}
         </button>
       </div>
     </div>

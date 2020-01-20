@@ -1,10 +1,4 @@
 <div class="report">
-    <Dialog
-        :type="DialogType"
-        :isDialogOpen="isDialogOpen"
-        @closeDialog="closeDialog"
-        @callback="backToHome">
-    </Dialog>
     <div class="title">{{reportType}}</div>
     <div class="button-section">
         <Button
@@ -20,7 +14,7 @@
         <Button 
             text="Next Calculation"
             color="#525ca3"
-            @click.native="openDialog('comfirm')"
+            @click.native="openDialog('confirm')"
         />
     </div>
     <router-link to="/patient" replace>

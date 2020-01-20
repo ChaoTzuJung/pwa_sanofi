@@ -17,17 +17,8 @@ export default {
     };
   },
   methods: {
-    backToHome() {
-      // this.$store.commit('resetStoreData');
-      this.$router.replace('/');
-      this.closeDialog();
-    },
     openDialog(type) {
-      this.DialogType = type;
-      this.isDialogOpen = true;
-    },
-    closeDialog() {
-      this.isDialogOpen = false;
+      this.$store.commit('OPEN_DIALOG', { type, status: true });
     },
   },
 };
@@ -35,13 +26,8 @@ export default {
 
 <template>
   <div class="route">
-    <Dialog
-      :type="DialogType"
-      :isDialogOpen="isDialogOpen"
-      @closeDialog="closeDialog"
-      @callback="backToHome"
-    />
-    <Header @openDialog="openDialog('comfirm')" />
+    <Dialog />
+    <Header @openDialog="openDialog('confirm')" />
     <keep-alive>
       <router-view />
     </keep-alive>
