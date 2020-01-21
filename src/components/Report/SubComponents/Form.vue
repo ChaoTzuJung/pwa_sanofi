@@ -33,8 +33,7 @@ export default {
   },
   watch: {
     'reciever.name': {
-      handler(newName, oldName) {
-        console.log('newName: ', newName, 'oldName: ', oldName);
+      handler() {
         // Just input English name
         if (!this.reciever.name.match(/^[^\u4e00-\u9fa5]+$/)) {
           this.reciever.name = '';
@@ -42,20 +41,6 @@ export default {
       },
       deep: true,
     },
-    // 'reciever.email': {
-    //   handler(newEmail, oldEmail) {
-    //     console.log('newEmail: ', newEmail, 'oldEmail: ', oldEmail);
-    //     // check email format
-    //     if (this.reciever.email.search(/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/) === -1) {
-    //       this.showInvalidMessage('isInvalid');
-    //     }
-
-    //     if (this.reciever.email === '') {
-    //       this.showInvalidMessage('isEmpty');
-    //     }
-    //   },
-    //   deep: true,
-    // },
   },
   methods: {
     ...mapActions({

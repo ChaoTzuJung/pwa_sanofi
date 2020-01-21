@@ -81,45 +81,30 @@ export default {
     ...mapState({
       calculator: state => state.calculator,
     }),
-    areaPoint: {
-      get() {
-        if (this.input >= 90 && this.input <= 100) return 6;
-        if (this.input >= 70 && this.input <= 89) return 5;
-        if (this.input >= 50 && this.input <= 69) return 4;
-        if (this.input >= 30 && this.input <= 49) return 3;
-        if (this.input >= 10 && this.input <= 29) return 2;
-        if (this.input >= 1 && this.input <= 9) return 1;
-        return 0;
-      },
-      set(value) {
-        console.log(value);
-      },
+    areaPoint() {
+      if (this.input >= 90 && this.input <= 100) return 6;
+      if (this.input >= 70 && this.input <= 89) return 5;
+      if (this.input >= 50 && this.input <= 69) return 4;
+      if (this.input >= 30 && this.input <= 49) return 3;
+      if (this.input >= 10 && this.input <= 29) return 2;
+      if (this.input >= 1 && this.input <= 9) return 1;
+      return 0;
     },
-    summary: {
-      get() {
-        const symptomScore = this.tabData.Erythema.score
-        + this.tabData['Edema / papulation'].score
-        + this.tabData.Excoriation.score
-        + this.tabData.Lichenification.score;
+    summary() {
+      const symptomScore = this.tabData.Erythema.score
+      + this.tabData['Edema / papulation'].score
+      + this.tabData.Excoriation.score
+      + this.tabData.Lichenification.score;
 
-        const sum = this.areaPoint * symptomScore * 0.1;
+      const sum = this.areaPoint * symptomScore * 0.1;
 
-        const score = sum.toFixed(1);
-        return score;
-      },
-      set(value) {
-        console.log('執行', value);
-      },
+      const score = sum.toFixed(1);
+      return score;
     },
-    checked: {
-      get() {
-        const isEASIFinish = Object.values(this.tabData).every(item => item.complete === true);
-        const isAreaFinsih = parseInt(this.input, 10) || false;
-        return isAreaFinsih && isEASIFinish;
-      },
-      set(value) {
-        console.log(value);
-      },
+    checked() {
+      const isEASIFinish = Object.values(this.tabData).every(item => item.complete === true);
+      const isAreaFinsih = parseInt(this.input, 10) || false;
+      return isAreaFinsih && isEASIFinish;
     },
   },
   watch: {
@@ -158,11 +143,9 @@ export default {
     this.gridData = generateGrids('Erythema', 'Head & Neck');
   },
   activated() {
-    console.log('[HEADNECK] activated');
     window.scrollTo(0, 0);
   },
   deactivated() {
-    console.log('[HEADNECK] deactivated');
     const headneckData = {
       HeadNeckAreaScore: this.areaPoint,
       HeadNeckAreaPercent: this.input,
@@ -174,16 +157,12 @@ export default {
     };
     this.$store.commit('patient/SAVE_HEADNECK_DATA', headneckData);
   },
-  destroyed() {
-    console.log('[HEADNECK] destroyed');
-  },
   methods: {
     openAccordion(tabItem) {
       // 點擊 Accordion head 打開 Accordion content
       this.accordionOpen[tabItem.name] = !this.accordionOpen[tabItem.name];
     },
     changeTab(tabItem) {
-      console.log(tabItem);
       this.symptomName = tabItem.name;
       this.currentTabComponent = tabItem.component;
       // 換資料注入不同圖片跟內文

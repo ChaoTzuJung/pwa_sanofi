@@ -45,8 +45,7 @@ export default {
   },
   watch: {
     'patient.name': {
-      handler(newName, oldName) {
-        console.log('newName: ', newName, 'oldName: ', oldName);
+      handler() {
         // Just input English name
         if (!this.patient.name.match(/^[^\u4e00-\u9fa5]+$/)) {
           this.patient.name = '';

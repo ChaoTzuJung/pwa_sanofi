@@ -21,8 +21,7 @@ import LichenificationMildImage from '../assets/images/Lichenification_Mild.jpg'
 import LichenificationModerateImage from '../assets/images/Lichenification_Moderate.jpg';
 import LichenificationSevereImage from '../assets/images/Lichenification_Severe.jpg';
 
-const generateGrids = (bodySymptom, bodyPart) => {
-  console.log('bodyPart', bodyPart);
+const generateGrids = (bodySymptom) => {
   let RelateErythemaNoneImage;
   let RelateErythemaMildImage;
   let RelateErythemaModerateImage;

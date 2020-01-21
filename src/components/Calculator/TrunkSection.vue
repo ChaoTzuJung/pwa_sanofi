@@ -77,45 +77,30 @@ export default {
       area: state => state.area,
       body: state => state.body,
     }),
-    areaPoint: {
-      get() {
-        if (this.input >= 90 && this.input <= 100) return 6;
-        if (this.input >= 70 && this.input <= 89) return 5;
-        if (this.input >= 50 && this.input <= 69) return 4;
-        if (this.input >= 30 && this.input <= 49) return 3;
-        if (this.input >= 10 && this.input <= 29) return 2;
-        if (this.input >= 1 && this.input <= 9) return 1;
-        return 0;
-      },
-      set(value) {
-        console.log(value);
-      },
+    areaPoint() {
+      if (this.input >= 90 && this.input <= 100) return 6;
+      if (this.input >= 70 && this.input <= 89) return 5;
+      if (this.input >= 50 && this.input <= 69) return 4;
+      if (this.input >= 30 && this.input <= 49) return 3;
+      if (this.input >= 10 && this.input <= 29) return 2;
+      if (this.input >= 1 && this.input <= 9) return 1;
+      return 0;
     },
-    summary: {
-      get() {
-        const symptomScore = this.tabData.Erythema.score
+    summary() {
+      const symptomScore = this.tabData.Erythema.score
         + this.tabData['Edema / papulation'].score
         + this.tabData.Excoriation.score
         + this.tabData.Lichenification.score;
 
-        const sum = this.areaPoint * symptomScore * 0.1;
+      const sum = this.areaPoint * symptomScore * 0.1;
 
-        const score = sum.toFixed(1);
-        return score;
-      },
-      set(value) {
-        console.log('執行', value);
-      },
+      const score = sum.toFixed(1);
+      return score;
     },
-    checked: {
-      get() {
-        const isEASIFinish = Object.values(this.tabData).every(item => item.complete === true);
-        const isAreaFinsih = parseInt(this.input, 10) || false;
-        return isAreaFinsih && isEASIFinish;
-      },
-      set(value) {
-        console.log(value);
-      },
+    checked() {
+      const isEASIFinish = Object.values(this.tabData).every(item => item.complete === true);
+      const isAreaFinsih = parseInt(this.input, 10) || false;
+      return isAreaFinsih && isEASIFinish;
     },
   },
   watch: {
@@ -154,11 +139,9 @@ export default {
     this.gridData = generateGrids('Erythema', 'Head & Neck');
   },
   activated() {
-    console.log('[TRUNK] activated');
     window.scrollTo(0, 0);
   },
   deactivated() {
-    console.log('[TRUNK] deactivated');
     const trunkData = {
       trunkAreaScore: this.areaPoint,
       trunkAreaPercent: this.input,
@@ -169,9 +152,6 @@ export default {
       trunkScore: this.summary,
     };
     this.$store.commit('patient/SAVE_TRUNK_DATA', trunkData);
-  },
-  destroyed() {
-    console.log('[TRUNK] destroyed');
   },
   methods: {
     openAccordion(tabItem) {

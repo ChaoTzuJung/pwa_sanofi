@@ -31,4 +31,30 @@ module.exports = {
       .set('assets', resolve('src/assets'));
     config.resolve.extensions.merge(['.js', '.vue', '.json']);
   },
+  pwa: {
+    name: 'Sanofi Easiscore',
+    themeColor: '#525CA3',
+    msTileColor: '#ffffff',
+    appleMobileWebAppCapable: 'yes',
+    appleMobileWebAppStatusBarStyle: 'default',
+    manifestOptions: {
+      short_name: 'Sanofi',
+      start_url: '.',
+      display: 'standalone',
+    },
+    iconPaths: {
+      favicon32: 'img/icons/favicon-32x32.png',
+      favicon16: 'img/icons/favicon-16x16.png',
+      appleTouchIcon: 'img/icons/apple-touch-icon-152x152.png',
+      maskIcon: 'img/icons/safari-pinned-tab.svg',
+      msTileImage: 'img/icons/msapplication-icon-144x144.png',
+    },
+    // configure the workbox plugin
+    workboxPluginMode: 'InjectManifest',
+    workboxOptions: {
+      // swSrc is required in InjectManifest mode.
+      swSrc: 'src/registerServiceWorker.js',
+      // ...other Workbox options...
+    },
+  },
 };
