@@ -56,20 +56,6 @@ export default {
       return this.data[this.pickedScore].relative.length > 1;
     },
   },
-  watch: {
-    isModalOpen() {
-      this.open = this.isModalOpen;
-    },
-    open() {
-      if (this.open) {
-        this.positionY = window.scrollY;
-        document.body.style.position = 'fixed';
-      } else {
-        document.body.style.position = 'static';
-        window.scrollTo(0, this.positionY);
-      }
-    },
-  },
   methods: {
     changeTab(gridName) {
       this.pickedImage = gridName;

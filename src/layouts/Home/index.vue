@@ -1,10 +1,10 @@
 <script>
 import Banner from 'components/Home/Banner.vue';
 import HeadNeckExhibition from 'components/Home/HeadNeckExhibition.vue';
-import UpperExtremitiesExhibition from 'components/Home/UpperExtremitiesExhibition.vue';
 import TrunkExhibition from 'components/Home/TrunkExhibition.vue';
 import LowerExtremitiesExhibition from 'components/Home/LowerExtremitiesExhibition.vue';
 import Button from 'components/Common/Button.vue';
+import UpperExtremitiesExhibition from '@/components/Home/UpperExtremitiesExhibition.vue';
 
 export default {
   name: 'HomeContainer',

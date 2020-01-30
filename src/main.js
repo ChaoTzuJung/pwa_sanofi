@@ -8,7 +8,7 @@ import store from './store';
 
 // NOTE: 無法用在 .js 使用 alias @ 這是因為eslint-loader不能解析@的緣故
 import './assets/global.scss';
-import './registerServiceWorker';
+import './service-worker';
 
 Vue.config.productionTip = false;
 

@@ -8,8 +8,12 @@ import modules from './modules';
 
 Vue.use(Vuex);
 
+Vuex.Store.prototype.hasModule = function (module) {
+  /* eslint-disable no-underscore-dangle */
+  return this._modules.root._children[module] !== undefined;
+};
+
 export default new Vuex.Store({
-  strict: true,
   state,
   getters,
   actions,

@@ -6,6 +6,8 @@ import EdemaPapulation from 'components/Calculator/SubComponents/EdemaPapulation
 import Excoriation from 'components/Calculator/SubComponents/Excoriation.vue';
 import Lichenification from 'components/Calculator/SubComponents/Lichenification.vue';
 import Button from 'components/Common/Button.vue';
+import Carousel from 'components/Common/Carousel.vue';
+import Modal from 'components/Common/Modal.vue';
 import generateGrids from 'utils/generateGrids';
 
 import BodyFrontImage from 'assets/images/body-front.svg';
@@ -15,11 +17,13 @@ export default {
   name: 'TrunkSection',
   components: {
     Accordion,
+    Button,
+    Carousel,
+    Modal,
     Erythema,
     EdemaPapulation,
     Excoriation,
     Lichenification,
-    Button,
   },
   data() {
     return {
@@ -74,8 +78,7 @@ export default {
   },
   computed: {
     ...mapState({
-      area: state => state.area,
-      body: state => state.body,
+      calculator: state => state.calculator,
     }),
     areaPoint() {
       if (this.input >= 90 && this.input <= 100) return 6;
@@ -174,6 +177,11 @@ export default {
 
 <template>
   <div class="head-neck-section">
+    <Modal>
+      <div slot="modal-content">
+        <Carousel :current="calculator.currentSeverity" :data="gridData"></Carousel>
+      </div>
+    </Modal>
     <div class="graph-section">
       <div class="front">
         <div class="title">Front</div>

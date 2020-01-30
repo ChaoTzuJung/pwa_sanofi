@@ -1,5 +1,5 @@
 const state = () => ({
-  currentSeverity: '',
+  currentSeverity: 'None',
   isModalOpen: false,
 });
 

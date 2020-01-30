@@ -1,7 +1,8 @@
-import calculatorModule from './calculator';
-import patientModule from './patient';
+// import calculatorModule from './calculator';
+// import patientModule from './patient';
 
 export default {
-  calculator: calculatorModule(),
-  patient: patientModule(),
+  // 改成動態註冊
+  // calculator: calculatorModule(),
+  // patient: patientModule(),
 };

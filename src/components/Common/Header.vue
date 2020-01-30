@@ -2,8 +2,8 @@
 export default {
   name: 'Header',
   methods: {
-    openDialog(type) {
-      this.$store.commit('OPEN_DIALOG', { type, status: true });
+    async openDialog() {
+      await this.$store.dispatch('toggleComfirm', { type: 'leaveConfirm' });
     },
   },
 };
@@ -11,7 +11,7 @@ export default {
 
 <template>
   <header>
-    <a @click="openDialog('confirm')">
+    <a @click="openDialog()">
       <div class="logo"></div>
       <div class="separate"></div>
       <div class="sublogo"></div>

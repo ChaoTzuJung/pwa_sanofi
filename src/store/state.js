@@ -1,7 +1,8 @@
 const state = () => ({
   isLoading: false,
-  dialogType: 'confirm',
+  dialogType: '',
   isDialogOpen: false,
+  reset: false,
 });
 
 export default state;

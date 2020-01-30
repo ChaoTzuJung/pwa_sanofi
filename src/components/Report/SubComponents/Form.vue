@@ -105,7 +105,7 @@ export default {
         this.clearInput();
         this.errorMessage = '';
         this.recievers = [];
-        this.$store.commit('OPEN_DIALOG', { type: 'alert', status: true });
+        this.$store.commit('OPEN_DIALOG', { type: 'completeAlert', status: true });
       }
     },
   },

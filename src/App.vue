@@ -10,27 +10,19 @@ export default {
     Footer,
     Dialog,
   },
-  data() {
-    return {
-      isDialogOpen: false,
-      DialogType: '',
-    };
-  },
-  methods: {
-    openDialog(type) {
-      this.$store.commit('OPEN_DIALOG', { type, status: true });
-    },
-  },
 };
 </script>
 
 <template>
   <div class="route">
     <Dialog />
-    <Header @openDialog="openDialog('confirm')" />
-    <keep-alive>
-      <router-view />
-    </keep-alive>
+    <Header />
+      <keep-alive v-if="$route.meta.keepAlive">
+        <router-view>
+        </router-view>
+      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive">
+      </router-view>
     <Footer />
   </div>
 </template>
