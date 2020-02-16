@@ -9,7 +9,7 @@ export default {
   beforeRouteEnter(to, from, next) {
     const comimgPath = ['/report/text-report', '/report/full-report', '/calculator'];
     if (comimgPath.indexOf(from.path) === -1) {
-      console.log('來源驗證失敗:', from.path);
+      // console.log('來源驗證失敗:', from.path);
       return next('/');
     }
     return next();

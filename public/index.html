@@ -20,5 +20,29 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected here, and Vue CLI also automatically injects resource hints (preload/prefetch), manifest/icon links (when PWA plugin is used), and the asset links for the JavaScript and CSS files produced during the build. -->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyB5zAbTz1jqrdsPmF3syUoetuFDL0k04eY",
+        authDomain: "sanofi-easiscore-pwa.firebaseapp.com",
+        databaseURL: "https://sanofi-easiscore-pwa.firebaseio.com",
+        projectId: "sanofi-easiscore-pwa",
+        storageBucket: "sanofi-easiscore-pwa.appspot.com",
+        messagingSenderId: "513525666686",
+        appId: "1:513525666686:web:cb90f1360dbe18d949d92f",
+        measurementId: "G-ZPYVCTKL5J"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
   </body>
 </html>

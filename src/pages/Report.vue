@@ -8,7 +8,7 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     if (from.path !== '/patient') {
-      console.log('來源驗證失敗:', from.path);
+      // console.log('來源驗證失敗:', from.path);
       return next('/');
     }
     return next();
