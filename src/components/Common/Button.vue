@@ -19,24 +19,15 @@ export default {
     width: {
       type: Number,
     },
-    // isLoading: {
-    //   type: Boolean,
-    // },
     color: {
       type: String,
       default: '#bcbc1c',
     },
   },
-  components: {
-    // Spinner,
-  },
   computed: {
-    // spinnerColor() {
-    //   if (this.border) {
-    //     return '#bcbc1c';
-    //   }
-    //   return '#FFFFFF';
-    // },
+    isPwa() {
+      return window.isMobile && window.isPwa;
+    },
   },
 };
 </script>
@@ -44,7 +35,7 @@ export default {
 <template>
   <div
     class="button"
-    :class="{ 'borderButton': border }"
+    :class="{ 'borderButton': border, 'pwaButton': isPwa }"
   >
     <!-- :class="{ loading: isLoading }" -->
     <router-link
@@ -59,6 +50,10 @@ export default {
 </template>
 
 <style scoped lang="scss">
+.pwa-button {
+  user-select: none;
+}
+
 .button {
   display: flex;
   justify-content: center;

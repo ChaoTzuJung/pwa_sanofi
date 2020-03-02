@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "pwa": "npm run build && serve -s dist"
+    "pwa": "npm run build && serve -s dist",
+    "deploy": "npm run pwa && serve -s dist && firebase deploy"
   },
   "dependencies": {
     "core-js": "^3.4.4",

@@ -3,7 +3,13 @@ export default {
   name: 'Header',
   methods: {
     async openDialog() {
+      if (this.isPwa) return;
       await this.$store.dispatch('toggleComfirm', { type: 'leaveConfirm' });
+    },
+  },
+  computed: {
+    isPwa() {
+      return window.isMobile && window.isPwa;
     },
   },
 };
@@ -11,7 +17,7 @@ export default {
 
 <template>
   <header>
-    <a @click="openDialog()">
+    <a :class="{'pwa-header': isPwa}" @click="openDialog()">
       <div class="logo"></div>
       <div class="separate"></div>
       <div class="sublogo"></div>
@@ -23,16 +29,24 @@ export default {
 header {
   width: 100%;
   background: #fff;
-  padding: 16px 0;
-  padding-left: 20px;
+  padding: 20px 0;
+  padding-left: 40px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
 
-  @media screen and (min-width: 769px) {
-    padding-left: 40px;
+  @media screen and (max-width: 769px) {
+    padding: 16px 0;
+    padding-left: 20px;
+  }
+
+  & > .pwa-header {
+    @media screen and (max-width: 769px) {
+      justify-content: center;
+    }
   }
 
   & > a {
-    display: flex;
+    display: inline-flex;
+    vertical-align: bottom;
     align-items: center;
 
     & > .logo {
