@@ -41,6 +41,7 @@ module.exports = {
       short_name: 'Sanofi',
       start_url: '.',
       display: 'fullscreen',
+      background_color: '#ffffff',
     },
     iconPaths: {
       favicon32: 'img/icons/favicon-32x32.png',
@@ -51,5 +52,8 @@ module.exports = {
     },
     // configure the workbox plugin
     workboxPluginMode: 'GenerateSW',
+    workboxOptions: {
+      skipWaiting: true,
+    },
   },
 };

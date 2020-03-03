@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     isPwa() {
-      return window.isMobile && window.isPwa;
+      return window.isMobileDevice && window.isPwa;
     },
   },
 };

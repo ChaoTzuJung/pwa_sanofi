@@ -55,6 +55,16 @@ const detectNotch = () => {
     window.addEventListener('orientationchange', update);
     update();
   }
+
+  // iphone 11 Detection已有新版
+  if (iOS && screen.width === 1242 && screen.height === 2688) {
+    // Set a global variable now we've determined the iPhoneX is true
+    window.iphoneX = true;
+
+    // Adds a listener for ios devices that checks for orientation changes.
+    window.addEventListener('orientationchange', update);
+    update();
+  }
 };
 
 export default detectNotch;

@@ -20,7 +20,7 @@ detectNotch();
 detectDevice();
 
 /* eslint-disable global-require */
-if (window.isPwa && window.isMobile) {
+if (window.isPwa && window.isMobileDevice) {
   require('./assets/pwa.scss');
 }
 

@@ -9,15 +9,15 @@ export default {
   },
   computed: {
     isPwa() {
-      return window.isMobile && window.isPwa;
+      return window.isMobileDevice && window.isPwa;
     },
   },
 };
 </script>
 
 <template>
-  <header>
-    <a :class="{'pwa-header': isPwa}" @click="openDialog()">
+  <header :class="{'pwa-header': isPwa}">
+    <a @click="openDialog()">
       <div class="logo"></div>
       <div class="separate"></div>
       <div class="sublogo"></div>
@@ -36,12 +36,6 @@ header {
   @media screen and (max-width: 769px) {
     padding: 16px 0;
     padding-left: 20px;
-  }
-
-  & > .pwa-header {
-    @media screen and (max-width: 769px) {
-      justify-content: center;
-    }
   }
 
   & > a {
@@ -91,6 +85,16 @@ header {
         height: 16px;
       }
     }
+  }
+}
+
+.pwa-header {
+  @media screen and (max-width: 769px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 0;
+    padding-left: 0;
   }
 }
 </style>
