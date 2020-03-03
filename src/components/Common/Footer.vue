@@ -236,7 +236,7 @@ export default {
 
       @media screen and (min-width: 769px) {
         display: flex;
-        align-items: end;
+        align-items: flex-end;
       }
     }
 

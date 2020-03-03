@@ -11,13 +11,20 @@ export default {
     isPwa() {
       return window.isMobileDevice && window.isPwa;
     },
+    headerTitle() {
+      if (this.$route.path === '/') return 'home';
+      return this.$route.path.split('/')[1];
+    },
   },
 };
 </script>
 
 <template>
   <header :class="{'pwa-header': isPwa}">
-    <a @click="openDialog()">
+    <div class="title-text" v-if="headerTitle !== 'home'">
+      {{headerTitle}}
+    </div>
+    <a v-else @click="openDialog()">
       <div class="logo"></div>
       <div class="separate"></div>
       <div class="sublogo"></div>
@@ -36,6 +43,12 @@ header {
   @media screen and (max-width: 769px) {
     padding: 16px 0;
     padding-left: 20px;
+  }
+
+  & > .title-text {
+    font-size: 14px; // or 15px
+    font-weight: 300; // semibold
+    text-transform: capitalize;
   }
 
   & > a {
