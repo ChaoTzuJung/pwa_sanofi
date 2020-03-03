@@ -40,7 +40,7 @@ module.exports = {
     manifestOptions: {
       short_name: 'Sanofi',
       start_url: '.',
-      display: 'standalone',
+      display: 'fullscreen',
     },
     iconPaths: {
       favicon32: 'img/icons/favicon-32x32.png',
