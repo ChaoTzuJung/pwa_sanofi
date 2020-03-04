@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="21px" viewBox="0 0 56 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Bars / Navigation /_/ L – Back</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Bars-/-Navigation-/_/-L-–-Back" fill="#525CA3">
+            <g id="Button">
+                <path d="M10.0371349,20.5826673 L0.792151852,11.4458042 C0.402616049,11.0611888 0.402616049,10.4398102 0.792151852,10.0541958 L10.0371349,0.917332667 C10.5994648,0.360889111 11.5143745,0.360889111 12.0777032,0.917332667 C12.6400331,1.47377622 12.6400331,2.37687313 12.0777032,2.93331668 L4.16912762,10.7504995 L12.0777032,18.5656843 C12.6400331,19.1231269 12.6400331,20.0262238 12.0777032,20.5826673 C11.5143745,21.1391109 10.5994648,21.1391109 10.0371349,20.5826673" id="Arrow"></path>
+                <text id="↳-Label" font-family="SFProText-Regular, SF Pro Text" font-size="17" font-weight="normal" line-spacing="22" letter-spacing="-0.409999996">
+                    <tspan x="18" y="16">Back</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

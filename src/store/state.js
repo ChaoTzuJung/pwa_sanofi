@@ -3,6 +3,7 @@ const state = () => ({
   dialogType: '',
   isDialogOpen: false,
   reset: false,
+  direction: '',
 });
 
 export default state;

@@ -1,11 +1,12 @@
 <script>
+import IosBack from 'assets/images/ios_back.svg';
+
 export default {
   name: 'Header',
-  methods: {
-    async openDialog() {
-      if (this.isPwa) return;
-      await this.$store.dispatch('toggleComfirm', { type: 'leaveConfirm' });
-    },
+  data() {
+    return {
+      IosBack,
+    };
   },
   computed: {
     isPwa() {
@@ -16,19 +17,38 @@ export default {
       return this.$route.path.split('/')[1];
     },
   },
+  methods: {
+    async openDialog() {
+      if (this.isPwa) return;
+      await this.$store.dispatch('toggleComfirm', { type: 'leaveConfirm' });
+    },
+  },
 };
 </script>
 
 <template>
   <header :class="{'pwa-header': isPwa}">
-    <div class="title-text" v-if="headerTitle !== 'home'">
-      {{headerTitle}}
-    </div>
-    <a v-else @click="openDialog()">
-      <div class="logo"></div>
-      <div class="separate"></div>
-      <div class="sublogo"></div>
-    </a>
+    <transition name="fade">
+      <div
+        class="back-btn"
+        v-if="headerTitle !== 'home'"
+        @click="$router.go(-1)"
+      >
+        <img :src="IosBack"/>
+      </div>
+    </transition>
+    <transition name="fade">
+      <div class="title-text" v-if="headerTitle !== 'home'">
+        {{headerTitle}}
+      </div>
+    </transition>
+    <transition name="fade">
+      <a @click="openDialog()" v-if="headerTitle === 'home'">
+        <div class="logo"></div>
+        <div class="separate"></div>
+        <div class="sublogo"></div>
+      </a>
+    </transition>
   </header>
 </template>
 
@@ -43,6 +63,20 @@ header {
   @media screen and (max-width: 769px) {
     padding: 16px 0;
     padding-left: 20px;
+    position: relative;
+  }
+
+  & > .back-btn {
+    display: none;
+    position: absolute;
+    left: 6px;
+    bottom: 8px;
+    transform: scale(0.8);
+    cursor: pointer;
+
+    &:focus, &:active {
+      opacity: 0.6;
+    }
   }
 
   & > .title-text {
@@ -103,11 +137,30 @@ header {
 
 .pwa-header {
   @media screen and (max-width: 769px) {
+    position: fixed;
+    top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 16px 0;
+    padding: 20px 0 12px 0;
     padding-left: 0;
+    z-index: 999;
   }
+
+  & > .back-btn {
+    display: block;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
 }
 </style>

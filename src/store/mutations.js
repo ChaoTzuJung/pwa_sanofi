@@ -9,4 +9,7 @@ export default {
   CLOSE_DIALOG(state) {
     state.isDialogOpen = false;
   },
+  CHANGE_DIRECTION(state, { direction }) {
+    state.direction = direction;
+  },
 };
