@@ -6,6 +6,9 @@ export default {
   components: {
     PatientLayout,
   },
+  created() {
+    window.scrollTo(0, 0);
+  },
   beforeRouteEnter(to, from, next) {
     const comimgPath = ['/report/text-report', '/report/full-report', '/calculator'];
     if (comimgPath.indexOf(from.path) === -1) {
