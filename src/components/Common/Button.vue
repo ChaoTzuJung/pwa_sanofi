@@ -35,7 +35,7 @@ export default {
 <template>
   <div
     class="button"
-    :class="{ 'borderButton': border, 'pwaButton': isPwa }"
+    :class="{ 'borderButton': border, 'unselectable': isPwa }"
   >
     <!-- :class="{ loading: isLoading }" -->
     <router-link
@@ -50,10 +50,6 @@ export default {
 </template>
 
 <style scoped lang="scss">
-.pwa-button {
-  user-select: none;
-}
-
 .button {
   display: flex;
   justify-content: center;
@@ -123,6 +119,14 @@ export default {
     @media screen and (min-width: 769px) {
       max-height: 56px;
     }
+  }
+}
+
+.unselectable {
+  user-select: none;
+
+  &:focus, &:active {
+    opacity: 0.2;
   }
 }
 </style>

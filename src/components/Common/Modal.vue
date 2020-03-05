@@ -7,6 +7,9 @@ export default {
     ...mapState({
       show: state => state.calculator.isModalOpen,
     }),
+    isPwa() {
+      return window.isMobileDevice && window.isPwa;
+    },
   },
   methods: {
     closeModal() {
@@ -17,7 +20,7 @@ export default {
 </script>
 
 <template>
-  <transition name="slide">
+  <transition :name="isPwa ? 'slide' : 'fade'">
     <div class="mask" v-if="show">
       <div class="modal-wrapper">
         <div class="modal-container">
@@ -59,6 +62,17 @@ export default {
   transition: all 1s;
 }
 
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
+}
 
 .mask {
     display: table;
@@ -67,7 +81,7 @@ export default {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.2);
     animation-duration: .7s;
     animation-fill-mode: both;
