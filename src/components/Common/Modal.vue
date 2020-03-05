@@ -17,22 +17,49 @@ export default {
 </script>
 
 <template>
-    <transition name="fade">
-        <div class="modal" v-if="show">
-          <div class="mask">
-            <div class="modal-wrapper">
-              <div class="modal-container">
-                <div class="close" @click="closeModal"></div>
-                <slot name="modal-content"></slot>
-              </div>
-            </div>
-          </div>
-          <slot ></slot>
+  <transition name="slide">
+    <div class="mask" v-if="show">
+      <div class="modal-wrapper">
+        <div class="modal-container">
+          <div class="close" @click="closeModal"></div>
+          <slot name="modal-content"></slot>
         </div>
-    </transition>
+      </div>
+    </div>
+    <slot ></slot>
+  </transition>
 </template>
 
 <style scoped lang="scss">
+@keyframes slideUp {
+  from {
+    transform: translate3d(0, 100vh, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slide-enter, .slide-leave-to {
+  transform: translate3d(0, 100vh, 0);
+};
+
+.slide-enter-to, .slide-leave {
+  transform: translate3d(0, 0, 0);
+};
+
+.slide-enter-active {
+  transition-timing-function: ease-in;
+  transition: all 1s;
+}
+
+.slide-leave-active {
+  transition-timing-function: ease-out;
+  transition: all 1s;
+}
+
+
 .mask {
     display: table;
     position: fixed;
@@ -42,7 +69,9 @@ export default {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
-    transition: opacity .3s ease;
+    animation-duration: .7s;
+    animation-fill-mode: both;
+    animation-name: fadeInUp;
 
     & > .modal-wrapper {
       display: table-cell;
@@ -90,11 +119,4 @@ export default {
     }
 }
 
-.fade-enter, .fade-leave-to {
-    opacity: 0;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s scale(1.1);
-}
 </style>

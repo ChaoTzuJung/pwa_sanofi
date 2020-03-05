@@ -28,27 +28,26 @@ export default {
 
 <template>
   <header :class="{'pwa-header': isPwa}">
-    <transition name="fade">
-      <div
-        class="back-btn"
-        v-if="headerTitle !== 'home'"
-        @click="$router.go(-1)"
-      >
-        <img :src="IosBack"/>
+    <transition-group name="fade" tag="a" v-if="isPwa">
+      <div class="title-nav" v-if="headerTitle !== 'home'" key="1">
+        <div class="back-btn" @click="$router.go(-1)">
+          <img :src="IosBack"/>
+        </div>
+        <div class="title-text">
+          {{headerTitle}}
+        </div>
       </div>
-    </transition>
-    <transition name="fade">
-      <div class="title-text" v-if="headerTitle !== 'home'">
-        {{headerTitle}}
-      </div>
-    </transition>
-    <transition name="fade">
-      <a @click="openDialog()" v-if="headerTitle === 'home'">
+      <div class="title-logo" v-else key="2">
         <div class="logo"></div>
         <div class="separate"></div>
         <div class="sublogo"></div>
-      </a>
-    </transition>
+      </div>
+    </transition-group>
+    <a @click="openDialog()" v-else>
+      <div class="logo"></div>
+      <div class="separate"></div>
+      <div class="sublogo"></div>
+    </a>
   </header>
 </template>
 
@@ -66,71 +65,80 @@ header {
     position: relative;
   }
 
-  & > .back-btn {
-    display: none;
-    position: absolute;
-    left: 6px;
-    bottom: 8px;
-    transform: scale(0.8);
-    cursor: pointer;
-
-    &:focus, &:active {
-      opacity: 0.6;
-    }
-  }
-
-  & > .title-text {
-    font-size: 14px; // or 15px
-    font-weight: 300; // semibold
-    text-transform: capitalize;
-  }
-
   & > a {
     display: inline-flex;
     vertical-align: bottom;
     align-items: center;
 
-    & > .logo {
-      background-image: url('~assets/images/logo.svg');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      width: 100px;
-      height: 16px;
-      transform: translateY(-4%);
+    & .back-btn {
+      position: absolute;
+      left: 6px;
+      bottom: 8px;
+      transform: scale(0.8);
+      cursor: pointer;
 
-      @media screen and (max-width: 769px) {
-        background-image: url('~assets/images/logo-m.svg');
-        width: 80px;
-        height: 14px;
-        transform: translateY(-5%);
+      &:focus, &:active {
+        opacity: 0.6;
       }
     }
 
-    & > .separate {
-      height: 16px;
-      width: 1px;
-      margin: 0 10px;
-      background-color: rgba(82, 92, 163, 0.5);
-
-      @media screen and (max-width: 769px) {
-        height: 14px;
-      }
+    & .title-text {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -30%);
+      font-size: 14px; // or 15px
+      font-weight: 300; // semibold
+      text-transform: capitalize;
     }
 
-    & > .sublogo {
-      background-image: url('~assets/images/sub-logo.svg');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      width: 104px;
-      height: 22px;
+    & .title-logo {
+      display: inline-flex;
+      vertical-align: bottom;
+      align-items: center;
+    }
+  }
 
-      @media screen and (max-width: 769px) {
-        background-image: url('~assets/images/sub-logo-m.svg');
-        width: 76px;
-        height: 16px;
-      }
+  & .logo {
+    background-image: url('~assets/images/logo.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100px;
+    height: 16px;
+    transform: translateY(-4%);
+
+    @media screen and (max-width: 769px) {
+      background-image: url('~assets/images/logo-m.svg');
+      width: 80px;
+      height: 14px;
+      transform: translateY(-5%);
+    }
+  }
+
+  & .separate {
+    height: 16px;
+    width: 1px;
+    margin: 0 10px;
+    background-color: rgba(82, 92, 163, 0.5);
+
+    @media screen and (max-width: 769px) {
+      height: 14px;
+    }
+  }
+
+  & .sublogo {
+    background-image: url('~assets/images/sub-logo.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 104px;
+    height: 22px;
+
+    @media screen and (max-width: 769px) {
+      background-image: url('~assets/images/sub-logo-m.svg');
+      width: 76px;
+      height: 16px;
     }
   }
 }
@@ -142,19 +150,17 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    height: 52px;
     padding: 20px 0 12px 0;
     padding-left: 0;
     z-index: 999;
-  }
-
-  & > .back-btn {
-    display: block;
   }
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition-duration: 0.3s;
+  transition-duration: 0.5s;
   transition-property: opacity;
   transition-timing-function: ease;
 }

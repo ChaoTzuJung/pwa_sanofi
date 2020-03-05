@@ -14,20 +14,23 @@ export default {
     direction() {
       return this.$store.state.direction;
     },
+    isPwa() {
+      return window.isMobileDevice && window.isPwa;
+    },
   },
 };
 </script>
 
 <template>
-  <div class="route">
+  <div class="route" :style="isPwa ? {'padding-top': '49px'} : ''">
     <Dialog />
     <Header />
     <keep-alive v-if="$route.meta.keepAlive">
-      <transition :name="`fade-in-${direction}`">
+      <transition :name="isPwa ? `fade-in-${direction}` : ''">
         <router-view></router-view>
       </transition>
     </keep-alive>
-    <transition :name="`fade-in-${direction}`">
+    <transition :name="isPwa ? `fade-in-${direction}` : ''">
       <router-view v-if="!$route.meta.keepAlive">
       </router-view>
     </transition>
@@ -36,10 +39,6 @@ export default {
 </template>
 
 <style scoped lang="scss">
-.route {
-  padding-top: 49px;
-}
-
 // 下一頁
 @keyframes fadeInRight {
   from {
