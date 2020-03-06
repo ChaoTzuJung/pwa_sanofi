@@ -35,7 +35,7 @@ export default {
 <template>
   <div
     class="button"
-    :class="{ 'borderButton': border, 'unselectable': isPwa }"
+    :class="{ 'borderButton': border, 'pwaButton': isPwa }"
   >
     <!-- :class="{ loading: isLoading }" -->
     <router-link
@@ -122,9 +122,7 @@ export default {
   }
 }
 
-.unselectable {
-  user-select: none;
-
+.pwaButton {
   &:focus, &:active {
     opacity: 0.2;
   }

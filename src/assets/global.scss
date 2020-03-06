@@ -78,3 +78,32 @@ dialog {
     margin: 0;
     border: none;
 }
+
+@media all and (display-mode: standalone) {
+    * {
+        user-select: none;
+    }
+
+    body {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: none;
+        touch-action: none;
+    
+        &::-webkit-scrollbar {
+            display: none;
+            width: 0 !important;
+            height: 0 !important;
+            -webkit-appearance: none;
+            background: transparent;
+        }
+    }
+}
+@media screen and (orientation:portrait){
+    // 直立時套用
+}
+
+@media screen and (orientation:landscape){
+    // 橫放時套用
+}

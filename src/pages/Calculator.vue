@@ -9,6 +9,9 @@ export default {
   components: {
     CalculatorLayout,
   },
+  created() {
+    window.scrollTo(0, 0);
+  },
   mounted() {
     if (!this.$store.hasModule('calculator')) {
       this.$store.registerModule('calculator', calculatorModule());

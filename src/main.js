@@ -20,9 +20,9 @@ detectNotch();
 detectDevice();
 
 /* eslint-disable global-require */
-if (window.isPwa && window.isMobileDevice) {
-  require('./assets/pwa.scss');
-}
+// if (window.isPwa && window.isMobileDevice) {
+//   require('./assets/pwa.scss');
+// }
 
 new Vue({
   router,

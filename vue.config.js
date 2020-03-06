@@ -37,11 +37,10 @@ module.exports = {
     msTileColor: '#ffffff',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'default',
-    manifestPath: 'manifest.json',
     manifestOptions: {
       short_name: 'Sanofi',
       start_url: '.',
-      display: 'fullscreen',
+      display: 'standalone',
       background_color: '#ffffff',
       orientation: 'portrait',
     },
