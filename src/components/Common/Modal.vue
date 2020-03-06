@@ -54,12 +54,12 @@ export default {
 
 .slide-enter-active {
   transition-timing-function: ease-in;
-  transition: all 1s;
+  transition: all .4s;
 }
 
 .slide-leave-active {
   transition-timing-function: ease-out;
-  transition: all 1s;
+  transition: all .4s;
 }
 
 .fade-enter-active,

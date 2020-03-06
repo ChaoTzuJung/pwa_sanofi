@@ -42,56 +42,58 @@ export default {
 // 下一頁
 @keyframes fadeInRight {
   from {
-    transform: translate3d(40px, 0, 0);
+    transform: translate3d(375px, 0, 0);
+    z-index: 1;
   }
 
   to {
     transform: translate3d(0, 0, 0);
-    opacity: 1
+    z-index: 2;
   }
 }
 
 .fade-in-right-leave-to {
-  opacity: 0;
-  transition: opacity .3s;
+  z-index: 1;
+  transition: all .4s;
 }
 
 .fade-in-right-enter {
-  opacity: 0;
-  transform: translate3d(40px, 0, 0);
+  z-index: 1;
+  transform: translate3d(375px, 0, 0);
 }
 
 .fade-in-right-enter-to {
-  opacity: 0;
-  animation-duration: .7s;
+  z-index: 1;
+  animation-duration: .4s;
   animation-fill-mode: both;
   animation-name: fadeInRight;
 }
 
 @keyframes fadeInLeft {
   from {
-    transform: translate3d(-40px, 0, 0);
+    transform: translate3d(-375px, 0, 0);
+    z-index: 2;
   }
 
   to {
     transform: translate3d(0, 0, 0);
-    opacity: 1
+    z-index: 1;
   }
 }
 
 .fade-in-left-leave-to {
-  opacity: 0;
-  transition: opacity .3s;
+  z-index: 2;
+  transition: all .4s;
 }
 
 .fade-in-left-enter {
-  opacity: 0;
-  transform: translate3d(-40px, 0, 0);
+  z-index: 2;
+  transform: translate3d(-375px, 0, 0);
 }
 
 .fade-in-left-enter-to {
-  opacity: 0;
-  animation-duration: .7s;
+  z-index: 2;
+  animation-duration: .4s;
   animation-fill-mode: both;
   animation-name: fadeInLeft;
 }
