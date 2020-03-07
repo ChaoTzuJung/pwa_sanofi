@@ -99,6 +99,13 @@ dialog {
             background: transparent;
         }
     }
+
+    input[type=text] {   
+        /* Remove iOS input shadow */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
 }
 @media screen and (orientation:portrait){
     // 直立時套用

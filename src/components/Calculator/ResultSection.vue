@@ -342,9 +342,14 @@ export default {
       </div>
     </div>
     <div class="button-section">
-      <div class="border-button" @click="backToHeadNeck">
-        <a>Back to calculator</a>
-      </div>
+      <Button
+        class="border-button"
+        text="Back to calculator"
+        :width="235"
+        @click.native="backToHeadNeck"
+        :border="true"
+        color="#fff"
+      />
       <Button text="Generate the report" :width="235" @click.native="goToPatient" />
     </div>
   </div>
@@ -784,32 +789,11 @@ export default {
         & .border-button {
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-right: 10px;
 
-            @media screen and (min-width: 769px) {
-                margin-bottom: 0;
-            }
-
-            & > a {
-                display: block;
-                width: 235px;
-                height: 56px;
-                border-radius: 32px;
-                background-color: #ffffff;
-                font-size: 20px;
-                line-height: 1.4;
-                text-align: center;
-                color: #bcbc1c;
-                border: solid 2px #bcbc1c;
-                font-weight: 500;
-                text-align: center;
-                line-height: 56px;
+            @media screen and (max-width: 769px) {
                 margin-top: 20px;
-
-                @media screen and (min-width: 769px) {
-                    margin-top: 0;
-                    margin-right: 10px;
-                }
+                margin-right: 0;
             }
         }
     }
