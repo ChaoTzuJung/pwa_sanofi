@@ -1,23 +1,5 @@
 const path = require('path');
-
-// module.exports = {
-//   configureWebpack: {
-//     resolve: {
-//       components: path.resolve(__dirname, 'src/components'),
-//     },
-//     extensions: ['*', '.js', '.vue', '.json'],
-//   },
-// };
-
-// module.exports = {
-//   configureWebpack: {
-//     resolve: {
-//       alias: {
-//         "@": resolve("src")
-//       }
-//     }
-//   }
-// };
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 function resolve(dir) {
   return path.join(__dirname, dir);
@@ -43,6 +25,7 @@ module.exports = {
       display: 'fullscreen',
       background_color: '#ffffff',
       orientation: 'portrait',
+      gcm_sender_id: '103953800507',
     },
     iconPaths: {
       favicon32: 'img/icons/favicon-32x32.png',
@@ -56,5 +39,15 @@ module.exports = {
     workboxOptions: {
       skipWaiting: true,
     },
+  },
+  configureWebpack: {
+    plugins: [
+      new CopyWebpackPlugin([
+        {
+          from: './src/assets/firebase-messaging-sw.js',
+          to: './firebase-messaging-sw.js',
+        },
+      ]),
+    ],
   },
 };
