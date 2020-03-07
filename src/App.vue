@@ -1,13 +1,11 @@
 <script>
 import Header from 'components/Common/Header.vue';
-import Footer from 'components/Common/Footer.vue';
 import Dialog from 'components/Common/Dialog.vue';
 
 export default {
   name: 'App',
   components: {
     Header,
-    Footer,
     Dialog,
   },
   computed: {
@@ -25,76 +23,101 @@ export default {
   <div class="route" :style="isPwa ? {'padding-top': '49px'} : ''">
     <Dialog />
     <Header />
-    <keep-alive v-if="$route.meta.keepAlive">
-      <transition :name="isPwa ? `fade-in-${direction}` : ''">
-        <router-view></router-view>
+    <!-- <keep-alive v-if="$route.meta.keepAlive">
+      <transition :name="isPwa ? `${direction}` : ''">
+        <router-view style="position: absolute;right: 0;left: 0"></router-view>
       </transition>
     </keep-alive>
-    <transition :name="isPwa ? `fade-in-${direction}` : ''">
-      <router-view v-if="!$route.meta.keepAlive">
+    <transition
+      :name="isPwa ? `${direction}` : ''">
+      <router-view v-if="!$route.meta.keepAlive" style="position: absolute;right: 0;left: 0">
       </router-view>
-    </transition>
-    <Footer />
+    </transition> -->
+    <keep-alive>
+      <transition :name="isPwa ? `${direction}` : ''">
+        <router-view class="view">
+        </router-view>
+      </transition>
+    </keep-alive>
   </div>
 </template>
 
 <style scoped lang="scss">
-// 下一頁
-@keyframes fadeInRight {
-  from {
-    transform: translate3d(375px, 0, 0);
-    z-index: 1;
-  }
+.view {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
 
-  to {
+@keyframes enterFromRight {
+  0% {
+    transform: translate3d(100%, 0, 0);
+  }
+  100% {
     transform: translate3d(0, 0, 0);
-    z-index: 2;
   }
 }
 
-.fade-in-right-leave-to {
-  z-index: 1;
-  transition: all .4s;
-}
-
-.fade-in-right-enter {
-  z-index: 1;
-  transform: translate3d(375px, 0, 0);
-}
-
-.fade-in-right-enter-to {
-  z-index: 1;
-  animation-duration: .4s;
-  animation-fill-mode: both;
-  animation-name: fadeInRight;
-}
-
-@keyframes fadeInLeft {
-  from {
-    transform: translate3d(-375px, 0, 0);
-    z-index: 2;
-  }
-
-  to {
+@keyframes leaveToRight {
+  0% {
     transform: translate3d(0, 0, 0);
-    z-index: 1;
+  }
+  100% {
+    transform: translate3d(100%, 0, 0);
   }
 }
 
-.fade-in-left-leave-to {
-  z-index: 2;
-  transition: all .4s;
+@keyframes enterFromLeft {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
-.fade-in-left-enter {
-  z-index: 2;
-  transform: translate3d(-375px, 0, 0);
+@keyframes leaveToLeft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
 }
 
-.fade-in-left-enter-to {
-  z-index: 2;
-  animation-duration: .4s;
-  animation-fill-mode: both;
-  animation-name: fadeInLeft;
+/* ------------ 下一頁離開 X ------------- */
+.next-leave-active {
+  animation: leaveToLeft .5s ease-out;
+}
+
+.next-leave-to {
+  z-index: 0;
+}
+
+/* ------------ 上一頁回來 O ------------- */
+.prev-enter-active {
+    animation: enterFromLeft .5s ease-in;
+}
+
+.prev-enter-to {
+  z-index: 1;
+}
+
+/* ------------ 下一頁進來 O ------------- */
+.next-enter-active {
+  animation: enterFromRight .5s ease-in;
+}
+
+.next-enter-to {
+  z-index: 1;
+}
+
+/* ------------ 現在這一頁離開 X ------------- */
+.prev-leave-active {
+    animation: leaveToRight .5s ease-out;
+}
+
+.prev-leave-to {
+  z-index: 0;
 }
 </style>

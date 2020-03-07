@@ -1,12 +1,13 @@
 <script>
+import Footer from 'components/Common/Footer.vue';
 import CalculatorLayout from '@/layouts/Calculator/index.vue';
 import calculatorModule from '@/store/modules/calculator';
 import patientModule from '@/store/modules/patient';
 
-
 export default {
   name: 'CalculatorPage',
   components: {
+    Footer,
     CalculatorLayout,
   },
   created() {
@@ -24,5 +25,8 @@ export default {
 </script>
 
 <template>
-  <CalculatorLayout />
+  <div>
+    <CalculatorLayout />
+    <Footer />
+  </div>
 </template>

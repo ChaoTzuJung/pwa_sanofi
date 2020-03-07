@@ -4,7 +4,7 @@ const detectDevice = () => {
     window.isMobileDevice = true;
   }
 
-  if (window.matchMedia('(display-mode: standalone)').matches) {
+  if (window.matchMedia('(display-mode: fullscreen)').matches) {
     window.isPwa = true;
   }
 };

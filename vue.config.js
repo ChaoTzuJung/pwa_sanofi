@@ -40,7 +40,7 @@ module.exports = {
     manifestOptions: {
       short_name: 'Sanofi',
       start_url: '.',
-      display: 'standalone',
+      display: 'fullscreen',
       background_color: '#ffffff',
       orientation: 'portrait',
     },

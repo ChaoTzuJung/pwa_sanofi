@@ -137,12 +137,6 @@ export default {
       }
       return result;
     },
-    // isMobile() {
-    //   if (window.screen.width < 768 || document.documentElement.clientWidth < 768) {
-    //     return true;
-    //   }
-    //   return false;
-    // },
   },
   methods: {
     openCard() {
@@ -168,7 +162,6 @@ export default {
         </div>
       </div>
     </div>
-    <!--  v-if="!isMobile || !cardOpen" -->
     <div class="card-body" :class=" cardOpen ? 'show-card-body' : ''">
       <div class="left">
         <div class="key">Redness/Erythema</div>
@@ -185,7 +178,6 @@ export default {
         <div class="value">{{`${AreaScore}(${AreaPercent}%)`}}</div>
       </div>
     </div>
-    <!-- :style="(!isMobile || !cardOpen) ? {'margin-top': '8px'} : ''" -->
     <div class="text">
       Score per body region:
       <span class="score">{{score}}</span>

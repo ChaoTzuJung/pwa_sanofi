@@ -79,7 +79,7 @@ dialog {
     border: none;
 }
 
-@media all and (display-mode: standalone) {
+@media all and (display-mode: fullscreen) {
     * {
         user-select: none;
     }
@@ -89,7 +89,7 @@ dialog {
         -webkit-touch-callout: none;
         -webkit-overflow-scrolling: touch;
         -ms-overflow-style: none;
-        touch-action: none;
+        // touch-action: none;
     
         &::-webkit-scrollbar {
             display: none;

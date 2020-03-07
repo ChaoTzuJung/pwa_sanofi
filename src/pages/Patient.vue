@@ -1,9 +1,11 @@
 <script>
+import Footer from 'components/Common/Footer.vue';
 import PatientLayout from '@/layouts/Patient/index.vue';
 
 export default {
   name: 'PatientPage',
   components: {
+    Footer,
     PatientLayout,
   },
   created() {
@@ -21,5 +23,8 @@ export default {
 </script>
 
 <template>
-  <PatientLayout />
+  <div>
+    <PatientLayout />
+    <Footer />
+  </div>
 </template>

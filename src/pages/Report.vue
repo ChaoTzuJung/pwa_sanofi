@@ -1,9 +1,11 @@
 <script>
+import Footer from 'components/Common/Footer.vue';
 import ReportLayout from '@/layouts/Report/index.vue';
 
 export default {
   name: 'ReportPage',
   components: {
+    Footer,
     ReportLayout,
   },
   created() {
@@ -28,5 +30,8 @@ export default {
 </script>
 
 <template>
-  <ReportLayout />
+  <div>
+    <ReportLayout />
+    <Footer />
+  </div>
 </template>
