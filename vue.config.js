@@ -21,7 +21,7 @@ module.exports = {
     appleMobileWebAppStatusBarStyle: 'default',
     manifestOptions: {
       short_name: 'Sanofi',
-      start_url: '.',
+      start_url: './?utm_source=web_app_manifest',
       display: 'fullscreen',
       background_color: '#ffffff',
       orientation: 'portrait',
