@@ -80,7 +80,7 @@ dialog {
 }
 
 @media all and (display-mode: fullscreen) {
-    * {
+    div {
         user-select: none;
     }
 

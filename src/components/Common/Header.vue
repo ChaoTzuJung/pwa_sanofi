@@ -33,9 +33,11 @@ export default {
         <div class="back-btn" @click="$router.go(-1)">
           <img :src="IosBack"/>
         </div>
-        <div class="title-text">
-          {{headerTitle}}
-        </div>
+        <transition name="fade">
+          <div class="title-text" :key="headerTitle">
+            {{headerTitle}}
+          </div>
+        </transition>
       </div>
       <div class="title-logo" v-else key="2">
         <div class="logo"></div>
