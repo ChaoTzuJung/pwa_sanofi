@@ -87,7 +87,7 @@ export default {
 
 /* ------------ 現在這一頁向左離開 ------------- */
 .next-leave-active {
-  animation: leaveToLeft .5s ease-out;
+  animation: leaveToLeft .4s ease-in;
 }
 
 .next-leave-to {
@@ -96,7 +96,7 @@ export default {
 
 /* ------------ 上一頁回來 O ------------- */
 .prev-enter-active {
-    animation: enterFromLeft .5s ease-in;
+    animation: enterFromLeft .4s ease-out;
 }
 
 .prev-enter-to {
@@ -105,7 +105,7 @@ export default {
 
 /* ------------ 下一頁進來 O ------------- */
 .next-enter-active {
-  animation: enterFromRight .5s ease-out;
+  animation: enterFromRight .4s ease-in;
 }
 
 .next-enter-to {
@@ -114,7 +114,7 @@ export default {
 
 /* ------------ 現在這一頁向右離開 ------------- */
 .prev-leave-active {
-    animation: leaveToRight .5s ease-in;
+    animation: leaveToRight .4s ease-out;
 }
 
 .prev-leave-to {
