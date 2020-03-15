@@ -79,7 +79,7 @@ dialog {
     border: none;
 }
 
-@media all and (display-mode: fullscreen) {
+@media all and (display-mode: standalone) {
     div {
         user-select: none;
     }
