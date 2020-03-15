@@ -36,11 +36,6 @@ firebase.initializeApp(config);
 
 askForPermissionToReceiveNotifications();
 
-/* eslint-disable global-require */
-// if (window.isPwa && window.isMobileDevice) {
-//   require('./assets/pwa.scss');
-// }
-
 new Vue({
   router,
   store,

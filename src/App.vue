@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-  <div class="route" :style="isPwa ? {'padding-top': '49px'} : ''">
+  <div class="route" :style="isPwa ? {'padding-top': '52px'} : ''">
     <Dialog />
     <Header />
     <!-- <keep-alive v-if="$route.meta.keepAlive">
