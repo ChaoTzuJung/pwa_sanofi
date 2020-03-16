@@ -17,13 +17,13 @@ const askForPermissionToReceiveNotifications = async () => {
       const currentToken = await messaging.getToken();
       // token存至firebase
       const id = currentToken.split(':')[0];
-      firebase.database().ref(`pushUsers/${id}`).set({ token: currentToken });
+      firebase.database().ref(`webUsers/${id}`).set({ token: currentToken });
       // token存至cookies
       document.cookie = `augustusWsPush=${token}`;
     } else {
       // cookies 已存在，從 cookies 取出後傳至 firebase
       const id = token.split(':')[0];
-      firebase.database().ref(`pushUsers/${id}`).set({ token });
+      firebase.database().ref(`webUsers/${id}`).set({ token });
     }
 
     // messaging.onMessage(payload => console.log('Message received. ', payload));

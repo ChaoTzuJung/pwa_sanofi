@@ -22,7 +22,7 @@ module.exports = {
     manifestOptions: {
       short_name: 'Sanofi',
       start_url: './?utm_source=web_app_manifest',
-      display: 'fullscreen',
+      display: 'standalone',
       background_color: '#ffffff',
       orientation: 'portrait',
       gcm_sender_id: '103953800507',

@@ -1,12 +1,14 @@
 <script>
 import Header from 'components/Common/Header.vue';
 import Dialog from 'components/Common/Dialog.vue';
+import Popup from 'components/Common/Popup.vue';
 
 export default {
   name: 'App',
   components: {
     Header,
     Dialog,
+    Popup,
   },
   computed: {
     direction() {
@@ -14,6 +16,11 @@ export default {
     },
     isPwa() {
       return window.isMobileDevice && window.isPwa;
+    },
+    // Checks if should display install popup notification
+    promptInstallation() {
+      // return window.isIos && !window.isInStandaloneMode;
+      return true;
     },
   },
 };
@@ -39,6 +46,11 @@ export default {
         </router-view>
       </transition>
     </keep-alive>
+    <Popup
+      v-if="promptInstallation"
+      description="Install this web app on your iPhone: tap and then Add to homescreen"
+      direction='up'>
+    </Popup>
   </div>
 </template>
 
