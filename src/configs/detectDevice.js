@@ -6,11 +6,11 @@ const detectDevice = () => {
 
   // Detects if device is on iOS
   if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-    window.iOS = true;
+    window.isIos = true;
   }
 
   if (window.matchMedia('(display-mode: standalone)').matches) {
-    window.isIos = true;
+    window.isPwa = true;
   }
 
   // Detects if device is in standalone mode
