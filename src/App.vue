@@ -10,6 +10,11 @@ export default {
     Dialog,
     Popup,
   },
+  data() {
+    return {
+      promptInstallation: window.isIos && !window.isInStandaloneMode,
+    };
+  },
   computed: {
     direction() {
       return this.$store.state.direction;
@@ -17,17 +22,15 @@ export default {
     isPwa() {
       return window.isMobileDevice && window.isPwa;
     },
-    // Checks if should display install popup notification
-    promptInstallation() {
-      // return window.isIos && !window.isInStandaloneMode;
-      return true;
-    },
   },
 };
 </script>
 
 <template>
   <div class="route" :style="isPwa ? {'padding-top': '52px'} : ''">
+    <div class="overlay" v-if="promptInstallation" @click="promptInstallation = false">
+      <Popup direction='up'></Popup>
+    </div>
     <Dialog />
     <Header />
     <!-- <keep-alive v-if="$route.meta.keepAlive">
@@ -46,15 +49,20 @@ export default {
         </router-view>
       </transition>
     </keep-alive>
-    <Popup
-      v-if="promptInstallation"
-      description="Install this web app on your iPhone: tap and then Add to homescreen"
-      direction='up'>
-    </Popup>
   </div>
 </template>
 
 <style scoped lang="scss">
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  overflow: hidden;
+}
 .view {
   position: absolute;
   left: 0;
