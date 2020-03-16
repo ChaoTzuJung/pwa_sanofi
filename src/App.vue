@@ -13,6 +13,7 @@ export default {
   data() {
     return {
       promptInstallation: window.isIos && !window.isInStandaloneMode,
+      isOnline: true,
     };
   },
   computed: {
@@ -23,11 +24,33 @@ export default {
       return window.isMobileDevice && window.isPwa;
     },
   },
+  mounted() {
+    window.addEventListener('offline', () => {
+      console.log('offline');
+      this.handleOnlineStatus(false);
+    });
+    window.addEventListener('online', () => {
+      console.log('online');
+      this.handleOnlineStatus(true);
+    });
+  },
+  beforeDestroy() {
+    window.removeEventListener('online');
+    window.removeEventListener('offline');
+  },
+  methods: {
+    handleOnlineStatus(status) {
+      this.isOnline = status;
+    },
+  },
 };
 </script>
 
 <template>
   <div class="route" :style="isPwa ? {'padding-top': '52px'} : ''">
+    <transition name="slide">
+      <div class="offlie" v-if="!isOnline && isPwa">App is offlie</div>
+    </transition>
     <div class="overlay" v-if="promptInstallation" @click="promptInstallation = false">
       <Popup direction='up'></Popup>
     </div>
@@ -53,6 +76,21 @@ export default {
 </template>
 
 <style scoped lang="scss">
+.offlie {
+  position: fixed;
+  top: 0;
+  color: #fff;
+  width: calc(100%);
+  padding: 8px 0;
+  background: #ea5d45;
+  font-weight: 300;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  z-index: 999999;
+  transition: all 1s ease-out;
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -103,6 +141,13 @@ export default {
   100% {
     transform: translate3d(-100%, 0, 0);
   }
+}
+
+.slide-enter-active, .slide-leave-active {
+  transition: transform .5s;
+}
+.slide-enter, .slide-leave-to {
+  transform: translateY(-34px);
 }
 
 /* ------------ 現在這一頁向左離開 ------------- */
