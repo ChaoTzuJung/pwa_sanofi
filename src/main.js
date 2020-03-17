@@ -36,6 +36,18 @@ firebase.initializeApp(config);
 
 askForPermissionToReceiveNotifications();
 
+window.addEventListener('offline', () => {
+  /* eslint-disable no-console */
+  console.log('The network connection has been lost.');
+  store.commit('SET_NETWORK_STATUS', { status: false });
+});
+
+window.addEventListener('online', () => {
+  /* eslint-disable no-console */
+  console.log('You are now connected to the network.');
+  store.commit('SET_NETWORK_STATUS', { status: true });
+});
+
 new Vue({
   router,
   store,

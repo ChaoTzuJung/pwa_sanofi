@@ -13,7 +13,6 @@ export default {
   data() {
     return {
       promptInstallation: window.isIos && !window.isInStandaloneMode,
-      isOnline: true,
     };
   },
   computed: {
@@ -23,26 +22,27 @@ export default {
     isPwa() {
       return window.isMobileDevice && window.isPwa;
     },
-  },
-  mounted() {
-    window.addEventListener('offline', () => {
-      console.log('offline');
-      this.handleOnlineStatus(false);
-    });
-    window.addEventListener('online', () => {
-      console.log('online');
-      this.handleOnlineStatus(true);
-    });
-  },
-  beforeDestroy() {
-    window.removeEventListener('online');
-    window.removeEventListener('offline');
-  },
-  methods: {
-    handleOnlineStatus(status) {
-      this.isOnline = status;
+    isOnline() {
+      return this.$store.state.online;
     },
   },
+  // mounted() {
+  //   console.log('App mounted');
+  //   window.addEventListener('offline', () => {
+  //     console.log('The network connection has been lost.');
+  //     this.$store.commit('SET_NETWORK_STATUS', { status: false });
+  //   });
+
+  //   window.addEventListener('online', () => {
+  //     console.log('You are now connected to the network.');
+  //     this.$store.commit('SET_NETWORK_STATUS', { status: true });
+  //   });
+  // },
+  // beforeDestroy() {
+  //   console.log('App beforeDestroy');
+  //   window.removeEventListener('online');
+  //   window.removeEventListener('offline');
+  // },
 };
 </script>
 

@@ -12,4 +12,7 @@ export default {
   CHANGE_DIRECTION(state, { direction }) {
     state.direction = direction;
   },
+  SET_NETWORK_STATUS(state, { status }) {
+    state.online = status;
+  },
 };

@@ -4,6 +4,7 @@ const state = () => ({
   isDialogOpen: false,
   reset: false,
   direction: '',
+  online: true,
 });
 
 export default state;
