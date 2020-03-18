@@ -1,6 +1,6 @@
 <div class="calculator-area">
     <div class="title">Calculator</div>
-    <div class="description">Determine the severity of atopic dermatitis in each of the four body regions.</div>
+    <div class="description">Determine the training volume in each of muscle of the four body regions.</div>
     <Tab
         :tabs="tabs"
         :current="currentSectionComponent"
@@ -45,6 +45,7 @@
                 goToFirstSlide: goToFirstSlide
             }"
             :is="currentSectionComponent"
+            :currentSectionComponent="currentSectionComponent"
             :headneckScore="tabs.HeadNeckSection.score"
             :upperScore="tabs.UpperExtremitiesSection.score"
             :trunkScore="tabs.TrunkSection.score"

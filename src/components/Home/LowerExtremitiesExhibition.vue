@@ -1,17 +1,13 @@
 <script>
-import FrontLower from 'assets/images/front-lower.svg';
-import FrontLowerSm from 'assets/images/front-lower-sm.svg';
-import BackLower from 'assets/images/back-lower.svg';
-import BackLowerSm from 'assets/images/back-lower-sm.svg';
+import FrontLeg from 'assets/images/front-leg.svg';
+import BackLeg from 'assets/images/back-leg.svg';
 
 export default {
   name: 'LowerExtremitiesExhibition',
   data() {
     return {
-      FrontLower,
-      FrontLowerSm,
-      BackLower,
-      BackLowerSm,
+      FrontLeg,
+      BackLeg,
       showFrontImage: false,
       showBackImage: false,
     };
@@ -23,8 +19,18 @@ export default {
   <div class="body-image">
     <div class="front">
       <div class="title" v-if="showFrontImage">Front</div>
-      <img class="desktop" :src="FrontLower" @load="showFrontImage=true">
-      <img class="mobile" :src="FrontLowerSm" @load="showFrontImage=true">
+      <img
+        class="desktop"
+        :src="FrontLeg"
+        @load="showFrontImage=true"
+        height="402px"
+      >
+      <img
+        class="mobile"
+        :src="FrontLeg"
+        @load="showFrontImage=true"
+        height="355px"
+      >
       <div class="score" v-if="showFrontImage">
         <div class="percentage scoreA">22.5%</div>
         <div class="percentage scoreB">22.5%</div>
@@ -32,8 +38,18 @@ export default {
     </div>
     <div class="back">
       <div class="title" v-if="showBackImage">Back</div>
-      <img class="desktop" :src="BackLower" @load="showBackImage=true">
-      <img class="mobile" :src="BackLowerSm" @load="showBackImage=true">
+      <img
+        class="desktop"
+        :src="BackLeg"
+        @load="showBackImage=true"
+        height="402px"
+      >
+      <img
+        class="mobile"
+        :src="BackLeg"
+        @load="showBackImage=true"
+        height="355px"
+      >
       <div class="score-top" v-if="showBackImage">
         <div class="percentage scoreC">10%</div>
       </div>

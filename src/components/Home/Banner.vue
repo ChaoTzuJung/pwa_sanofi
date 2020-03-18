@@ -1,6 +1,6 @@
 <script>
 import Button from 'components/Common/Button.vue';
-import Banner from 'assets/images/banner@3x.png';
+import Banner from 'assets/images/banner@3x.jpg';
 
 export default {
   name: 'Banner',
@@ -21,21 +21,21 @@ export default {
       <div class="img" :style="{backgroundImage: 'url(' + Banner + ')'}"></div>
       <div class="watermark">
         <div class="top">
-          <h1 class="bold">EASI</h1>
-          <h1 class="medium">score</h1>
+          <h1 class="bold">Fit</h1>
+          <h1 class="medium">ness</h1>
         </div>
         <div class="bottom">
           <h2>
-            Quickly calculate the eczema area and severity index to
-            determine atopic dermatitis severity.
+            Quickly calculate the training sets, intensity and frequency to
+            determine training volume.
           </h2>
           <div class="button-section">
             <div class="button-wrapper">
-              <Button text="Tutorial Version" link="/calculator" />
+              <Button text="Start Calculator" link="/calculator" />
               <div class="btn-detail">Step by step guide</div>
             </div>
             <div class="button-wrapper">
-              <Button text="Quick Version" link="/faster" color="#525ca3" />
+              <Button text="Quick Calculator" link="/faster" color="#525ca3" :disable="true" />
               <div class="btn-detail">Faster calculation</div>
             </div>
           </div>

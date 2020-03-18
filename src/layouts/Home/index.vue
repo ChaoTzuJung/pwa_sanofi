@@ -20,16 +20,16 @@ export default {
     return {
       tabs: [
         {
-          name: 'Head & Neck', color: '#f0dd00', id: 'HeadNeckExhibition', isSeclected: true,
+          name: 'Chest & Shoulder', color: '#f0dd00', id: 'HeadNeckExhibition', isSeclected: true,
         },
         {
-          name: 'Upper extremities', color: '#00a590', id: 'UpperExtremitiesExhibition', isSeclected: false,
+          name: 'Biceps & Triceps', color: '#00a590', id: 'UpperExtremitiesExhibition', isSeclected: false,
         },
         {
-          name: 'Trunk', color: '#fbba00', id: 'TrunkExhibition', isSeclected: false,
+          name: 'Abs & Backside', color: '#fbba00', id: 'TrunkExhibition', isSeclected: false,
         },
         {
-          name: 'Lower extremities', color: '#bcbc1c', id: 'LowerExtremitiesExhibition', isSeclected: false,
+          name: 'Buttocks & Leg', color: '#bcbc1c', id: 'LowerExtremitiesExhibition', isSeclected: false,
         },
       ],
       activeTab: HeadNeckExhibition,

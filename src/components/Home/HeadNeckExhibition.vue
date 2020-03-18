@@ -1,17 +1,13 @@
 <script>
-import FrontHead from 'assets/images/front-head.svg';
-import FrontHeadSm from 'assets/images/front-head-sm.svg';
-import BackHead from 'assets/images/back-head.svg';
-import BackHeadSm from 'assets/images/back-head-sm.svg';
+import FrontChest from 'assets/images/front-chest.svg';
+import BackChest from 'assets/images/back-chest.svg';
 
 export default {
   name: 'HeadNeckExhibition',
   data() {
     return {
-      FrontHead,
-      BackHead,
-      FrontHeadSm,
-      BackHeadSm,
+      FrontChest,
+      BackChest,
       showFrontImage: false,
       showBackImage: false,
     };
@@ -23,20 +19,40 @@ export default {
   <div class="body-image">
     <div class="front">
       <div class="title" v-if="showFrontImage">Front</div>
-      <img class="desktop" :src="FrontHead" @load="showFrontImage=true">
-      <img class="mobile" :src="FrontHeadSm" @load="showFrontImage=true">
+      <img
+        class="desktop"
+        :src="FrontChest"
+        @load="showFrontImage=true"
+        height="402px"
+      >
+      <img
+        class="mobile"
+        :src="FrontChest"
+        @load="showFrontImage=true"
+        height="335px"
+      >
       <div class="score" v-if="showFrontImage">
-        <div class="percentage scoreA">17%</div>
-        <div class="percentage scoreB">33%</div>
+        <div class="percentage scoreA" style="background: #f7ee7f">17%</div>
+        <div class="percentage scoreB" style="background: #f0dd00">33%</div>
       </div>
     </div>
     <div class="back">
       <div class="title" v-if="showBackImage">Back</div>
-      <img class="desktop" :src="BackHead" @load="showBackImage=true">
-      <img class="mobile" :src="BackHeadSm" @load="showBackImage=true">
+      <img
+        class="desktop"
+        :src="BackChest"
+        @load="showBackImage=true"
+        height="402px"
+      >
+      <img
+        class="mobile"
+        :src="BackChest"
+        @load="showBackImage=true"
+        height="335px"
+      >
       <div class="score" v-if="showBackImage">
-        <div class="percentage scoreA">17%</div>
-        <div class="percentage scoreB">33%</div>
+        <div class="percentage scoreA" style="background: #f7ee7f">17%</div>
+        <div class="percentage scoreB" style="background: #f0dd00">33%</div>
       </div>
     </div>
   </div>

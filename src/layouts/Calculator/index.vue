@@ -29,7 +29,7 @@ export default {
       canCheckTab: false,
       tabs: {
         HeadNeckSection: {
-          name: 'Head & Neck',
+          name: 'Chest & Shoulder',
           id: '1',
           component: 'HeadNeckSection',
           abbreviation: 'HeadNeck',
@@ -37,7 +37,7 @@ export default {
           complete: false,
         },
         UpperExtremitiesSection: {
-          name: 'Upper extremities',
+          name: 'Biceps & Triceps',
           id: '2',
           component: 'UpperExtremitiesSection',
           abbreviation: 'UpperExtremities',
@@ -45,7 +45,7 @@ export default {
           complete: false,
         },
         TrunkSection: {
-          name: 'Trunk',
+          name: 'Abs & Backside',
           id: '3',
           component: 'TrunkSection',
           abbreviation: 'Trunk',
@@ -53,7 +53,7 @@ export default {
           complete: false,
         },
         LowerExtremitiesSection: {
-          name: 'Lower extremities',
+          name: 'Buttocks & Leg',
           id: '4',
           component: 'LowerExtremitiesSection',
           abbreviation: 'LowerExtremities',

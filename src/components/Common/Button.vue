@@ -23,6 +23,10 @@ export default {
       type: String,
       default: '#bcbc1c',
     },
+    disable: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     isPwa() {
@@ -35,15 +39,13 @@ export default {
 <template>
   <div
     class="button"
-    :class="{ 'borderButton': border, 'pwaButton': isPwa }"
+    :class="{ 'borderButton': border, 'pwaButton': isPwa, 'disable': disable }"
   >
-    <!-- :class="{ loading: isLoading }" -->
     <router-link
       :to="link"
       :style="{ width: `${width}px`, background: `${color}` }"
+      :class="{ 'disable': disable }"
     >
-      <!-- <Spinner v-if="isLoading" :color="spinnerColor"></Spinner>
-      <div v-else>{{text}}</div> -->
       <div>{{text}}</div>
     </router-link>
   </div>
@@ -126,5 +128,11 @@ export default {
   &:focus, &:active {
     opacity: 0.2;
   }
+}
+
+.disable {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 </style>

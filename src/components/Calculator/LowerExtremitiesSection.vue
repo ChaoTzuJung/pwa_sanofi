@@ -33,7 +33,8 @@ export default {
       tabData: {
         Erythema: {
           num: 1,
-          name: 'Erythema',
+          name: 'Erythema', // 股四頭肌
+          name2: 'Leg I',
           id: '0',
           component: 'Erythema',
           score: 0,
@@ -41,7 +42,8 @@ export default {
         },
         'Edema / papulation': {
           num: 2,
-          name: 'Edema / papulation',
+          name: 'Edema / papulation', // 股二頭肌
+          name2: 'Leg II',
           id: '1',
           component: 'EdemaPapulation',
           score: 0,
@@ -49,7 +51,8 @@ export default {
         },
         Excoriation: {
           num: 3,
-          name: 'Excoriation',
+          name: 'Excoriation', // 小腿肌
+          name2: 'Buttocks I',
           id: '2',
           component: 'Excoriation',
           score: 0,
@@ -57,7 +60,8 @@ export default {
         },
         Lichenification: {
           num: 4,
-          name: 'Lichenification',
+          name: 'Lichenification', // 臀大肌
+          name2: 'Buttocks II',
           id: '3',
           component: 'Lichenification',
           score: 0,
@@ -139,7 +143,7 @@ export default {
     },
   },
   created() {
-    this.gridData = generateGrids('Erythema', 'Head & Neck');
+    this.gridData = generateGrids('Erythema', 'LowerExtremties');
   },
   activated() {
     window.scrollTo(0, 0);
@@ -165,7 +169,7 @@ export default {
       this.symptomName = tabItem.name;
       this.currentTabComponent = tabItem.component;
       // 換資料注入不同圖片跟內文
-      this.gridData = generateGrids(tabItem.name, 'Head & Neck');
+      this.gridData = generateGrids(tabItem.name, 'LowerExtremties');
       // this.selectTab(tabItem.id);
     },
     changeScore(e) {
@@ -198,10 +202,10 @@ export default {
     </div>
     <div class="involvement-section">
       <h2>
-        Area score:
+        One-repetition maximum:
         <span>{{areaPoint}}.0</span>
       </h2>
-      <label class="label" for="name">%Involvement:</label>
+      <label class="label" for="name">Weight:</label>
       <div class="percent">
         <input
           class="value"
@@ -211,10 +215,11 @@ export default {
           autocomplete="off"
         />
       </div>
-      <div class="additional">*Estimate the percentage involvement of this body region.</div>
+      <div class="additional">*1RM: The maximum amount of
+        weight that a person can possibly lift for one repetition</div>
     </div>
     <div class="tab-section">
-      <h2>EASI lesion severity atlas</h2>
+      <h2>Fitness training amd movemont</h2>
       <div class="tabs">
         <div
           class="tab"
@@ -228,7 +233,7 @@ export default {
               <div v-if="!tabItem.complete">{{tabItem.num}}</div>
             </div>
             <div class="wordings">
-              <div class="text">{{tabItem.name}}: {{tabItem.score}}.0</div>
+              <div class="text">{{tabItem.name2}}: {{tabItem.score}}.0</div>
             </div>
             <svg class="svg-circleplus" viewBox="0 0 100 100">
               <line x1="22.5" y1="50" x2="77.5" y2="50" stroke-width="7.5" />
@@ -241,6 +246,7 @@ export default {
           <div class="bottom">
             <Accordion
               class="custom-accordion"
+              :currentSectionComponent="$attrs.currentSectionComponent"
               :checkedValue="tabData[symptomName].score"
               :accordionName="tabItem.name"
               :open="accordionOpen[tabItem.name]"
@@ -399,7 +405,7 @@ export default {
     }
 
     & > .percent::after {
-      content: "%";
+      content: "kg";
       position: absolute;
       top: 0;
       left: calc(100% + 8px);
@@ -528,7 +534,7 @@ export default {
           }
 
           & .checked::after {
-            content: "";
+            content: "kg";
             position: absolute;
             top: 0;
             width: 6px;

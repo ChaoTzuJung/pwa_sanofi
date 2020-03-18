@@ -29,6 +29,7 @@ export default {
     return {
       picked: '', // number
       accordionData: [],
+      currentSectionComponent: this.$attrs.currentSectionComponent.split('Section')[0],
     };
   },
   computed: {
@@ -39,7 +40,7 @@ export default {
     },
   },
   created() {
-    this.accordionData = generateAccordion(this.accordionName, 'Head & Neck');
+    this.accordionData = generateAccordion(this.accordionName, this.currentSectionComponent);
   },
   methods: {
     onPickHandler(e) {

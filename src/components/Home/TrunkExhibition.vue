@@ -1,17 +1,13 @@
 <script>
-import FrontTrunk from 'assets/images/front-trunk.svg';
-import FrontTrunkSm from 'assets/images/front-trunk-sm.svg';
-import BackTrunk from 'assets/images/back-trunk.svg';
-import BackTrunkSm from 'assets/images/back-trunk-sm.svg';
+import FrontAbs from 'assets/images/front-abs.svg';
+import BackAbs from 'assets/images/back-abs.svg';
 
 export default {
   name: 'TrunkExhibition',
   data() {
     return {
-      FrontTrunk,
-      FrontTrunkSm,
-      BackTrunk,
-      BackTrunkSm,
+      FrontAbs,
+      BackAbs,
       showFrontImage: false,
       showBackImage: false,
     };
@@ -23,8 +19,18 @@ export default {
   <div class="body-image">
     <div class="front">
       <div class="title" v-if="showFrontImage">Front</div>
-      <img class="desktop" :src="FrontTrunk" @load="showFrontImage=true">
-      <img class="mobile" :src="FrontTrunkSm" @load="showFrontImage=true">
+      <img
+        class="desktop"
+        :src="FrontAbs"
+        @load="showFrontImage=true"
+        height="402px"
+      >
+      <img
+        class="mobile"
+        :src="FrontAbs"
+        @load="showFrontImage=true"
+        height="355px"
+      >
       <div class="score" v-if="showFrontImage">
         <div class="percentage scoreA">55%</div>
         <div class="percentage scoreB">55%</div>
@@ -32,8 +38,18 @@ export default {
     </div>
     <div class="back">
       <div class="title" v-if="showBackImage">Back</div>
-      <img class="desktop" :src="BackTrunk" @load="showBackImage=true">
-      <img class="mobile" :src="BackTrunkSm" @load="showBackImage=true">
+      <img
+        class="desktop"
+        :src="BackAbs"
+        @load="showBackImage=true"
+        height="402px"
+      >
+      <img
+        class="mobile"
+        :src="BackAbs"
+        @load="showBackImage=true"
+        height="355px"
+      >
       <div class="score" v-if="showBackImage">
         <div class="percentage scoreA">45%</div>
         <div class="percentage scoreB">45%</div>
