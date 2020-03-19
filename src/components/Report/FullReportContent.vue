@@ -100,25 +100,25 @@ export default {
       <div class="top">
         <div class="date">Report date: <span>{{this.reportDate}}</span></div>
         <div class="hello">Hello<br/>
-          This is the report of patient <span>{{this.name}}</span>
+          This is the report of trainee <span>{{this.name}}</span>
         </div>
       </div>
       <div class="middle">
         <div class="item">
           <div class="item-block">
-            <div class="key">BSA:</div>
+            <div class="key">RM:</div>
             <div class="value">{{this.BSA}}%</div>
           </div>
         </div>
         <div class="item">
           <div class="item-block">
-            <div class="key">Interpretation:</div>
+            <div class="key">Strength:</div>
             <div class="value">{{this.interpretation.toUpperCase()}}</div>
           </div>
         </div>
         <div class="item">
           <div class="item-block">
-            <div class="key">IGA:</div>
+            <div class="key">WTF:</div>
             <div class="value" v-if="this.IGA">
               <span>{{this.IGA.substr(0,1)}}: </span>
               <span class="bold">{{this.IGA.substring(4)}}</span>
@@ -161,7 +161,7 @@ export default {
       </div>
       <div class="item">
         <div class="item-block">
-          <div class="key">EASI score:</div>
+          <div class="key">Training volume:</div>
           <div class="value">{{this.EASI}}</div>
         </div>
       </div>

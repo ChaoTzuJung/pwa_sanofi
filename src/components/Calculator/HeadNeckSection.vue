@@ -200,7 +200,7 @@ export default {
     <div class="involvement-section">
       <h2>
         One-repetition maximum:
-        <span>{{areaPoint}}</span>
+        <span>{{areaPoint}}.0</span>
       </h2>
       <label class="label" for="name">Weight:</label>
       <div class="percent">

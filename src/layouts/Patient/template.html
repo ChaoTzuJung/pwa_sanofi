@@ -1,8 +1,8 @@
 <div class="patient">
-	<div class="title">Patient Information</div>
+	<div class="title">Trainee Information</div>
 		<div class="form">
 			<div class="row">
-				<label class="label" for="identifier">Patient Identifier/Number:</label>
+				<label class="label" for="identifier">Trainee ID:</label>
 				<input 
 					class="value"
 					:class="{'valid': isValidFail}"
@@ -15,7 +15,7 @@
 				<div class="error" v-if="isValidFail">*Required fields.</div>
 			</div>
 			<div class="row">
-				<div class="label">Patient Age:</div>
+				<div class="label">Trainee Age:</div>
 				<div class="value">
 					<Radio
 						v-for="age in ages"

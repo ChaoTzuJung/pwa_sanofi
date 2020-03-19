@@ -41,11 +41,11 @@ export default {
       BSA: 0,
       IGA: '',
       igaData: [
-        { text: '0 - Clear', value: 0 },
-        { text: '1 - Almost clear', value: 1 },
-        { text: '2 - Mild', value: 2 },
-        { text: '3 - Moderate', value: 3 },
-        { text: '4 - Severe', value: 4 },
+        { text: 'Low', value: 0 },
+        { text: 'Moderate', value: 1 },
+        { text: 'Hight', value: 2 },
+        { text: 'Very Hight', value: 3 },
+        { text: 'Extreme', value: 4 },
       ],
       marks: {
         0: {
@@ -100,27 +100,27 @@ export default {
       },
       tableData: [
         {
-          score: 'Score',
-          description: 'Morphological Description',
+          score: 'Level',
+          description: 'Strength Description',
         },
         {
-          score: '0 – Clear',
+          score: 'Low',
           description: 'No inflammatory signs of atopic dermatitis (no erythema, no induration/papulation, no lichenification, no oozing/crusting). Post-inflammatory hyperpigmentation and/or hypopigmentation may be present.',
         },
         {
-          score: '1 – Almost clear',
+          score: 'Moderate',
           description: 'Barely perceptible erythema, barely perceptible induration/papulation, and/or minimal lichenification. No oozing or crusting.',
         },
         {
-          score: '2 – Mild',
+          score: 'Hight',
           description: 'Slight but definite erythema (pink), slight but definite induration/papulation, and/or slight but definite lichenification. No oozing or crusting.',
         },
         {
-          score: '3 – Moderate',
+          score: 'Very Hight',
           description: 'Clearly perceptible erythema (dull red), clearly perceptible induration/papulation, and/or clearly perceptible lichenification. Oozing and crusting may be present.',
         },
         {
-          score: '4 – Severe',
+          score: 'Extreme',
           description: 'Marked erythema (deep or bright red), marked induration/papulation, and/or marked lichenification. Disease is widespread in extent. Oozing or crusting may be present.',
         },
       ],
@@ -149,50 +149,50 @@ export default {
     Interpretation() {
       let result;
       if (this.totalBodyScore <= 0) {
-        result = 'Clear';
+        result = 'Low';
       }
 
       if (this.totalBodyScore >= 0.1 && this.totalBodyScore <= 1.0) {
-        result = 'Almost Clear';
-      }
-
-      if (this.totalBodyScore >= 1.1 && this.totalBodyScore <= 7.0) {
-        result = 'Mild';
-      }
-
-      if (this.totalBodyScore >= 7.1 && this.totalBodyScore <= 21.0) {
         result = 'Moderate';
       }
 
+      if (this.totalBodyScore >= 1.1 && this.totalBodyScore <= 7.0) {
+        result = 'High';
+      }
+
+      if (this.totalBodyScore >= 7.1 && this.totalBodyScore <= 21.0) {
+        result = 'Very High';
+      }
+
       if (this.totalBodyScore >= 21.1 && this.totalBodyScore <= 50.0) {
-        result = 'Severe';
+        result = 'Extreme';
       }
 
       if (this.totalBodyScore >= 50.1 && this.totalBodyScore <= 72.0) {
-        result = 'Very Severe';
+        result = 'Extreme';
       }
 
       if (this.totalBodyScore > 72.0) {
-        result = 'Very Severe';
+        result = 'Extreme';
       }
       return result;
     },
     scores() {
       return [
         {
-          name: 'Head & Neck',
+          name: 'Chest & Shoulder',
           score: parseFloat(this.headneckScore, 10).toFixed(1),
         },
         {
-          name: 'Upper extremities',
+          name: 'Biceps & Triceps',
           score: parseFloat(this.upperScore, 10).toFixed(1),
         },
         {
-          name: 'Trunk',
+          name: 'Abs & Backside',
           score: parseFloat(this.trunkScore, 10).toFixed(1),
         },
         {
-          name: 'Lower extremities',
+          name: 'Buttocks & Leg',
           score: parseFloat(this.lowerScore, 10).toFixed(1),
         },
       ];
@@ -244,14 +244,14 @@ export default {
   <div class="result-section">
     <Modal>
       <div slot="modal-content">
-        <div class="modal-title">Investigator Global Assessment scale</div>
+        <div class="modal-title">Weekly Training Frequency scale</div>
         <div class="modal-content">
           <div class="modal-text">
-            The IGA score is selected using the descriptors
+            The WTF level is selected using the descriptors
             below that best describe the overall appearance
             of the lesions at a given time point.
             It is not necessary that all characteristics
-            under Morphological Description be present.
+            under Strength Description be present.
           </div>
           <div class="table-container">
             <table border="0" cellSpacing="0">
@@ -268,8 +268,8 @@ export default {
       <div class="result-section">
         <div class="test mobile">
           <div class="block">
-            <div class="text">EASI score</div>
-            <div class="text">Interpretation:</div>
+            <div class="text">Training volume</div>
+            <div class="text">Strength:</div>
           </div>
           <div class="block">
             <div class="level">{{totalBodyScore}}</div>
@@ -278,12 +278,12 @@ export default {
         </div>
         <div class="test desktop">
           <div class="block">
-            <div class="text">EASI score:</div>
+            <div class="text">Training volume:</div>
             <div class="level">= {{totalBodyScore}}</div>
           </div>
           <hr>
           <div class="block">
-            <div class="text">Interpretation:</div>
+            <div class="text">Strength:</div>
             <div class="level">{{Interpretation}}</div>
           </div>
         </div>
@@ -291,7 +291,7 @@ export default {
       <hr>
       <div class="score-section">
         <div class="mobile">
-          <div class="body-region">Score per body region:</div>
+          <div class="body-region">Score per muscle group:</div>
           <div :key="score.name" class="score" v-for="score in scores">
             <div class="body-title">{{score.name}}</div>
             <div class="body-score">{{score.score}}</div>
@@ -301,7 +301,7 @@ export default {
           <div :key="score.name" class="score" v-for="(score,idx) in scores">
             <div class="score-block">
               <div class="body-title">{{score.name}}</div>
-              <div class="body-region">Score per body region:</div>
+              <div class="body-region">Score per muscle group:</div>
               <div class="body-score">
                 {{score.score}}
                 <span class="plus" v-if="idx !== 3">+</span>
@@ -315,7 +315,7 @@ export default {
     <div class="slider-section">
       <div class="row" :class="{ 'change-margin': isValidationFail }">
         <div class="label">
-          IGA (Investigator Global Assessment)
+          WTF (Weekly Training Frequency)
           <img :src="Question" @click="openModal" />
         </div>
         <div class="value">
@@ -335,7 +335,7 @@ export default {
       </div>
       <div class="row">
         <Slider
-          label="BSA (Body Surface Area)"
+          label="RM (Repetition of Maximum)"
           :BSA="BSA"
           @onChangeSlider="handleSliderChange"
         />

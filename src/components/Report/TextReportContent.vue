@@ -39,7 +39,7 @@ export default {
     <div class="block">
       <div class="title">Infomation</div>
       <div class="item">
-        Patient:
+        Trainee:
         <div class="value">{{this.name}}</div>
       </div>
       <div class="item">
@@ -55,15 +55,15 @@ export default {
         <div class="value">{{this.reportDate}}</div>
       </div>
       <div class="item">
-        BSA:
+        RM:
         <div class="value">{{this.BSA}}%</div>
       </div>
       <div class="item">
-        Interpretation:
+        Strength:
         <div class="value">{{this.interpretation}}</div>
       </div>
       <div class="item">
-        IGA:
+        WTF:
         <div class="value">{{this.IGA}}</div>
       </div>
     </div>
@@ -118,7 +118,7 @@ export default {
     </div>
 
     <div class="item">
-      EASI score:
+      Training volume:
       <div class="value">{{this.EASI}}</div>
     </div>
     <Form :isFormShow="showMailForm" />
