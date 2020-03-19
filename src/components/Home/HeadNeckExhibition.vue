@@ -1,6 +1,6 @@
 <script>
-import FrontChest from 'assets/images/front-chest.svg';
-import BackChest from 'assets/images/back-chest.svg';
+import FrontChest from 'assets/images/front-chest.png';
+import BackChest from 'assets/images/back-chest.png';
 
 export default {
   name: 'HeadNeckExhibition',

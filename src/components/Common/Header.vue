@@ -41,14 +41,10 @@ export default {
       </div>
       <div class="title-logo" v-else key="2">
         <div class="logo"></div>
-        <div class="separate"></div>
-        <div class="sublogo"></div>
       </div>
     </transition-group>
     <a @click="openDialog()" v-else>
       <div class="logo"></div>
-      <div class="separate"></div>
-      <div class="sublogo"></div>
     </a>
   </header>
 </template>
@@ -106,41 +102,15 @@ header {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 100px;
-    height: 16px;
+    width: 160px;
+    height: 30px;
     transform: translateY(-4%);
 
     @media screen and (max-width: 769px) {
-      background-image: url('~assets/images/logo-m.svg');
+      background-image: url('~assets/images/logo.svg');
       width: 80px;
-      height: 14px;
-      transform: translateY(-5%);
-    }
-  }
-
-  & .separate {
-    height: 16px;
-    width: 1px;
-    margin: 0 10px;
-    background-color: rgba(82, 92, 163, 0.5);
-
-    @media screen and (max-width: 769px) {
-      height: 14px;
-    }
-  }
-
-  & .sublogo {
-    background-image: url('~assets/images/sub-logo.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 104px;
-    height: 22px;
-
-    @media screen and (max-width: 769px) {
-      background-image: url('~assets/images/sub-logo-m.svg');
-      width: 76px;
       height: 16px;
+      transform: translateY(-5%);
     }
   }
 }

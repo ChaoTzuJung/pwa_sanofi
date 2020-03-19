@@ -31,7 +31,7 @@ export default {
     },
     cssVars() {
       return {
-        '--main-color': this.color || '#bcbc1c',
+        '--main-color': this.color || '#FBB63F',
       };
     },
   },

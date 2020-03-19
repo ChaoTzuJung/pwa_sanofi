@@ -132,7 +132,7 @@ export default {
                 outline: none;
                 border: none;
                 color: #FFF;
-                background: #bcbc1c;
+                background: #FBB63F;
                 font-family: 'itc-avant-garde-gothic-pro', Arial, sans-serif;
                 font-size: 1rem;
                 border-radius: 19px;
@@ -140,7 +140,7 @@ export default {
 
                 &:nth-child(2n) {
                     margin-left: 8px;
-                    background: #525ca3;
+                    background: #434244;
                 }
             }
         }

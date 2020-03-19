@@ -1,6 +1,6 @@
 <script>
-import FrontArm from 'assets/images/front-arm.svg';
-import BackArm from 'assets/images/back-arm.svg';
+import FrontArm from 'assets/images/front-arm.png';
+import BackArm from 'assets/images/back-arm.png';
 
 export default {
   name: 'UpperExtremitiesExhibition',

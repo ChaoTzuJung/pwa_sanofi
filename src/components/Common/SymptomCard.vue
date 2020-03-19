@@ -69,6 +69,7 @@ export default {
           :name="name"
           :value="value"
           :checkedValue="checkedValue"
+          color="#525ca3"
           @input="onPickHandler"
         ></Radio>
         <div class="check-score">{{name}}: {{value}}</div>

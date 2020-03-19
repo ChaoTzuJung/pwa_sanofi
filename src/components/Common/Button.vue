@@ -21,7 +21,10 @@ export default {
     },
     color: {
       type: String,
-      default: '#bcbc1c',
+      default: '#FBB63F',
+    },
+    borderColor: {
+      type: String,
     },
     disable: {
       type: Boolean,
@@ -43,7 +46,12 @@ export default {
   >
     <router-link
       :to="link"
-      :style="{ width: `${width}px`, background: `${color}` }"
+      :style="{
+        width: `${width}px`,
+        background: `${color}`,
+        border: `2px solid ${borderColor}`,
+        color: `${borderColor}`
+      }"
       :class="{ 'disable': disable }"
     >
       <div>{{text}}</div>
@@ -65,7 +73,7 @@ export default {
     height: 100%;
     max-height: 50px;
     border-radius: 32px;
-    background-color: #bcbc1c;
+    background-color: #FBB63F;
     font-size: inherit;
     line-height: 1.4;
     text-align: center;
@@ -112,8 +120,8 @@ export default {
     font-size: inherit;
     line-height: 1.4;
     text-align: center;
-    color: #bcbc1c;
-    border: solid 2px #bcbc1c;
+    color: #FBB63F;
+    border: solid 2px #FBB63F;
     font-weight: 500;
     text-align: center;
     line-height: 56px;
@@ -131,7 +139,7 @@ export default {
 }
 
 .disable {
-    opacity: 0.5;
+    opacity: 0.8;
     cursor: not-allowed;
     pointer-events: none;
 }

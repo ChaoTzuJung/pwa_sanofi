@@ -42,7 +42,7 @@ export default {
       return [
         [
           {
-            title: 'Head & neck',
+            title: 'Chest & Shoulder',
             themeColor: '#f0dd00',
             score: this.HeadNeck.bodypartScore,
             AreaScore: this.HeadNeck.area.areaScore,
@@ -53,7 +53,7 @@ export default {
             Lichenification: this.HeadNeck.symptom.Lichenification,
           },
           {
-            title: 'Trunk',
+            title: 'Abs & Backside',
             themeColor: '#fbba00',
             score: this.Trunk.bodypartScore,
             AreaScore: this.Trunk.area.areaScore,
@@ -66,7 +66,7 @@ export default {
         ],
         [
           {
-            title: 'Upper extremities',
+            title: 'Biceps & Triceps',
             themeColor: '#00a590',
             score: this.UpperExtremities.bodypartScore,
             AreaScore: this.UpperExtremities.area.areaScore,
@@ -77,7 +77,7 @@ export default {
             Lichenification: this.UpperExtremities.symptom.Lichenification,
           },
           {
-            title: 'Lower extremities',
+            title: 'Buttocks & Leg',
             themeColor: '#bcbc1c',
             score: this.LowerExtremities.bodypartScore,
             AreaScore: this.LowerExtremities.area.areaScore,
@@ -120,8 +120,7 @@ export default {
           <div class="item-block">
             <div class="key">WTF:</div>
             <div class="value" v-if="this.IGA">
-              <span>{{this.IGA.substr(0,1)}}: </span>
-              <span class="bold">{{this.IGA.substring(4)}}</span>
+              <span class="bold">{{this.IGA}}</span>
             </div>
             <div class="value" v-else>{{this.IGA}}</div>
           </div>

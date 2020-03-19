@@ -57,16 +57,16 @@ export default {
       let result;
       switch (this.Erythema) {
         case 0:
-          result = 'None: 0';
+          result = 'Primary: 0';
           break;
         case 1:
-          result = 'Mild: 1';
+          result = 'Intermediate: 1';
           break;
         case 2:
-          result = 'Moderate: 2';
+          result = 'Advanced: 2';
           break;
         case 3:
-          result = 'Severe: 3';
+          result = 'Superlative: 3';
           break;
         default:
           result = 'Null: NaN';
@@ -78,16 +78,16 @@ export default {
       let result;
       switch (this.EdemaPapulation) {
         case 0:
-          result = 'None: 0';
+          result = 'Primary: 0';
           break;
         case 1:
-          result = 'Mild: 1';
+          result = 'Intermediate: 1';
           break;
         case 2:
-          result = 'Moderate: 2';
+          result = 'Advanced: 2';
           break;
         case 3:
-          result = 'Severe: 3';
+          result = 'Superlative: 3';
           break;
         default:
           result = 'Null: NaN';
@@ -99,16 +99,16 @@ export default {
       let result;
       switch (this.Excoriation) {
         case 0:
-          result = 'None: 0';
+          result = 'Primary: 0';
           break;
         case 1:
-          result = 'Mild: 1';
+          result = 'Intermediate: 1';
           break;
         case 2:
-          result = 'Moderate: 2';
+          result = 'Advanced: 2';
           break;
         case 3:
-          result = 'Severe: 3';
+          result = 'Superlative: 3';
           break;
         default:
           result = 'Null: NaN';
@@ -120,16 +120,16 @@ export default {
       let result;
       switch (this.Lichenification) {
         case 0:
-          result = 'None: 0';
+          result = 'Primary: 0';
           break;
         case 1:
-          result = 'Mild: 1';
+          result = 'Intermediate: 1';
           break;
         case 2:
-          result = 'Moderate: 2';
+          result = 'Advanced: 2';
           break;
         case 3:
-          result = 'Severe: 3';
+          result = 'Superlative: 3';
           break;
         default:
           result = 'Null: NaN';
@@ -164,11 +164,11 @@ export default {
     </div>
     <div class="card-body" :class=" cardOpen ? 'show-card-body' : ''">
       <div class="left">
-        <div class="key">Redness/Erythema</div>
-        <div class="key">Edema/Papulation</div>
-        <div class="key">Scratching/Excoriation</div>
-        <div class="key">Lichenification</div>
-        <div class="key">Region score</div>
+        <div class="key">First sets</div>
+        <div class="key">Second sets</div>
+        <div class="key">Third sets</div>
+        <div class="key">Fourth sets</div>
+        <div class="key">Average volume</div>
       </div>
       <div class="right">
         <div class="value">{{showErythema}}</div>
@@ -179,7 +179,7 @@ export default {
       </div>
     </div>
     <div class="text">
-      Score per body region:
+      Score per muscle group:
       <span class="score">{{score}}</span>
     </div>
   </div>
@@ -318,7 +318,7 @@ export default {
 
       @media screen and (min-width: 944px) {
         font-size: 32px;
-        margin-left: 20px;
+        margin-left: 10px;
       }
     }
   }

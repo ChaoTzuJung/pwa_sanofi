@@ -301,12 +301,12 @@ export default {
             width: 137px;
             height: 38px;
             border-radius: 19px;
-            border: solid 1px #bcbc1c;
-            background-color: rgba(188, 188, 28, 0.3);
+            border: solid 1px #525CA3;
+            background: rgba(82, 92, 163, 0.3);
             font-family: Arial;
             font-size: 14px;
             line-height: 1.57;
-            color: #000000;
+            color: #434244;
             cursor: pointer;
         }
 

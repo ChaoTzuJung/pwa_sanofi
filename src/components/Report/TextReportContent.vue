@@ -70,34 +70,34 @@ export default {
     <div class="block">
         <div class="title">Body Regions</div>
         <div class="item">
-          H:
+          C:
           <div class="value">
-            Er: {{this.HeadNeck.symptom.Erythema}}
-            / Ed: {{this.HeadNeck.symptom.EdemaPapulation}}
-            / Ex: {{this.HeadNeck.symptom.Excoriation}}
-            / Li: {{this.HeadNeck.symptom.Lichenification}}
+            1st: {{this.HeadNeck.symptom.Erythema}}
+            / 2nd: {{this.HeadNeck.symptom.EdemaPapulation}}
+            / 3rd: {{this.HeadNeck.symptom.Excoriation}}
+            / 4th: {{this.HeadNeck.symptom.Lichenification}}
             / Region: {{this.HeadNeck.area.areaScore}} ({{this.HeadNeck.area.areaPercent}}%)
             / Body: {{this.HeadNeck.bodypartScore}}
           </div>
         </div>
         <div class="item">
-          T:
+          A:
           <div class="value">
-            Er: {{this.Trunk.symptom.Erythema}}
-            / Ed: {{this.Trunk.symptom.EdemaPapulation}}
-            / Ex: {{this.Trunk.symptom.Excoriation}}
-            / Li: {{this.Trunk.symptom.Lichenification}}
+            1st: {{this.Trunk.symptom.Erythema}}
+            / 2nd: {{this.Trunk.symptom.EdemaPapulation}}
+            / 3rd: {{this.Trunk.symptom.Excoriation}}
+            / 4th: {{this.Trunk.symptom.Lichenification}}
             / Region: {{this.Trunk.area.areaScore}}  ({{this.Trunk.area.areaPercent}}%)
             / Body: {{this.Trunk.bodypartScore}}
           </div>
         </div>
         <div class="item">
-          U:
+          B:
           <div class="value">
-            Er: {{this.UpperExtremities.symptom.Erythema}}
-            / Ed: {{this.UpperExtremities.symptom.EdemaPapulation}}
-            / Ex: {{this.UpperExtremities.symptom.Excoriation}}
-            / Li: {{this.UpperExtremities.symptom.Lichenification}}
+            1st: {{this.UpperExtremities.symptom.Erythema}}
+            / 2nd: {{this.UpperExtremities.symptom.EdemaPapulation}}
+            / 3rd: {{this.UpperExtremities.symptom.Excoriation}}
+            / 4th: {{this.UpperExtremities.symptom.Lichenification}}
             <!-- eslint-disable-next-line max-len -->
             / Region: {{this.UpperExtremities.area.areaScore}} ({{this.UpperExtremities.area.areaPercent}}%)
             / Body: {{this.UpperExtremities.bodypartScore}}
@@ -106,10 +106,10 @@ export default {
         <div class="item">
           L:
           <div class="value">
-            Er: {{this.LowerExtremities.symptom.Erythema}}
-            / Ed: {{this.LowerExtremities.symptom.EdemaPapulation}}
-            / Ex: {{this.LowerExtremities.symptom.Excoriation}}
-            / Li: {{this.LowerExtremities.symptom.Lichenification}}
+            1st: {{this.LowerExtremities.symptom.Erythema}}
+            / 2nd: {{this.LowerExtremities.symptom.EdemaPapulation}}
+            / 3rd: {{this.LowerExtremities.symptom.Excoriation}}
+            / 4th: {{this.LowerExtremities.symptom.Lichenification}}
             <!-- eslint-disable-next-line max-len -->
             / Region: {{this.LowerExtremities.area.areaScore}} ({{this.LowerExtremities.area.areaPercent}}%)
             / Body: {{this.LowerExtremities.bodypartScore}}

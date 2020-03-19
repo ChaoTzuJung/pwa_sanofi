@@ -43,19 +43,18 @@ export default {
           </line>
         </svg>
       </div>
-      <div class="description" v-if="accordionOpen1">EASI<br>
-        Hanifin, J. M., Thurston, M., Omoto, M., Cherill, R., Tofte, S. J., Graeber,
-        M., ... & Easi, T. (2001). The eczema area and severity index (EASI):
-        assessment of reliability in atopic dermatitis.
-        Experimental dermatology, 10(1), 11-18.</div>
-      <div class="description desktop">EASI<br>
-        Hanifin, J. M., Thurston, M., Omoto, M., Cherill, R., Tofte, S. J., Graeber,
-        M., ... & Easi, T. (2001). The eczema area and severity index (EASI):
-        assessment of reliability in atopic dermatitis.
-        Experimental dermatology, 10(1), 11-18.</div>
+      <div class="description" v-if="accordionOpen1">AZFIT<br>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type
+        specimen book</div>
+      <div class="description desktop">AZFIT<br>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type
+        specimen book</div>
       <div class="addon left desktop">
         <img :src="footerLogo">
-        <span>SATW.DUP.19.10.0345 {{version}}</span>
       </div>
       <hr class="mobile">
     </div>
@@ -72,16 +71,16 @@ export default {
         </svg>
       </div>
       <div class="description" v-if="accordionOpen2">
-        This free online tool aims to help physicians and patients in the
-        computation of EASI. These materials have been prepared for
-        medical and scientific information sharing/exchange purposes and
-        not intended to encourage the use of any products.</div>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type
+        specimen book</div>
       <div class="description desktop">
-        This free online tool aims to help physicians and patients in the
-        computation of EASI. These materials have been prepared for
-        medical and scientific information sharing/exchange purposes and
-        not intended to encourage the use of any products.</div>
-      <div class="addon right desktop">Copyright © {{year}} EASIscore. All rights reserved</div>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type
+        specimen book</div>
+      <div class="addon right desktop">Copyright © {{year}} AZfitness. All rights reserved</div>
       <hr class="mobile">
     </div>
     <div class="block mobile">
@@ -89,7 +88,7 @@ export default {
         <div class="satw">
           <img class="mobile" :src="footerLogoSm"><span>SATW.DUP.19.10.0345</span>
         </div>
-        <div class="addon mobile">Copyright © {{year}} EASIscore. All rights reserved</div>
+        <div class="addon mobile">Copyright © {{year}} AZfitness. All rights reserved</div>
       </div>
     </div>
   </div>
@@ -212,12 +211,11 @@ export default {
 
       & > .satw {
         display: flex;
-        align-items: baseline;
+        align-items: center;
 
         & span {
           margin-left: 12px;
           font-size: 12px;
-          margin-top: 2px;
         }
       }
 

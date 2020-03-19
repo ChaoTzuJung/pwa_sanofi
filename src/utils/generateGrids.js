@@ -92,7 +92,6 @@ let LichenificationMildImage;
 let LichenificationModerateImage;
 let LichenificationSevereImage;
 const generateGrids = (bodySymptom, bodypart) => {
-  console.log(bodypart);
   let RelateErythemaNoneImage;
   let RelateErythemaMildImage;
   let RelateErythemaModerateImage;

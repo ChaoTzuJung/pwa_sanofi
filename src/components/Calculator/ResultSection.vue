@@ -350,7 +350,7 @@ export default {
         :border="true"
         color="#fff"
       />
-      <Button text="Generate the report" :width="235" @click.native="goToPatient" />
+      <Button text="Generate the report" :width="235" @click.native="goToPatient" color="#525ca3"/>
     </div>
   </div>
 </template>

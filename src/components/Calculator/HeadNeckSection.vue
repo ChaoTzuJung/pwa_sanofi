@@ -522,8 +522,8 @@ export default {
           }
 
           & > .checked {
-            background-color: #bcbc1c;
-            border: 2px solid #bcbc1c;
+            background-color: #FBB63F;
+            border: 2px solid #FBB63F;
           }
 
           & .checked::after {

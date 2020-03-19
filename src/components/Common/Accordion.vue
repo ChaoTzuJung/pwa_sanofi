@@ -90,6 +90,7 @@ export default {
               :name="grid.name + ` - ${accordionName}`"
               :value="grid.score"
               :checkedValue="picked"
+              color="#525ca3"
               @input="onPickHandler"
             ></Radio>
             <div class="check-score">{{grid.name}}: {{grid.score}}</div>

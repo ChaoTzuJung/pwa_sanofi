@@ -35,7 +35,7 @@ export default {
               <div class="btn-detail">Step by step guide</div>
             </div>
             <div class="button-wrapper">
-              <Button text="Quick Calculator" link="/faster" color="#525ca3" :disable="true" />
+              <Button text="Quick Calculator" link="/faster" color="#434244" :disable="true" />
               <div class="btn-detail">Faster calculation</div>
             </div>
           </div>

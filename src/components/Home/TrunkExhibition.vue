@@ -1,6 +1,6 @@
 <script>
-import FrontAbs from 'assets/images/front-abs.svg';
-import BackAbs from 'assets/images/back-abs.svg';
+import FrontAbs from 'assets/images/front-abs.png';
+import BackAbs from 'assets/images/back-abs.png';
 
 export default {
   name: 'TrunkExhibition',

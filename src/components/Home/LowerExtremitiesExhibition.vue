@@ -1,6 +1,6 @@
 <script>
-import FrontLeg from 'assets/images/front-leg.svg';
-import BackLeg from 'assets/images/back-leg.svg';
+import FrontLeg from 'assets/images/front-leg.png';
+import BackLeg from 'assets/images/back-leg.png';
 
 export default {
   name: 'LowerExtremitiesExhibition',
