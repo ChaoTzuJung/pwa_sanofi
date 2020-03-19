@@ -37,6 +37,11 @@
         margin-top: 60px;
         flex-wrap: nowrap;
       }
+
+      @media screen and (orientation: landscape){
+        flex-wrap: wrap;
+        margin-top: 25px;
+      }
   
       & > .tab {
         display: flex;
@@ -66,6 +71,14 @@
           margin-right: 21px;
           margin-bottom: 60px;
           font-size: 20px;
+        }
+
+        @media screen and (orientation: landscape){
+          width: calc(50% - 20px);
+          height: 52px;
+          margin: 0;
+          margin-bottom: 10px;
+          font-size: 14px;
         }
   
         & > .text {
