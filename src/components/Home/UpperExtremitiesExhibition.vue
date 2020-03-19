@@ -32,8 +32,18 @@ export default {
         height="355px"
       >
       <div class="score" v-if="showFrontImage">
-        <div class="percentage scoreA">25%</div>
-        <div class="percentage scoreB">25%</div>
+        <div
+          class="percentage scoreA"
+          style="background: #00a590; transform: translateY(200%);"
+        >
+            25%
+      </div>
+        <div
+          class="percentage scoreB"
+          style="background: #00a590; transform: translateY(200%);"
+        >
+          25%
+        </div>
       </div>
     </div>
     <div class="back">
@@ -50,9 +60,19 @@ export default {
         @load="showBackImage=true"
         height="355px"
       >
-      <div class="score" v-if="showBackImage">
-        <div class="percentage scoreA">25%</div>
-        <div class="percentage scoreB">25%</div>
+      <div class="score" v-if="showFrontImage">
+        <div
+          class="percentage scoreA"
+          style="background: #00a590; transform: translateY(200%);"
+        >
+          25%
+        </div>
+        <div
+          class="percentage scoreB"
+          style="background: #00a590; transform: translateY(200%);"
+        >
+          25%
+        </div>
       </div>
     </div>
   </div>

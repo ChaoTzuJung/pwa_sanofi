@@ -32,8 +32,18 @@ export default {
         height="355px"
       >
       <div class="score" v-if="showFrontImage">
-        <div class="percentage scoreA">55%</div>
-        <div class="percentage scoreB">55%</div>
+        <div
+          class="percentage scoreA"
+          style="background: #fbba00; transform: translateY(100%); opacity: 0;"
+        >
+          55%
+          </div>
+        <div
+          class="percentage scoreB"
+          style="background: #fbba00; transform: translateY(100%);"
+        >
+          55%
+        </div>
       </div>
     </div>
     <div class="back">
@@ -51,8 +61,18 @@ export default {
         height="355px"
       >
       <div class="score" v-if="showBackImage">
-        <div class="percentage scoreA">45%</div>
-        <div class="percentage scoreB">45%</div>
+        <div
+          class="percentage scoreA"
+          style="background: #fbba00; transform: translateY(100%); opacity: 0;"
+        >
+          45%
+        </div>
+        <div
+          class="percentage scoreB"
+          style="background: #fbba00; transform: translateY(100%);"
+        >
+          45%
+        </div>
       </div>
     </div>
   </div>
