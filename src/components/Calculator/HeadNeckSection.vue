@@ -43,7 +43,7 @@ export default {
         },
         'Edema / papulation': {
           num: 2,
-          name: 'Edema / papulation', // 前束
+          name: 'Edema / papulation',
           name2: 'Chest II',
           id: '1',
           component: 'EdemaPapulation',
@@ -52,7 +52,7 @@ export default {
         },
         Excoriation: {
           num: 3,
-          name: 'Excoriation', // 中束
+          name: 'Excoriation',
           name2: 'Shoulder I',
           id: '2',
           component: 'Excoriation',
@@ -61,7 +61,7 @@ export default {
         },
         Lichenification: {
           num: 4,
-          name: 'Lichenification', // 後束
+          name: 'Lichenification',
           name2: 'Shoulder II',
           id: '3',
           component: 'Lichenification',
@@ -163,13 +163,11 @@ export default {
   },
   methods: {
     openAccordion(tabItem) {
-      // 點擊 Accordion head 打開 Accordion content
       this.accordionOpen[tabItem.name] = !this.accordionOpen[tabItem.name];
     },
     changeTab(tabItem) {
       this.symptomName = tabItem.name;
       this.currentTabComponent = tabItem.component;
-      // 換資料注入不同圖片跟內文
       this.gridData = generateGrids(tabItem.name, 'HeadNeck');
     },
     changeScore(e) {
@@ -522,8 +520,8 @@ export default {
           }
 
           & > .checked {
-            background-color: #FBB63F;
-            border: 2px solid #FBB63F;
+            background-color: #525ca3;
+            border: 2px solid #525ca3;;
           }
 
           & .checked::after {
@@ -602,8 +600,8 @@ export default {
         }
 
         & > .checked {
-          background-color: #bcbc1c;
-          border: 2px solid #bcbc1c;
+          background-color: #FBB63F;
+          border: 2px solid #FBB63F;
         }
 
         & .checked::after {

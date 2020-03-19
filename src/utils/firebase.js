@@ -5,7 +5,7 @@ const askForPermissionToReceiveNotifications = async () => {
     // Retrieve Firebase Messaging object.
     const messaging = firebase.messaging();
     // Add the public key generated from the console here.
-    messaging.usePublicVapidKey('BEbvUC86fdjHa-dcZLIjg9FbVoxf8vzZYNBoZ_uSXAj_cxLMFlN6ld2YuLCb2jpab2CRc2d9R6G-y1mIqndtXzE');
+    messaging.usePublicVapidKey('BIX_0bYLDlkfE4YO42cvmoMU7g5oluAJi1wsH7P5tgDAE3gkZbkbRYO2Kf002pOQcHIqnIzjHOE-qLNXOn72s3U');
     await messaging.requestPermission();
 
     // 先判斷cookies有沒有token，沒有再取token

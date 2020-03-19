@@ -59,7 +59,6 @@ header {
 
   @media screen and (max-width: 769px) {
     padding: 16px 0;
-    padding-left: 20px;
     position: relative;
   }
 
@@ -67,6 +66,10 @@ header {
     display: inline-flex;
     vertical-align: bottom;
     align-items: center;
+
+    @media screen and (max-width: 769px) {
+      transform: scale(0.7);
+    }
 
     & .back-btn {
       position: absolute;
@@ -104,13 +107,9 @@ header {
     background-size: cover;
     width: 160px;
     height: 30px;
-    transform: translateY(-4%);
 
     @media screen and (max-width: 769px) {
       background-image: url('~assets/images/logo.svg');
-      width: 80px;
-      height: 16px;
-      transform: translateY(-5%);
     }
   }
 }

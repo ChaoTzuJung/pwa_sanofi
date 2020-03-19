@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "azchao-fitness",
     "public": "dist",
     "ignore": [
       "firebase.json",

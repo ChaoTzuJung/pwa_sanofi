@@ -216,7 +216,7 @@ export default {
       const patient = {
         interpretation: this.Interpretation,
         EASI: this.totalBodyScore,
-        BSA: this.BSA, // TODO: 更新不會變
+        BSA: this.BSA,
         IGA: this.IGA,
       };
 

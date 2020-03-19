@@ -14,16 +14,15 @@ module.exports = {
     config.resolve.extensions.merge(['.js', '.vue', '.json']);
   },
   pwa: {
-    name: 'Sanofi Easiscore',
-    themeColor: '#525CA3',
+    name: 'Azchao Fitness',
     msTileColor: '#ffffff',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'default',
     manifestOptions: {
-      short_name: 'Sanofi',
+      short_name: 'Azchao',
       start_url: './?utm_source=web_app_manifest',
       display: 'standalone',
-      background_color: '#ffffff',
+      background_color: '#FBB63F',
       orientation: 'portrait',
       gcm_sender_id: '103953800507',
     },

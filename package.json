@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "pwa": "npm run build && serve -s dist",
-    "deploy": "npm run build && firebase deploy --except functions"
+    "deploy": "npm run build && firebase deploy --only hosting:azchao-fitness"
   },
   "dependencies": {
     "core-js": "^3.4.4",

@@ -174,7 +174,7 @@ export default {
               & > .img-picked {
                   padding: 2px;
                   opacity: 1;
-                  border: 2px solid #bcbc1c;
+                  border: 2px solid #FBB63F
               }
 
               & > .name {

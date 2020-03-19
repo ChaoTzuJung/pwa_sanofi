@@ -9,7 +9,7 @@ const serviceAccount = require('./serviceAccountKey');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://pwa-native.firebaseio.com',
+  databaseURL: 'https://azchao-fitness.firebaseio.com',
 });
 
 exports.storePostData = functions.https.onRequest((request, response) => {

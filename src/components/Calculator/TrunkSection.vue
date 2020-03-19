@@ -33,7 +33,7 @@ export default {
       tabData: {
         Erythema: {
           num: 1,
-          name: 'Erythema', // 闊背肌
+          name: 'Erythema',
           name2: 'Backside I',
           id: '0',
           component: 'Erythema',
@@ -42,7 +42,7 @@ export default {
         },
         'Edema / papulation': {
           num: 2,
-          name: 'Edema / papulation', // 斜方肌
+          name: 'Edema / papulation',
           name2: 'Backside II',
           id: '1',
           component: 'EdemaPapulation',
@@ -51,7 +51,7 @@ export default {
         },
         Excoriation: {
           num: 3,
-          name: 'Excoriation', // 大圓肌
+          name: 'Excoriation',
           name2: 'Abs I',
           id: '2',
           component: 'Excoriation',
@@ -60,7 +60,7 @@ export default {
         },
         Lichenification: {
           num: 4,
-          name: 'Lichenification', // 腹肌
+          name: 'Lichenification',
           name2: 'Abs II',
           id: '3',
           component: 'Lichenification',
@@ -162,13 +162,11 @@ export default {
   },
   methods: {
     openAccordion(tabItem) {
-      // 點擊 Accordion head 打開 Accordion content
       this.accordionOpen[tabItem.name] = !this.accordionOpen[tabItem.name];
     },
     changeTab(tabItem) {
       this.symptomName = tabItem.name;
       this.currentTabComponent = tabItem.component;
-      // 換資料注入不同圖片跟內文
       this.gridData = generateGrids(tabItem.name, 'Trunk');
     },
     changeScore(e) {
@@ -519,8 +517,8 @@ export default {
           }
 
           & > .checked {
-            background-color: #bcbc1c;
-            border: 2px solid #bcbc1c;
+            background-color: #FBB63F;
+            border: 2px solid #FBB63F;
           }
 
           & .checked::after {
@@ -599,8 +597,8 @@ export default {
         }
 
         & > .checked {
-          background-color: #bcbc1c;
-          border: 2px solid #bcbc1c;
+          background-color: #525ca3;
+          border: 2px solid #525ca3;
         }
 
         & .checked::after {

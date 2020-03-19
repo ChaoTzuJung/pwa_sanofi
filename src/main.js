@@ -22,14 +22,14 @@ detectNotch();
 detectDevice();
 
 const config = {
-  apiKey: 'AIzaSyCkPP8sZvfYG7spBQTEiCmPaPu7UY_TNHw',
-  authDomain: 'pwa-native.firebaseapp.com',
-  databaseURL: 'https://pwa-native.firebaseio.com',
-  projectId: 'pwa-native',
-  storageBucket: 'pwa-native.appspot.com',
-  messagingSenderId: '873819253197',
-  appId: '1:873819253197:web:0217aaf231329d121afc84',
-  measurementId: 'G-MZJXXWCJYL',
+  apiKey: 'AIzaSyAk9ziLGf87f-I3NcIEDLn06T7TJWQIKPA',
+  authDomain: 'azchao-fitness.firebaseapp.com',
+  databaseURL: 'https://azchao-fitness.firebaseio.com',
+  projectId: 'azchao-fitness',
+  storageBucket: 'azchao-fitness.appspot.com',
+  messagingSenderId: '796038450123',
+  appId: '1:796038450123:web:5854a72e83624270f0444e',
+  measurementId: 'G-1WCWZYQT28',
 };
 
 firebase.initializeApp(config);
