@@ -67,10 +67,6 @@ header {
     vertical-align: bottom;
     align-items: center;
 
-    @media screen and (max-width: 769px) {
-      transform: scale(0.7);
-    }
-
     & .back-btn {
       position: absolute;
       left: 6px;
@@ -110,6 +106,7 @@ header {
 
     @media screen and (max-width: 769px) {
       background-image: url('~assets/images/logo.svg');
+      transform: scale(0.7);
     }
   }
 }

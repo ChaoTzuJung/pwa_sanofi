@@ -51,7 +51,12 @@ export default {
     <transition name="slide">
       <div class="offlie" v-if="!isOnline && isPwa">App is offlie</div>
     </transition>
-    <div class="overlay" v-if="promptInstallation" @click="promptInstallation = false">
+    <div
+      class="overlay"
+      v-if="promptInstallation"
+      @click="promptInstallation = false"
+      @scroll="promptInstallation = false"
+    >
       <Popup direction='up'></Popup>
     </div>
     <Dialog />

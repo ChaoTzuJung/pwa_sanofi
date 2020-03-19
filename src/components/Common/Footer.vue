@@ -86,7 +86,7 @@ export default {
     <div class="block mobile">
       <div class="mobile-logo">
         <div class="satw">
-          <img class="mobile" :src="footerLogoSm"><span>SATW.DUP.19.10.0345</span>
+          <img class="mobile" :src="footerLogoSm">
         </div>
         <div class="addon mobile">Copyright © {{year}} AZfitness. All rights reserved</div>
       </div>
