@@ -26,6 +26,11 @@ export default {
       return this.$store.state.online;
     },
   },
+  methods: {
+    onScroll() {
+      this.promptInstallation = false;
+    },
+  },
   // mounted() {
   //   console.log('App mounted');
   //   window.addEventListener('offline', () => {
@@ -54,8 +59,8 @@ export default {
     <div
       class="overlay"
       v-if="promptInstallation"
-      @click="promptInstallation = false"
-      @scroll="promptInstallation = false"
+      @scroll.once="onScroll"
+      @touchmove.once="onScroll"
     >
       <Popup direction='up'></Popup>
     </div>

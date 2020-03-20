@@ -12,11 +12,6 @@ export default {
       ShareIcon,
     };
   },
-  methods: {
-    onClickOutside() {
-      this.showPopup = false;
-    },
-  },
   computed: {
     showRightPopup() {
       return this.showPopup && this.direction === 'right';
@@ -33,7 +28,7 @@ export default {
 </script>
 
 <template>
-  <span class="popup" v-click-outside="onClickOutside" v-if="showUpPopup">
+  <span class="popup" v-if="showUpPopup">
       <img :src="AddToHome" width="40" height="40" />
       <span class="popupTop">
         Install this Web App on your iPhone: <br/>
