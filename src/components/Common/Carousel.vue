@@ -32,16 +32,16 @@ export default {
     pickedScore() {
       let score;
       switch (this.pickedImage) {
-        case 'None':
+        case 'Primary':
           score = 0;
           break;
-        case 'Mild':
+        case 'Intermediate':
           score = 1;
           break;
-        case 'Moderate':
+        case 'Advanced':
           score = 2;
           break;
-        case 'Severe':
+        case 'Superlative':
           score = 3;
           break;
         default:
