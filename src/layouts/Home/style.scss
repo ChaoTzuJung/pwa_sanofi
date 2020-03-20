@@ -27,18 +27,13 @@
   
     & > .tabs {
       display: flex;
-      padding: 0 20px;
-      margin-top: 25px;
-      cursor: pointer;
-      flex-wrap: wrap;
       justify-content: center;
-  
-      @media screen and (min-width: 769px) {
-        margin-top: 60px;
-        flex-wrap: nowrap;
-      }
+      flex-wrap: nowrap;
+      padding: 0 20px;
+      margin-top: 60px;
+      cursor: pointer;
 
-      @media screen and (orientation: landscape){
+      @media screen and (max-width: 812px) {
         flex-wrap: wrap;
         margin-top: 25px;
       }
@@ -65,20 +60,12 @@
           margin-right: 10px;
         }
   
-        @media screen and (min-width: 769px) {
+        @media screen and (min-width: 813px) {
           width: 220px;
           height: 76px;
           margin-right: 21px;
           margin-bottom: 60px;
           font-size: 20px;
-        }
-
-        @media screen and (orientation: landscape){
-          width: calc(50% - 20px);
-          height: 52px;
-          margin: 0;
-          margin-bottom: 10px;
-          font-size: 14px;
         }
   
         & > .text {

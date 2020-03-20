@@ -112,7 +112,18 @@ header {
 }
 
 .pwa-header {
-  @media screen and (max-width: 769px) {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 52px;
+  padding: 20px 0 12px 0;
+  padding-left: 0;
+  z-index: 999;
+
+  @media screen and (orientation: landscape) {
     position: fixed;
     top: 0;
     display: flex;
