@@ -92,7 +92,7 @@ export default {
   margin-top: 40px;
   margin-bottom: 40px;
 
-  @media screen and (max-width: 769px) {
+  @media screen and (max-width: 812px) {
       display: none;
   }
 

@@ -357,10 +357,11 @@ export default {
 
   & > .involvement-section {
     margin: auto;
-    width: calc(100vw - 40px);
+    width: 944px;
 
-    @media screen and (min-width: 769px) {
-      width: 944px;
+    @media screen and (max-width: 812px) {
+      width: 100vw;
+      padding-left: 20px;
     }
 
     & > h2 {
@@ -415,36 +416,36 @@ export default {
     }
 
     & > .additional {
+      width: 944px;
       font-family: Arial;
-      font-size: 12px;
-      line-height: 1.67;
+      font-size: 14px;
+      line-height: 1.57;
       color: #a77f7f;
       margin: 0 auto;
       margin-top: 10px;
-      width: calc(100vw - 40px);
 
-      @media screen and (min-width: 769px) {
-        width: 944px;
-        font-size: 14px;
-        line-height: 1.57;
+      @media screen and (max-width: 812px) {
+        width: calc(100vw - 20px);
+        font-size: 12px;
+        line-height: 1.67;
       }
     }
   }
 
   & > .tab-section {
     margin: auto;
-    width: 100%;
+    width: 944px;
 
-    @media screen and (min-width: 769px) {
-      width: 944px;
+    @media screen and (max-width: 812px) {
+      width: 100vw;
     }
 
     & > h2 {
       color: #333333;
-      margin: 40px 20px 20px 20px;
+      margin: 40px 0;
 
-      @media screen and (min-width: 769px) {
-        margin: 40px 0;
+      @media screen and (min-width: 812px) {
+        margin: 40px 20px 20px 20px;
       }
 
       & > span {
@@ -460,7 +461,7 @@ export default {
       display: flex;
       margin-top: 40px;
 
-      @media screen and (max-width: 769px) {
+      @media screen and (max-width: 812px) {
         display: block;
         margin-top: 0px;
       }
@@ -480,7 +481,7 @@ export default {
         font-size: 16px;
         cursor: pointer;
 
-        @media screen and (max-width: 769px) {
+        @media screen and (max-width: 812px) {
           justify-content: center;
           flex-direction: column;
           width: 100%;
@@ -495,7 +496,7 @@ export default {
         & > .top {
           display: flex;
 
-          @media screen and (max-width: 769px) {
+          @media screen and (max-width: 812px) {
             align-items: center;
             width: 100vw;
             padding: 11px 20px;
@@ -516,7 +517,7 @@ export default {
             border: solid 1px rgba(0, 0, 0, 0.15);
             color: rgba(0, 0, 0, 0.5);
 
-            @media screen and (max-width: 769px) {
+            @media screen and (max-width: 812px) {
               border: solid 1px #525ca3;
               color: #525ca3;
             }
@@ -546,7 +547,7 @@ export default {
 
           & > .wordings {
             & > .text {
-              @media screen and (max-width: 769px) {
+              @media screen and (max-width: 812px) {
                 color: #000000;
                 font-weight: bold;
                 font-size: 15px;
@@ -565,7 +566,7 @@ export default {
           & > .svg-circleplus {
             display: none;
 
-            @media screen and (max-width: 769px) {
+            @media screen and (max-width: 812px) {
               display: block;
               height: 20px;
               stroke: #000;
@@ -582,7 +583,7 @@ export default {
         & > .bottom {
           display: none;
 
-          @media screen and (max-width: 769px) {
+          @media screen and (max-width: 812px) {
             display: block;
           }
         }
@@ -592,7 +593,7 @@ export default {
         width: 224px;
         box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
 
-        @media screen and (max-width: 769px) {
+        @media screen and (max-width: 812px) {
           width: auto;
           box-shadow: none;
         }
@@ -642,7 +643,7 @@ export default {
     }
 
     & > .tab-content {
-      @media screen and (max-width: 769px) {
+      @media screen and (max-width: 812px) {
         display: none;
       }
     }
