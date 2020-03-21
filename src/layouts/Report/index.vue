@@ -26,8 +26,12 @@ export default {
       }
     },
     showMail() {
-      this.showMailForm = !this.showMailForm;
-      window.scrollTo(0, document.body.scrollHeight + 400);
+      this.showMailForm = true;
+      window.scrollTo({
+        top: 2000,
+        left: 0,
+        behavior: 'smooth',
+      });
     },
     openDialog(type) {
       this.$store.commit('OPEN_DIALOG', { type, status: true });
