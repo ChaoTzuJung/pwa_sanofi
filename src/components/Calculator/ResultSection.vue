@@ -359,15 +359,22 @@ export default {
 .result-section {
     & > .content-section {
         display: flex;
-        flex-direction: column;
-        width: 100vw;
-        padding: 0 20px;
+        flex-direction: column-reverse;
+        width: 944px;
+        padding: 0;
 
-        @media screen and (min-width: 769px) {
+        @media screen and (max-width: 812px) {
             display: flex;
             flex-direction: column-reverse;
-            width: 944px;
-            padding: 0;
+            width: 100vw;
+            padding: 0 20px;
+        }
+
+        @media screen and (max-width: 768px) {
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            padding: 0 20px;
         }
 
         & > .result-section {
@@ -488,26 +495,28 @@ export default {
 
 
         & > hr {
-            margin: 20px 0;
+            margin: 40px 0;
+            width: 944px;
+            height: 2px;
+            background-color: #eeeeee;
 
-            @media screen and (min-width: 769px) {
-                margin: 40px 0;
-                width: 944px;
-                height: 2px;
-                background-color: #eeeeee;
+            @media screen and (max-width: 812px) {
+                margin: 20px 0;
+                width: 100%;
             }
         }
 
         & > .score-section {
+            display: flex;
+            align-items: center;
+            width: 944px;
             font-weight: 500;
             font-size: 16px;
             line-height: 1.5;
             color: #333333;
 
-            @media screen and (min-width: 769px) {
-                display: flex;
-                align-items: center;
-                width: 944px;
+            @media screen and (max-width: 812px) {
+                width: 100%;
             }
 
             & > .mobile {
@@ -563,7 +572,6 @@ export default {
                         }
 
                         & > .body-region {
-
                             font-size: 14px;
                             font-weight: 500;
                             line-height: 1.57;
@@ -573,7 +581,6 @@ export default {
                         }
 
                         & > .body-score {
-
                             font-size: 32px;
                             font-weight: 300;
                             line-height: 1.25;
@@ -581,6 +588,10 @@ export default {
 
                             & > span {
                                 margin-left: 115px;
+
+                              @media screen and (max-width: 812px) {
+                                  margin-left: 80px;
+                              }
                             }
                         }
                     }
@@ -590,18 +601,15 @@ export default {
     }
 
     & > .slider-section {
-        padding: 0 20px;
+        padding: 0;
 
-        @media screen and (min-width: 769px) {
-            padding: 0;
+        @media screen and (max-width: 812px) {
+          padding: 0 20px;
         }
 
         & > .row {
-
-            @media screen and (min-width: 769px) {
-                position: relative;
-                margin-bottom: 40px;
-            }
+            position: relative;
+            margin-bottom: 40px;
 
             & > input {
                 @media screen and (min-width: 769px) {
