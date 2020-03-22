@@ -186,16 +186,6 @@ export default {
         <Carousel :current="calculator.currentSeverity" :data="gridData"></Carousel>
       </div>
     </Modal>
-    <div class="graph-section">
-      <div class="front">
-        <div class="title">Front</div>
-        <img :src="ArmFrontImage" />
-      </div>
-      <div class="back">
-        <div class="title">Back</div>
-        <img :src="ArmBackImage" />
-      </div>
-    </div>
     <div class="involvement-section">
       <h2>
         One-repetition maximum:
@@ -268,85 +258,6 @@ export default {
 
 <style scoped lang="scss">
 .upper-extremities-section {
-  & > .graph-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    width: 100%;
-    height: 170px;
-    padding: 0px;
-
-    @media screen and (min-width: 769px) {
-      margin-top: 0;
-    }
-
-    & > .front {
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      align-items: center;
-      margin: 0 33px;
-      padding: 0;
-      width: 104px;
-
-      @media screen and (min-width: 769px) {
-        margin: 0 80px;
-        padding: 0 60px;
-      }
-
-      & > .title {
-        width: 51px;
-        height: 28px;
-        font-size: 20px;
-        font-weight: 300;
-        line-height: 1.4;
-        letter-spacing: 0.5px;
-        color: #000000;
-      }
-
-      & > img {
-        margin-top: 20px;
-
-        @media screen and (min-width: 769px) {
-          margin-top: 40px;
-        }
-      }
-    }
-
-    & > .back {
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      align-items: center;
-      margin: 0 33px;
-      padding: 0;
-      width: 104px;
-
-      @media screen and (min-width: 769px) {
-        margin: 0 80px;
-        padding: 0 60px;
-      }
-
-      & > .title {
-        font-size: 20px;
-        font-weight: 300;
-        line-height: 1.4;
-        letter-spacing: 0.5px;
-        color: #000000;
-      }
-
-      & > img {
-        margin-top: 20px;
-
-        @media screen and (min-width: 769px) {
-          margin-top: 40px;
-        }
-      }
-    }
-  }
-
   & > .involvement-section {
     margin: auto;
     width: 944px;
