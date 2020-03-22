@@ -5,20 +5,17 @@ import Erythema from 'components/Calculator/SubComponents/Erythema.vue';
 import EdemaPapulation from 'components/Calculator/SubComponents/EdemaPapulation.vue';
 import Excoriation from 'components/Calculator/SubComponents/Excoriation.vue';
 import Lichenification from 'components/Calculator/SubComponents/Lichenification.vue';
+import InvolvementSection from 'components/Calculator/SubComponents/InvolvementSection.vue';
 import Button from 'components/Common/Button.vue';
-import Carousel from 'components/Common/Carousel.vue';
 import Modal from 'components/Common/Modal.vue';
 import generateGrids from 'utils/generateGrids';
-
-import LegFrontImage from 'assets/images/leg-front.svg';
-import LegBackImage from 'assets/images/leg-back.svg';
 
 export default {
   name: 'LowerExtremitiesSection',
   components: {
     Accordion,
     Button,
-    Carousel,
+    InvolvementSection,
     Modal,
     Erythema,
     EdemaPapulation,
@@ -28,8 +25,6 @@ export default {
   data() {
     return {
       selected: false,
-      LegFrontImage,
-      LegBackImage,
       tabData: {
         Erythema: {
           num: 1,
@@ -182,30 +177,12 @@ export default {
 </script>
 
 <template>
-  <div class="head-neck-section">
+  <div class="lower-extremities-section">
     <Modal>
       <div slot="modal-content">
-        <Carousel :current="calculator.currentSeverity" :data="gridData"></Carousel>
+        <InvolvementSection />
       </div>
     </Modal>
-    <div class="involvement-section">
-      <h2>
-        One-repetition maximum:
-        <span>{{areaPoint}}.0</span>
-      </h2>
-      <label class="label" for="name">Weight:</label>
-      <div class="percent">
-        <input
-          class="value"
-          type="tel"
-          id="name"
-          v-model.trim.number.lazy="input"
-          autocomplete="off"
-        />
-      </div>
-      <div class="additional">*1RM: The maximum amount of
-        weight that a person can possibly lift for one repetition</div>
-    </div>
     <div class="tab-section">
       <h2>Fitness training amd movemont</h2>
       <div class="tabs">
@@ -265,84 +242,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
-.head-neck-section {
-
-  & > .involvement-section {
-    margin: auto;
-    width: 944px;
-
-    @media screen and (max-width: 812px) {
-      width: 100vw;
-      padding-left: 20px;
-    }
-
-    & > h2 {
-      color: #333333;
-      margin-bottom: 20px;
-
-      & > span {
-        color: #333333;
-        font-size: 20px;
-        font-weight: 300;
-        line-height: 1.4;
-        letter-spacing: 0.5px;
-      }
-    }
-
-    & > .label {
-      display: block;
-      font-family: Arial;
-      font-size: 16px;
-      line-height: 1.5;
-      color: #333333;
-      margin-bottom: 10px;
-    }
-
-    & > .percent {
-      display: inline-block;
-      position: relative;
-
-      & > input {
-        width: 100px;
-        height: 32px;
-        border: none;
-        border-bottom: solid 1px #a77f7f;
-        font-size: 24px;
-        font-family: Arial;
-        line-height: 1.33;
-        color: rgba(0, 0, 0, 0.8);
-        text-align: center;
-      }
-    }
-
-    & > .percent::after {
-      content: "kg";
-      position: absolute;
-      top: 0;
-      left: calc(100% + 8px);
-      opacity: 0.8;
-      font-family: Arial;
-      font-size: 24px;
-      line-height: 1.33;
-      color: rgba(0, 0, 0, 0.8);
-    }
-
-    & > .additional {
-      width: 944px;
-      font-family: Arial;
-      font-size: 14px;
-      line-height: 1.57;
-      color: #a77f7f;
-      margin: 0 auto;
-      margin-top: 10px;
-
-      @media screen and (max-width: 812px) {
-        width: calc(100vw - 20px);
-        font-size: 12px;
-        line-height: 1.67;
-      }
-    }
-  }
+.lower-extremities-section {
 
   & > .tab-section {
     margin: auto;
@@ -356,8 +256,8 @@ export default {
       color: #333333;
       margin: 40px 0;
 
-      @media screen and (min-width: 812px) {
-        margin: 40px 20px 20px 20px;
+      @media screen and (max-width: 812px) {
+        margin: 20px;
       }
 
       & > span {
