@@ -5,6 +5,12 @@ export default {
     movement: {
       type: String,
     },
+    gridName: {
+      type: String,
+    },
+    currentBody: {
+      type: String,
+    },
   },
   data() {
     return {
@@ -12,6 +18,17 @@ export default {
       reps: '',
       sets: '',
     };
+  },
+  computed: {
+    fetchWeight() {
+      return this.$store.state.patient[this.currentBody][this.gridName].weight;
+    },
+    fetchReps() {
+      return this.$store.state.patient[this.currentBody][this.gridName].reps;
+    },
+    fetchSets() {
+      return this.$store.state.patient[this.currentBody][this.gridName].sets;
+    },
   },
   watch: {
     weight() {
@@ -23,7 +40,12 @@ export default {
         this.weight = '';
       }
 
-      this.$store.commit('patient/UPDATE_WEIGHT', { type: this.movement, payload: this.weight });
+      this.$store.commit('patient/UPDATE_WEIGHT', {
+        category: this.currentBody,
+        movement: this.movement,
+        type: this.gridName,
+        weight: this.weight,
+      });
     },
     reps() {
       this.reps = parseInt(this.reps, 10);
@@ -40,7 +62,12 @@ export default {
         this.reps = '';
       }
 
-      this.$store.commit('patient/UPDATE_REPS', { type: this.movement, payload: this.reps });
+      this.$store.commit('patient/UPDATE_REPS', {
+        category: this.currentBody,
+        movement: this.movement,
+        type: this.gridName,
+        reps: this.reps,
+      });
     },
     sets() {
       this.sets = parseInt(this.sets, 10);
@@ -57,8 +84,19 @@ export default {
         this.sets = '';
       }
 
-      this.$store.commit('patient/UPDATE_SETS', { type: this.movement, payload: this.sets });
+      this.$store.commit('patient/UPDATE_SETS', {
+        category: this.currentBody,
+        movement: this.movement,
+        type: this.gridName,
+        sets: this.sets,
+      });
     },
+  },
+  mounted() {
+    this.weight = this.fetchWeight;
+    this.reps = this.fetchReps;
+    this.sets = this.fetchSets;
+    console.log('mounted', this.weight);
   },
 };
 </script>

@@ -29,6 +29,9 @@ export default {
     checkedValue: {
       type: String,
     },
+    bodypart: {
+      type: String,
+    },
   },
   data() {
     return {
@@ -47,7 +50,7 @@ export default {
       this.$emit('onPick', this.picked);
     },
     openModal() {
-      this.$store.commit('calculator/OPEN_SYMPTOMS_MODAL', { severity: this.name, status: true });
+      this.$store.commit('calculator/OPEN_SYMPTOMS_MODAL', { bodypart: this.bodypart, severity: this.name, status: true });
     },
   },
 };

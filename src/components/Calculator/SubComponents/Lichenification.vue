@@ -20,7 +20,7 @@ export default {
       type: Array,
     },
     checkedValue: {
-      type: Number,
+      type: String,
     },
   },
   methods: {

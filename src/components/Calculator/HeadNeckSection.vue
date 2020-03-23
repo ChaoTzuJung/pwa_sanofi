@@ -26,46 +26,42 @@ export default {
     return {
       selected: false,
       tabData: {
-        Erythema: {
+        'Chest-I': {
           num: 1,
-          name: 'Erythema',
-          name2: 'Chest-I',
+          name: 'Chest-I',
           id: '0',
           component: 'Erythema',
-          score: 0,
+          score: '',
           complete: false,
         },
-        'Edema / papulation': {
+        'Chest-II': {
           num: 2,
-          name: 'Edema / papulation',
-          name2: 'Chest-II',
+          name: 'Chest-II',
           id: '1',
           component: 'EdemaPapulation',
-          score: 0,
+          score: '',
           complete: false,
         },
-        Excoriation: {
+        'Shoulder-I': {
           num: 3,
-          name: 'Excoriation',
-          name2: 'Shoulder-I',
+          name: 'Shoulder-I',
           id: '2',
           component: 'Excoriation',
-          score: 0,
+          score: '',
           complete: false,
         },
-        Lichenification: {
+        'Shoulder-II': {
           num: 4,
-          name: 'Lichenification',
-          name2: 'Shoulder-II',
+          name: 'Shoulder-II',
           id: '3',
           component: 'Lichenification',
-          score: 0,
+          score: '',
           complete: false,
         },
       },
       gridData: [],
       currentTabComponent: 'Erythema',
-      symptomName: 'Erythema',
+      symptomName: 'Chest-I',
       input: '',
       accordionOpen: {
         'Chest-I': false,
@@ -78,6 +74,7 @@ export default {
   computed: {
     ...mapState({
       calculator: state => state.calculator,
+      patient: state => state.patient,
     }),
     areaPoint() {
       if (this.input >= 90 && this.input <= 100) return 6;
@@ -89,10 +86,10 @@ export default {
       return 0;
     },
     summary() {
-      const symptomScore = this.tabData.Erythema.score
-      + this.tabData['Edema / papulation'].score
-      + this.tabData.Excoriation.score
-      + this.tabData.Lichenification.score;
+      const symptomScore = this.tabData['Chest-I'].score
+      + this.tabData['Chest-II'].score
+      + this.tabData['Shoulder-I'].score
+      + this.tabData['Shoulder-II'].score;
 
       const sum = this.areaPoint * symptomScore * 0.1;
 
@@ -143,30 +140,35 @@ export default {
   activated() {
     window.scrollTo(0, 0);
   },
-  deactivated() {
-    const headneckData = {
-      HeadNeckAreaScore: this.areaPoint,
-      HeadNeckAreaPercent: this.input,
-      HeadNeckErythema: this.tabData.Erythema.score,
-      HeadNeckEdema: this.tabData['Edema / papulation'].score,
-      HeadNeckExcoriation: this.tabData.Excoriation.score,
-      HeadNeckLichenification: this.tabData.Lichenification.score,
-      HeadNeckScore: this.summary,
-    };
-    this.$store.commit('patient/SAVE_HEADNECK_DATA', headneckData);
-  },
+  // deactivated() {
+  //   const headneckData = {
+  //     HeadNeckAreaScore: this.areaPoint,
+  //     HeadNeckAreaPercent: this.input,
+  //     HeadNeckErythema: this.tabData.Erythema.score,
+  //     HeadNeckEdema: this.tabData['Edema / papulation'].score,
+  //     HeadNeckExcoriation: this.tabData.Excoriation.score,
+  //     HeadNeckLichenification: this.tabData.Lichenification.score,
+  //     HeadNeckScore: this.summary,
+  //   };
+  //   this.$store.commit('patient/SAVE_HEADNECK_DATA', headneckData);
+  // },
   methods: {
     openAccordion(tabItem) {
-      this.accordionOpen[tabItem.name2] = !this.accordionOpen[tabItem.name2];
+      this.accordionOpen[tabItem.name] = !this.accordionOpen[tabItem.name];
     },
     changeTab(tabItem) {
       this.symptomName = tabItem.name;
       this.currentTabComponent = tabItem.component;
-      this.gridData = generateGrids(tabItem.name2, 'Chest & Shoulder');
+      this.gridData = generateGrids(tabItem.name, 'Chest & Shoulder');
     },
     changeScore(e) {
-      this.tabData[this.symptomName].score = parseInt(e, 10);
-      this.tabData[this.symptomName].complete = true;
+      this.tabData[this.symptomName].score = e;
+      this.tabData[this.symptomName].complete = this.formStatus(this.symptomName);
+    },
+    formStatus(accordionName) {
+      return this.patient['Chest & Shoulder'][accordionName].weight !== 0
+      && this.patient['Chest & Shoulder'][accordionName].reps !== 0
+      && this.patient['Chest & Shoulder'][accordionName].sets !== 0;
     },
   },
 };
@@ -177,7 +179,11 @@ export default {
     <Modal>
       <div slot="modal-content">
         <div class="modal-title">{{calculator.currentSeverity}}</div>
-        <InvolvementSection :movement="calculator.currentSeverity" />
+        <InvolvementSection
+          :movement="calculator.currentSeverity"
+          :currentBody="$attrs.currentBody"
+          :gridName="this.symptomName"
+        />
       </div>
     </Modal>
     <div class="tab-section">
@@ -196,13 +202,13 @@ export default {
               <div v-if="!tabItem.complete">{{tabItem.num}}</div>
             </div>
             <div class="wordings">
-              <div class="text">{{tabItem.name2}}</div>
+              <div class="text">{{tabItem.name}}</div>
             </div>
             <svg class="svg-circleplus" viewBox="0 0 100 100">
               <line x1="22.5" y1="50" x2="77.5" y2="50" stroke-width="7.5" />
               <line
                 x1="50" y1="22.5" x2="50" y2="77.5" stroke-width="7.5"
-                v-if="!accordionOpen[tabItem.name2]"
+                v-if="!accordionOpen[tabItem.name]"
               />
             </svg>
           </div>
@@ -212,8 +218,8 @@ export default {
               :currentSectionComponent="$attrs.currentSectionComponent"
               :currentBody="$attrs.currentBody"
               :checkedValue="tabData[symptomName].score"
-              :accordionName="tabItem.name2"
-              :open="accordionOpen[tabItem.name2]"
+              :accordionName="tabItem.name"
+              :open="accordionOpen[tabItem.name]"
               @onPickAccordion="changeScore"
             />
           </div>
@@ -222,7 +228,7 @@ export default {
       <keep-alive>
         <component
           class="tab-content"
-          bodypart="HeadNeck"
+          bodypart="Chest & Shoulder"
           :symptom="symptomName"
           :gridData="gridData"
           :checkedValue="tabData[symptomName].score"

@@ -22,7 +22,7 @@ export default {
     // 在多個 Radio 中你點擊的 radio 所拿到的值
     checkedValue: {
       require: false,
-      default: 0,
+      default: '',
     },
   },
   computed: {

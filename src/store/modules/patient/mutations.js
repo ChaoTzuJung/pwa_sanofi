@@ -2,6 +2,24 @@ export default {
   SAVE_AREASCORE_PERCENT(state, { type, payload }) {
     state[type].area.areaPercent = payload;
   },
+  UPDATE_WEIGHT(state, {
+    category, movement, type, weight,
+  }) {
+    state[category][type].weight = weight;
+    state[category][type].movement = movement;
+  },
+  UPDATE_REPS(state, {
+    category, movement, type, reps,
+  }) {
+    state[category][type].reps = reps;
+    state[category][type].movement = movement;
+  },
+  UPDATE_SETS(state, {
+    category, movement, type, sets,
+  }) {
+    state[category][type].sets = sets;
+    state[category][type].movement = movement;
+  },
   SAVE_BSA_PERCENT(state, payload) {
     state.BSA = payload;
   },

@@ -26,46 +26,42 @@ export default {
     return {
       selected: false,
       tabData: {
-        Erythema: {
+        'Leg-I': {
           num: 1,
-          name: 'Erythema',
-          name2: 'Leg-I',
+          name: 'Leg-I',
           id: '0',
           component: 'Erythema',
-          score: 0,
+          score: '',
           complete: false,
         },
-        'Edema / papulation': {
+        'Leg-II': {
           num: 2,
-          name: 'Edema / papulation',
-          name2: 'Leg-II',
+          name: 'Leg-II',
           id: '1',
           component: 'EdemaPapulation',
-          score: 0,
+          score: '',
           complete: false,
         },
-        Excoriation: {
+        'Buttocks-I': {
           num: 3,
-          name: 'Excoriation',
-          name2: 'Buttocks-I',
+          name: 'Buttocks-I',
           id: '2',
           component: 'Excoriation',
-          score: 0,
+          score: '',
           complete: false,
         },
-        Lichenification: {
+        'Buttocks-II': {
           num: 4,
-          name: 'Lichenification',
-          name2: 'Buttocks-II',
+          name: 'Buttocks-II',
           id: '3',
           component: 'Lichenification',
-          score: 0,
+          score: '',
           complete: false,
         },
       },
       gridData: [],
       currentTabComponent: 'Erythema',
-      symptomName: 'Erythema',
+      symptomName: 'Leg-I',
       input: '',
       accordionOpen: {
         'Leg-I': false,
@@ -89,10 +85,10 @@ export default {
       return 0;
     },
     summary() {
-      const symptomScore = this.tabData.Erythema.score
-      + this.tabData['Edema / papulation'].score
-      + this.tabData.Excoriation.score
-      + this.tabData.Lichenification.score;
+      const symptomScore = this.tabData['Leg-I'].score
+      + this.tabData['Leg-II'].score
+      + this.tabData['Buttocks-I'].score
+      + this.tabData['Buttocks-II'].score;
 
       const sum = this.areaPoint * symptomScore * 0.1;
 
@@ -143,26 +139,26 @@ export default {
   activated() {
     window.scrollTo(0, 0);
   },
-  deactivated() {
-    const lowerData = {
-      lowerAreaScore: this.areaPoint,
-      lowerAreaPercent: this.input,
-      lowerErythema: this.tabData.Erythema.score,
-      lowerEdema: this.tabData['Edema / papulation'].score,
-      lowerExcoriation: this.tabData.Excoriation.score,
-      lowerLichenification: this.tabData.Lichenification.score,
-      lowerScore: this.summary,
-    };
-    this.$store.commit('patient/SAVE_LOWER_DATA', lowerData);
-  },
+  // deactivated() {
+  //   const lowerData = {
+  //     lowerAreaScore: this.areaPoint,
+  //     lowerAreaPercent: this.input,
+  //     lowerErythema: this.tabData.Erythema.score,
+  //     lowerEdema: this.tabData['Edema / papulation'].score,
+  //     lowerExcoriation: this.tabData.Excoriation.score,
+  //     lowerLichenification: this.tabData.Lichenification.score,
+  //     lowerScore: this.summary,
+  //   };
+  //   this.$store.commit('patient/SAVE_LOWER_DATA', lowerData);
+  // },
   methods: {
     openAccordion(tabItem) {
-      this.accordionOpen[tabItem.name2] = !this.accordionOpen[tabItem.name];
+      this.accordionOpen[tabItem.name] = !this.accordionOpen[tabItem.name];
     },
     changeTab(tabItem) {
       this.symptomName = tabItem.name;
       this.currentTabComponent = tabItem.component;
-      this.gridData = generateGrids(tabItem.name2, 'Buttocks & Leg');
+      this.gridData = generateGrids(tabItem.name, 'Buttocks & Leg');
     },
     changeScore(e) {
       this.tabData[this.symptomName].score = parseInt(e, 10);
@@ -179,7 +175,10 @@ export default {
   <div class="lower-extremities-section">
     <Modal>
       <div slot="modal-content">
-        <InvolvementSection />
+        <InvolvementSection
+          :movement="calculator.currentSeverity"
+          :currentBody="$attrs.currentBody"
+        />
       </div>
     </Modal>
     <div class="tab-section">
@@ -197,13 +196,13 @@ export default {
               <div v-if="!tabItem.complete">{{tabItem.num}}</div>
             </div>
             <div class="wordings">
-              <div class="text">{{tabItem.name2}}</div>
+              <div class="text">{{tabItem.name}}</div>
             </div>
             <svg class="svg-circleplus" viewBox="0 0 100 100">
               <line x1="22.5" y1="50" x2="77.5" y2="50" stroke-width="7.5" />
               <line
                 x1="50" y1="22.5" x2="50" y2="77.5" stroke-width="7.5"
-                v-if="!accordionOpen[tabItem.name2]"
+                v-if="!accordionOpen[tabItem.name]"
               />
             </svg>
           </div>
@@ -213,8 +212,8 @@ export default {
               :currentSectionComponent="$attrs.currentSectionComponent"
               :currentBody="$attrs.currentBody"
               :checkedValue="tabData[symptomName].score"
-              :accordionName="tabItem.name2"
-              :open="accordionOpen[tabItem.name2]"
+              :accordionName="tabItem.name"
+              :open="accordionOpen[tabItem.name]"
               @onPickAccordion="changeScore"
             />
           </div>
@@ -223,7 +222,7 @@ export default {
       <keep-alive>
         <component
           class="tab-content"
-          bodypart="LowerExtremities"
+          bodypart="Buttocks & Leg"
           :symptom="symptomName"
           :gridData="gridData"
           :checkedValue="tabData[symptomName].score"
