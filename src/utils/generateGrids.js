@@ -92,25 +92,8 @@ let LichenificationMildImage;
 let LichenificationModerateImage;
 let LichenificationSevereImage;
 const generateGrids = (bodySymptom, bodypart) => {
-  let RelateErythemaNoneImage;
-  let RelateErythemaMildImage;
-  let RelateErythemaModerateImage;
-  let RelateErythemaSevereImage;
-  let RelateEdemaNoneImage;
-  let RelateEdemaMildImage;
-  let RelateEdemaModerateImage;
-  let RelateEdemaSevereImage;
-  let RelateExcoriationNoneImage;
-  let RelateExcoriationMildImage;
-  let RelateExcoriationModerateImage;
-  let RelateExcoriationSevereImage;
-  let RelateLichenificationNoneImage;
-  let RelateLichenificationMildImage;
-  let RelateLichenificationModerateImage;
-  let RelateLichenificationSevereImage;
   let tabImage;
   let infoData;
-  let relateImage;
 
   const GRID_MAP = [
     {
@@ -152,7 +135,7 @@ const generateGrids = (bodySymptom, bodypart) => {
   ];
 
   switch (bodypart) {
-    case 'HeadNeck':
+    case 'Chest & Shoulder':
       ErythemaNoneImage = ChestPress1;
       ErythemaMildImage = ChestPress2;
       ErythemaModerateImage = ChestPress3;
@@ -268,24 +251,6 @@ const generateGrids = (bodySymptom, bodypart) => {
         ErythemaSevereImage,
       ];
       infoData = [null, 'Faintly detectable, pink', 'Clearly distinguishable dull red', 'Deep dark or fiery bright red'];
-      RelateErythemaNoneImage = [
-        ErythemaNoneImage,
-      ];
-      RelateErythemaMildImage = [
-        ErythemaMildImage,
-      ];
-      RelateErythemaModerateImage = [
-        ErythemaModerateImage,
-      ];
-      RelateErythemaSevereImage = [
-        ErythemaSevereImage,
-      ];
-      relateImage = [
-        RelateErythemaNoneImage,
-        RelateErythemaMildImage,
-        RelateErythemaModerateImage,
-        RelateErythemaSevereImage,
-      ];
       break;
     case 'Edema / papulation':
       tabImage = [
@@ -295,24 +260,6 @@ const generateGrids = (bodySymptom, bodypart) => {
         EdemaSevereImage,
       ];
       infoData = [null, 'Barely perceptible elevation', 'Clearly perceptible elevation but not prominent', 'Prominent elevation'];
-      RelateEdemaNoneImage = [
-        EdemaNoneImage,
-      ];
-      RelateEdemaMildImage = [
-        EdemaMildImage,
-      ];
-      RelateEdemaModerateImage = [
-        EdemaModerateImage,
-      ];
-      RelateEdemaSevereImage = [
-        EdemaSevereImage,
-      ];
-      relateImage = [
-        RelateEdemaNoneImage,
-        RelateEdemaMildImage,
-        RelateEdemaModerateImage,
-        RelateEdemaSevereImage,
-      ];
       break;
     case 'Excoriation':
       tabImage = [
@@ -322,24 +269,6 @@ const generateGrids = (bodySymptom, bodypart) => {
         ExcoriationSevereImage,
       ];
       infoData = [null, 'Scant, superficial excoriation', 'Many superficial and/or some deep excoriations', 'Extensive superficial and/or many deep excoriations'];
-      RelateExcoriationNoneImage = [
-        ExcoriationNoneImage,
-      ];
-      RelateExcoriationMildImage = [
-        ExcoriationMildImage,
-      ];
-      RelateExcoriationModerateImage = [
-        ExcoriationModerateImage,
-      ];
-      RelateExcoriationSevereImage = [
-        ExcoriationSevereImage,
-      ];
-      relateImage = [
-        RelateExcoriationNoneImage,
-        RelateExcoriationMildImage,
-        RelateExcoriationModerateImage,
-        RelateExcoriationSevereImage,
-      ];
       break;
     case 'Lichenification':
       tabImage = [
@@ -349,24 +278,6 @@ const generateGrids = (bodySymptom, bodypart) => {
         LichenificationSevereImage,
       ];
       infoData = [null, 'Slight skin thickening; markings minimally exaggerated', 'Thickened skin with exaggerated markings and/or some prurigo nodules', 'Prominent thickening, exaggerated markings creating deep furrows and/or many prurigo nodules'];
-      RelateLichenificationNoneImage = [
-        LichenificationNoneImage,
-      ];
-      RelateLichenificationMildImage = [
-        LichenificationMildImage,
-      ];
-      RelateLichenificationModerateImage = [
-        LichenificationModerateImage,
-      ];
-      RelateLichenificationSevereImage = [
-        LichenificationSevereImage,
-      ];
-      relateImage = [
-        RelateLichenificationNoneImage,
-        RelateLichenificationMildImage,
-        RelateLichenificationModerateImage,
-        RelateLichenificationSevereImage,
-      ];
       break;
     default:
       break;
@@ -377,7 +288,7 @@ const generateGrids = (bodySymptom, bodypart) => {
     const grid = gridItem;
     grid.image = tabImage[idx];
     grid.label = `${bodySymptom}_${grid.name}`;
-    grid.relative = relateImage[idx];
+    console.log(grid.label);
     grid.info = infoData[idx];
   });
 

@@ -138,7 +138,7 @@ export default {
     },
   },
   created() {
-    this.gridData = generateGrids('Erythema', 'HeadNeck');
+    this.gridData = generateGrids('Chest-I', 'Chest & Shoulder');
   },
   activated() {
     window.scrollTo(0, 0);
