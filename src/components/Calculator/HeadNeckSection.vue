@@ -176,7 +176,8 @@ export default {
   <div class="head-neck-section">
     <Modal>
       <div slot="modal-content">
-        <InvolvementSection />
+        <div class="modal-title">{{calculator.currentSeverity}}</div>
+        <InvolvementSection :movement="calculator.currentSeverity" />
       </div>
     </Modal>
     <div class="tab-section">
@@ -235,6 +236,17 @@ export default {
 
 <style scoped lang="scss">
 .head-neck-section {
+
+  & .modal-title {
+    padding: 10px 0;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: .5px;
+    color: #000;
+    text-align: center;
+    font-family: itc-avant-garde-gothic-pro,Arial,sans-serif;
+  }
 
   & > .tab-section {
     margin: auto;

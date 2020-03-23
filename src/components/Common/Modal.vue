@@ -96,7 +96,7 @@ export default {
         & > .modal-container {
           position: relative;
           width: 100%;
-          height: 100%;
+          height: 100vh;
           margin: 0px auto;
           background-color: #fff;
           box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);

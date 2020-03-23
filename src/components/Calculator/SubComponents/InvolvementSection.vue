@@ -1,28 +1,63 @@
 <script>
 export default {
   name: 'InvolvementSection',
+  props: {
+    movement: {
+      type: String,
+    },
+  },
   data() {
     return {
-      input: '',
+      weight: '',
+      reps: '',
+      sets: '',
     };
   },
   watch: {
-    input() {
-      this.input = parseInt(this.input, 10);
-
-      if (!this.input) {
-        if (this.input === 0) {
-          this.input = 0;
+    weight() {
+      if (!this.weight) {
+        if (this.weight === 0) {
+          this.weight = 0;
           return;
         }
-        this.input = '';
+        this.weight = '';
       }
 
-      if (this.input > 100 || this.input < 0) {
-        this.input = '';
+      this.$store.commit('patient/UPDATE_WEIGHT', { type: this.movement, payload: this.weight });
+    },
+    reps() {
+      this.reps = parseInt(this.reps, 10);
+
+      if (!this.reps) {
+        if (this.reps === 0) {
+          this.reps = 0;
+          return;
+        }
+        this.reps = '';
       }
 
-      this.$store.commit('patient/SAVE_AREASCORE_PERCENT', { type: 'UpperExtremities', payload: this.input });
+      if (this.reps > 20 || this.reps < 0) {
+        this.reps = '';
+      }
+
+      this.$store.commit('patient/UPDATE_REPS', { type: this.movement, payload: this.reps });
+    },
+    sets() {
+      this.sets = parseInt(this.sets, 10);
+
+      if (!this.sets) {
+        if (this.sets === 0) {
+          this.sets = 0;
+          return;
+        }
+        this.sets = '';
+      }
+
+      if (this.sets > 100 || this.sets < 0) {
+        this.sets = '';
+      }
+
+      this.$store.commit('patient/UPDATE_SETS', { type: this.movement, payload: this.sets });
     },
   },
 };
@@ -31,37 +66,36 @@ export default {
 <template>
   <div class="involvement-group">
     <div class="involvement-section">
-      <label class="label" for="name">Weight:</label>
+      <label class="label" for="weight">Weight:</label>
       <div class="weight">
         <input
           class="value"
-          type="tel"
-          id="name"
-          v-model.trim.number.lazy="input"
+          id="weight"
+          v-model.trim.number.lazy="weight"
           autocomplete="off"
         />
       </div>
     </div>
     <div class="involvement-section">
-      <label class="label" for="name">Reps:</label>
+      <label class="label" for="reps">Reps:</label>
       <div class="reps">
         <input
           class="value"
           type="tel"
-          id="name"
-          v-model.trim.number.lazy="input"
+          id="reps"
+          v-model.trim.number.lazy="reps"
           autocomplete="off"
         />
       </div>
     </div>
     <div class="involvement-section">
-      <label class="label" for="name">Sets:</label>
+      <label class="label" for="sets">Sets:</label>
       <div class="sets">
         <input
           class="value"
           type="tel"
-          id="name"
-          v-model.trim.number.lazy="input"
+          id="sets"
+          v-model.trim.number.lazy="sets"
           autocomplete="off"
         />
       </div>

@@ -8,61 +8,113 @@ const state = () => ({
   EASI: 0,
   BSA: 0,
   IGA: 0,
-  HeadNeck: {
+  'Chest & Shoulder': {
     id: '1',
-    area: {
-      areaScore: 0,
-      areaPercent: 0,
+    'Chest-I': {
+      weight: 0,
+      reps: 0,
+      sets: 0,
+      movement: '',
     },
-    symptom: {
-      Erythema: 0,
-      EdemaPapulation: 0,
-      Excoriation: 0,
-      Lichenification: 0,
+    'Chest-II': {
+      weight: 0,
+      reps: 0,
+      sets: 0,
+      movement: '',
     },
-    bodypartScore: '0',
+    'Buttocks-I': {
+      weight: 0,
+      reps: 0,
+      sets: 0,
+      movement: '',
+    },
+    'Shoulder-II': {
+      weight: 0,
+      reps: 0,
+      sets: 0,
+      movement: '',
+    },
   },
-  UpperExtremities: {
+  'Biceps & Triceps': {
     id: '2',
-    area: {
-      areaScore: 0,
-      areaPercent: 0,
+    'Triceps-I': {
+      weight: 0,
+      reps: 0,
+      sets: 0,
+      movement: '',
     },
-    symptom: {
-      Erythema: 0,
-      EdemaPapulation: 0,
-      Excoriation: 0,
-      Lichenification: 0,
+    'Triceps-II': {
+      weight: 0,
+      reps: 0,
+      sets: 0,
+      movement: '',
     },
-    bodypartScore: '0',
+    'Biceps-I': {
+      weight: 0,
+      reps: 0,
+      sets: 0,
+      movement: '',
+    },
+    'Biceps-II': {
+      weight: 0,
+      reps: 0,
+      sets: 0,
+      movement: '',
+    },
   },
-  Trunk: {
+  'Abs & Backside': {
     id: '3',
-    area: {
-      areaScore: 0,
-      areaPercent: 0,
+    'Backside-I': {
+      weight: 0,
+      reps: 0,
+      sets: 0,
+      movement: '',
     },
-    symptom: {
-      Erythema: 0,
-      EdemaPapulation: 0,
-      Excoriation: 0,
-      Lichenification: 0,
+    'Backside-II': {
+      weight: 0,
+      reps: 0,
+      sets: 0,
+      movement: '',
     },
-    bodypartScore: '0',
+    'Abs-I': {
+      weight: 0,
+      reps: 0,
+      sets: 0,
+      movement: '',
+    },
+    'Abs-II': {
+      weight: 0,
+      reps: 0,
+      sets: 0,
+      movement: '',
+    },
   },
-  LowerExtremities: {
+  'Buttocks & Leg': {
     id: '4',
-    area: {
-      areaScore: 0,
-      areaPercent: 0,
+    'Leg-I': {
+      weight: 0,
+      reps: 0,
+      sets: 0,
+      movement: '',
     },
-    symptom: {
-      Erythema: 0,
-      EdemaPapulation: 0,
-      Excoriation: 0,
-      Lichenification: 0,
+    'Leg-II': {
+      weight: 0,
+      reps: 0,
+      sets: 0,
+      movement: '',
     },
-    bodypartScore: '0',
+    'Buttocks-I': {
+      weight: 0,
+      reps: 0,
+      sets: 0,
+      movement: '',
+    },
+    'Buttocks-II': {
+      weight: 0,
+      reps: 0,
+      sets: 0,
+      movement: '',
+    },
   },
 });
 

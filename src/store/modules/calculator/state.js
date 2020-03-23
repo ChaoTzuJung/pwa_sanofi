@@ -1,5 +1,5 @@
 const state = () => ({
-  currentSeverity: 'None',
+  currentSeverity: '動作名稱',
   isModalOpen: false,
 });
 
