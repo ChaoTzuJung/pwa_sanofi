@@ -29,7 +29,7 @@ export default {
         Erythema: {
           num: 1,
           name: 'Erythema',
-          name2: 'Backside I',
+          name2: 'Backside-I',
           id: '0',
           component: 'Erythema',
           score: 0,
@@ -38,7 +38,7 @@ export default {
         'Edema / papulation': {
           num: 2,
           name: 'Edema / papulation',
-          name2: 'Backside II',
+          name2: 'Backside-II',
           id: '1',
           component: 'EdemaPapulation',
           score: 0,
@@ -47,7 +47,7 @@ export default {
         Excoriation: {
           num: 3,
           name: 'Excoriation',
-          name2: 'Abs I',
+          name2: 'Abs-I',
           id: '2',
           component: 'Excoriation',
           score: 0,
@@ -56,7 +56,7 @@ export default {
         Lichenification: {
           num: 4,
           name: 'Lichenification',
-          name2: 'Abs II',
+          name2: 'Abs-II',
           id: '3',
           component: 'Lichenification',
           score: 0,
@@ -68,10 +68,10 @@ export default {
       symptomName: 'Erythema',
       input: '',
       accordionOpen: {
-        Erythema: false,
-        'Edema / papulation': false,
-        Excoriation: false,
-        Lichenification: false,
+        'Chest-I': false,
+        'Chest-II': false,
+        'Shoulder-I': false,
+        'Shoulder-II': false,
       },
     };
   },
@@ -138,7 +138,7 @@ export default {
     },
   },
   created() {
-    this.gridData = generateGrids('Erythema', 'Trunk');
+    this.gridData = generateGrids('Backside-I', 'Abs & Backside');
   },
   activated() {
     window.scrollTo(0, 0);
@@ -157,12 +157,12 @@ export default {
   },
   methods: {
     openAccordion(tabItem) {
-      this.accordionOpen[tabItem.name] = !this.accordionOpen[tabItem.name];
+      this.accordionOpen[tabItem.name2] = !this.accordionOpen[tabItem.name];
     },
     changeTab(tabItem) {
       this.symptomName = tabItem.name;
       this.currentTabComponent = tabItem.component;
-      this.gridData = generateGrids(tabItem.name, 'Trunk');
+      this.gridData = generateGrids(tabItem.name2, 'Abs & Backside');
     },
     changeScore(e) {
       this.tabData[this.symptomName].score = parseInt(e, 10);
@@ -194,13 +194,13 @@ export default {
               <div v-if="!tabItem.complete">{{tabItem.num}}</div>
             </div>
             <div class="wordings">
-              <div class="text">{{tabItem.name2}}: {{tabItem.score}}.0</div>
+              <div class="text">{{tabItem.name2}}</div>
             </div>
             <svg class="svg-circleplus" viewBox="0 0 100 100">
               <line x1="22.5" y1="50" x2="77.5" y2="50" stroke-width="7.5" />
               <line
                 x1="50" y1="22.5" x2="50" y2="77.5" stroke-width="7.5"
-                v-if="!accordionOpen[tabItem.name]"
+                v-if="!accordionOpen[tabItem.name2]"
               />
             </svg>
           </div>
@@ -208,9 +208,10 @@ export default {
             <Accordion
               class="custom-accordion"
               :currentSectionComponent="$attrs.currentSectionComponent"
+              :currentBody="$attrs.currentBody"
               :checkedValue="tabData[symptomName].score"
-              :accordionName="tabItem.name"
-              :open="accordionOpen[tabItem.name]"
+              :accordionName="tabItem.name2"
+              :open="accordionOpen[tabItem.name2]"
               @onPickAccordion="changeScore"
             />
           </div>

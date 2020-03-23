@@ -1,22 +1,22 @@
 import Resize from '../assets/images/resize.svg';
 
-import ChestPress1 from '../assets/images/ChestPress1.jpg';
-import ChestPress2 from '../assets/images/ChestPress2.jpg';
-import ChestPress3 from '../assets/images/ChestPress3.jpg';
-import ChestPress4 from '../assets/images/ChestPress4.jpg';
-import LaterRaise1 from '../assets/images/LaterRaise1.jpg';
-import LaterRaise2 from '../assets/images/LaterRaise2.jpg';
-import LaterRaise3 from '../assets/images/LaterRaise3.jpg';
-import LaterRaise4 from '../assets/images/LaterRaise4.jpg';
+import Chest1 from '../assets/images/Chest1.jpg';
+import Chest2 from '../assets/images/Chest2.jpg';
+import Chest3 from '../assets/images/Chest3.jpg';
+import Chest4 from '../assets/images/Chest4.jpg';
+import Chest5 from '../assets/images/Chest5.jpg';
+import Chest6 from '../assets/images/Chest6.jpg';
+import Chest7 from '../assets/images/Chest7.jpg';
+import Chest8 from '../assets/images/Chest8.jpg';
 
-import FrontRaise1 from '../assets/images/FrontRaise1.jpg';
-import FrontRaise2 from '../assets/images/FrontRaise2.jpg';
-import FrontRaise3 from '../assets/images/FrontRaise3.jpg';
-import FrontRaise4 from '../assets/images/FrontRaise4.jpg';
-import BackRaise1 from '../assets/images/BackRaise1.jpg';
-import BackRaise2 from '../assets/images/BackRaise2.jpg';
-import BackRaise3 from '../assets/images/BackRaise3.jpg';
-import BackRaise4 from '../assets/images/BackRaise4.jpg';
+import Shoulder1 from '../assets/images/Shoulder1.jpg';
+import Shoulder2 from '../assets/images/Shoulder2.jpg';
+import Shoulder3 from '../assets/images/Shoulder3.jpg';
+import Shoulder4 from '../assets/images/Shoulder4.jpg';
+import Shoulder5 from '../assets/images/Shoulder5.jpg';
+import Shoulder6 from '../assets/images/Shoulder6.jpg';
+import Shoulder7 from '../assets/images/Shoulder7.jpg';
+import Shoulder8 from '../assets/images/Shoulder8.jpg';
 
 import triceps1 from '../assets/images/triceps1.jpg';
 import triceps2 from '../assets/images/triceps2.jpg';
@@ -28,7 +28,7 @@ import triceps7 from '../assets/images/triceps7.jpg';
 import triceps8 from '../assets/images/triceps8.jpg';
 
 import Biceps1 from '../assets/images/Biceps1.jpg';
-import Biceps2 from '../assets/images/Biceps0.jpg';
+import Biceps2 from '../assets/images/Biceps2.jpg';
 import Biceps3 from '../assets/images/Biceps3.jpg';
 import Biceps4 from '../assets/images/Biceps4.jpg';
 import Biceps5 from '../assets/images/Biceps5.jpg';
@@ -72,35 +72,17 @@ import Leg6 from '../assets/images/Leg6.jpg';
 import Leg7 from '../assets/images/Leg7.jpg';
 import Leg8 from '../assets/images/Leg8.jpg';
 
-let ErythemaNoneImage;
-let ErythemaMildImage;
-let ErythemaModerateImage;
-let ErythemaSevereImage;
-
-let EdemaNoneImage;
-let EdemaMildImage;
-let EdemaModerateImage;
-let EdemaSevereImage;
-
-let ExcoriationNoneImage;
-let ExcoriationMildImage;
-let ExcoriationModerateImage;
-let ExcoriationSevereImage;
-
-let LichenificationNoneImage;
-let LichenificationMildImage;
-let LichenificationModerateImage;
-let LichenificationSevereImage;
 const generateGrids = (bodySymptom, bodypart) => {
   let tabImage;
   let infoData;
+  let gridName;
 
   const GRID_MAP = [
     {
       image: null,
       info: null,
       score: 0,
-      name: 'Primary',
+      name: 'grid name1',
       icon: Resize,
       label: 'Erythema_None',
       relative: null,
@@ -109,7 +91,7 @@ const generateGrids = (bodySymptom, bodypart) => {
       image: null,
       info: null,
       score: 1,
-      name: 'Intermediate',
+      name: 'grid name2',
       icon: Resize,
       label: 'Erythema_Mild',
       relative: null,
@@ -118,7 +100,7 @@ const generateGrids = (bodySymptom, bodypart) => {
       image: null,
       info: null,
       score: 2,
-      name: 'Advanced',
+      name: 'grid name3',
       icon: Resize,
       label: 'Erythema_Moderate',
       relative: null,
@@ -127,7 +109,7 @@ const generateGrids = (bodySymptom, bodypart) => {
       image: null,
       info: null,
       score: 3,
-      name: 'Superlative',
+      name: 'grid name4',
       icon: Resize,
       label: 'Erythema_Severe',
       relative: null,
@@ -136,148 +118,97 @@ const generateGrids = (bodySymptom, bodypart) => {
 
   switch (bodypart) {
     case 'Chest & Shoulder':
-      ErythemaNoneImage = ChestPress1;
-      ErythemaMildImage = ChestPress2;
-      ErythemaModerateImage = ChestPress3;
-      ErythemaSevereImage = ChestPress4;
-
-      EdemaNoneImage = LaterRaise1;
-      EdemaMildImage = LaterRaise2;
-      EdemaModerateImage = LaterRaise3;
-      EdemaSevereImage = LaterRaise4;
-
-      ExcoriationNoneImage = FrontRaise1;
-      ExcoriationMildImage = FrontRaise2;
-      ExcoriationModerateImage = FrontRaise3;
-      ExcoriationSevereImage = FrontRaise4;
-
-      LichenificationNoneImage = BackRaise1;
-      LichenificationMildImage = BackRaise2;
-      LichenificationModerateImage = BackRaise3;
-      LichenificationSevereImage = BackRaise4;
       break;
-    case 'UpperExtremties':
-      ErythemaNoneImage = triceps1;
-      ErythemaMildImage = triceps2;
-      ErythemaModerateImage = triceps3;
-      ErythemaSevereImage = triceps4;
-
-      EdemaNoneImage = triceps5;
-      EdemaMildImage = triceps6;
-      EdemaModerateImage = triceps7;
-      EdemaSevereImage = triceps8;
-
-      ExcoriationNoneImage = Biceps1;
-      ExcoriationMildImage = Biceps2;
-      ExcoriationModerateImage = Biceps3;
-      ExcoriationSevereImage = Biceps4;
-
-      LichenificationNoneImage = Biceps5;
-      LichenificationMildImage = Biceps6;
-      LichenificationModerateImage = Biceps7;
-      LichenificationSevereImage = Biceps8;
+    case 'Biceps & Triceps':
       break;
-    case 'Trunk':
-      ErythemaNoneImage = Backside1;
-      ErythemaMildImage = Backside2;
-      ErythemaModerateImage = Backside3;
-      ErythemaSevereImage = Backside4;
-
-      EdemaNoneImage = Backside5;
-      EdemaMildImage = Backside6;
-      EdemaModerateImage = Backside7;
-      EdemaSevereImage = Backside8;
-
-      ExcoriationNoneImage = Abs1;
-      ExcoriationMildImage = Abs2;
-      ExcoriationModerateImage = Abs3;
-      ExcoriationSevereImage = Abs4;
-
-      LichenificationNoneImage = Abs5;
-      LichenificationMildImage = Abs6;
-      LichenificationModerateImage = Abs7;
-      LichenificationSevereImage = Abs8;
+    case 'Abs & Backside':
       break;
-    case 'LowerExtremties':
-      ErythemaNoneImage = Leg1;
-      ErythemaMildImage = Leg2;
-      ErythemaModerateImage = Leg3;
-      ErythemaSevereImage = Leg4;
-
-      EdemaNoneImage = Leg5;
-      EdemaMildImage = Leg6;
-      EdemaModerateImage = Leg7;
-      EdemaSevereImage = Leg8;
-
-      ExcoriationNoneImage = Buttocks1;
-      ExcoriationMildImage = Buttocks2;
-      ExcoriationModerateImage = Buttocks3;
-      ExcoriationSevereImage = Buttocks4;
-
-      LichenificationNoneImage = Buttocks5;
-      LichenificationMildImage = Buttocks6;
-      LichenificationModerateImage = Buttocks7;
-      LichenificationSevereImage = Buttocks8;
+    case 'Buttocks & Leg':
       break;
     default:
-      ErythemaNoneImage = triceps1;
-      ErythemaMildImage = triceps2;
-      ErythemaModerateImage = triceps3;
-      ErythemaSevereImage = triceps4;
-
-      EdemaNoneImage = triceps5;
-      EdemaMildImage = triceps6;
-      EdemaModerateImage = triceps7;
-      EdemaSevereImage = triceps8;
-
-      ExcoriationNoneImage = Biceps1;
-      ExcoriationMildImage = Biceps2;
-      ExcoriationModerateImage = Biceps3;
-      ExcoriationSevereImage = Biceps4;
-
-      LichenificationNoneImage = Biceps5;
-      LichenificationMildImage = Biceps6;
-      LichenificationModerateImage = Biceps7;
-      LichenificationSevereImage = Biceps8;
       break;
   }
-
+  // Assign image and info to grid by each body parts
   switch (bodySymptom) {
-    case 'Erythema':
-      tabImage = [
-        ErythemaNoneImage,
-        ErythemaMildImage,
-        ErythemaModerateImage,
-        ErythemaSevereImage,
-      ];
-      infoData = [null, 'Faintly detectable, pink', 'Clearly distinguishable dull red', 'Deep dark or fiery bright red'];
+    case 'Chest-I':
+      tabImage = [Chest1, Chest2, Chest3, Chest4];
+      infoData = [];
+      gridName = ['槓鈴仰臥推舉', '啞鈴飛鳥', '繩索夾胸', '伏地挺身'];
       break;
-    case 'Edema / papulation':
-      tabImage = [
-        EdemaNoneImage,
-        EdemaMildImage,
-        EdemaModerateImage,
-        EdemaSevereImage,
-      ];
-      infoData = [null, 'Barely perceptible elevation', 'Clearly perceptible elevation but not prominent', 'Prominent elevation'];
+    case 'Chest-II':
+      tabImage = [Chest5, Chest6, Chest7, Chest8];
+      infoData = [];
+      gridName = ['坐姿槓鈴肩上推舉', '啞鈴交替肩上推舉', '啞鈴交替肩上推舉轉體', '坐姿啞鈴肩上推舉'];
       break;
-    case 'Excoriation':
-      tabImage = [
-        ExcoriationNoneImage,
-        ExcoriationMildImage,
-        ExcoriationModerateImage,
-        ExcoriationSevereImage,
-      ];
-      infoData = [null, 'Scant, superficial excoriation', 'Many superficial and/or some deep excoriations', 'Extensive superficial and/or many deep excoriations'];
+    case 'Shoulder-I':
+      tabImage = [Shoulder1, Shoulder2, Shoulder3, Shoulder4];
+      infoData = [];
+      gridName = ['啞鈴側平舉', '坐姿啞鈴側舉', '跪姿俯身飛鳥', '滑輪斜拉'];
       break;
-    case 'Lichenification':
-      tabImage = [
-        LichenificationNoneImage,
-        LichenificationMildImage,
-        LichenificationModerateImage,
-        LichenificationSevereImage,
-      ];
-      infoData = [null, 'Slight skin thickening; markings minimally exaggerated', 'Thickened skin with exaggerated markings and/or some prurigo nodules', 'Prominent thickening, exaggerated markings creating deep furrows and/or many prurigo nodules'];
+    case 'Shoulder-II':
+      tabImage = [Shoulder5, Shoulder6, Shoulder7, Shoulder8];
+      infoData = [];
+      gridName = ['上斜式 L 字形平舉', '坐姿俯身側平舉', '俯身反手側平舉', '單手 45 度滑輪外旋'];
+      break;
+    case 'Triceps-I':
+      tabImage = [triceps1, triceps2, triceps3, triceps4];
+      infoData = [];
+      gridName = ['仰臥啞鈴三頭肌伸展', '坐姿啞鈴過頂三頭肌伸展', '下斜啞鈴鎚式彎舉', '滑輪繩索下壓'];
+      break;
+    case 'Triceps-II':
+      tabImage = [triceps5, triceps6, triceps7, triceps8];
+      infoData = [];
+      gridName = ['仰臥 W 槓三頭肌伸展', '啞鈴單手後屈伸', '重訓椅撐體臂屈伸', '自體重量撐體'];
+      break;
+    case 'Biceps-I':
+      tabImage = [Biceps1, Biceps2, Biceps3, Biceps4];
+      infoData = [];
+      gridName = ['站式啞鈴二頭肌彎舉', '靜態彎舉', '上斜式啞鈴二頭肌彎舉', 'W 槓斜板彎舉'];
+      break;
+    case 'Biceps-II':
+      tabImage = [Biceps5, Biceps6, Biceps7, Biceps8];
+      infoData = [];
+      gridName = ['交叉啞鈴鎚式彎舉', '集中彎舉', '滑輪二頭肌彎舉', '槓鈴二頭肌彎舉'];
+      break;
+    case 'Backside-I':
+      tabImage = [Backside1, Backside2, Backside3, Backside4];
+      infoData = [];
+      gridName = ['坐姿寬握滑輪划船', '單臂屈體划船', '滑輪下拉', '寬握引體向上'];
+      break;
+    case 'Backside-II':
+      tabImage = [Backside5, Backside6, Backside7, Backside8];
+      infoData = [];
+      gridName = ['架上拉舉', '面拉滑輪', '滑輪直臂下拉', '俯身槓鈴直腿硬舉划船'];
+      break;
+    case 'Abs-I':
+      tabImage = [Abs1, Abs2, Abs3, Abs4];
+      infoData = [];
+      gridName = ['滑輪側彎', '懸吊提腿', '地板超人式', '反向捲腹'];
+      break;
+    case 'Abs-II':
+      tabImage = [Abs5, Abs6, Abs7, Abs8];
+      infoData = [];
+      gridName = ['橋式抬臀', '前平板式', '跪姿滑輪俯身捲腹', '增強側平板式'];
+      break;
+    case 'Leg-I':
+      tabImage = [Leg1, Leg2, Leg3, Leg4];
+      infoData = [];
+      gridName = ['槓鈴深蹲', '槓把硬舉', '啞鈴單手肩推', '站式後揹槓鈴踮腳訓練'];
+      break;
+    case 'Leg-II':
+      tabImage = [Leg5, Leg6, Leg7, Leg8];
+      infoData = [];
+      gridName = ['保加利亞式啞鈴分腿深蹲', '張腿高腳杯深蹲', '槓鈴直腿硬舉', '槓鈴前蹲推舉'];
+      break;
+    case 'Buttocks-I':
+      tabImage = [Buttocks1, Buttocks2, Buttocks3, Buttocks4];
+      infoData = [];
+      gridName = ['靜態背部伸展', '頭靠重訓椅槓鈴提臀', '抬臀', '臀部交叉伸展'];
+      break;
+    case 'Buttocks-II':
+      tabImage = [Buttocks5, Buttocks6, Buttocks7, Buttocks8];
+      infoData = [];
+      gridName = ['臀部左右擺動', '啞鈴反弓步', '胯下繩索前拉', '爬山式'];
       break;
     default:
       break;
@@ -287,8 +218,8 @@ const generateGrids = (bodySymptom, bodypart) => {
     // 處理每個小圖
     const grid = gridItem;
     grid.image = tabImage[idx];
+    grid.name = gridName[idx];
     grid.label = `${bodySymptom}_${grid.name}`;
-    console.log(grid.label);
     grid.info = infoData[idx];
   });
 

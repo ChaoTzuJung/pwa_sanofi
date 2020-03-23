@@ -72,7 +72,7 @@ export default {
           color="#525ca3"
           @input="onPickHandler"
         ></Radio>
-        <div class="check-score">{{name}}: {{value}}</div>
+        <div class="check-score">{{name}}</div>
         <Info v-if="info" :description="info" direction='right'></Info>
       </div>
     </div>

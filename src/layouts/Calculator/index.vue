@@ -82,6 +82,7 @@ export default {
         },
       },
       currentSectionComponent: 'HeadNeckSection',
+      currentBody: 'Chest & Shoulder',
     };
   },
   computed: {
@@ -97,13 +98,14 @@ export default {
   },
   methods: {
     changeTab(tab) {
-      // NOTE:
+      // NOTE: 檢查Tab有無都填寫
       // if (tab.name === 'Result' && !this.allTabComplete) {
       //   this.canCheckTab = true;
       //   return;
       // }
 
       this.currentSectionComponent = tab.component; // 切換Tab下的 section 內容
+      this.currentBody = tab.name; // 切換Tab下的 section 內容
     },
     goToNextSlide() {
       this.$refs.mySwiper.swiper.slideNext();

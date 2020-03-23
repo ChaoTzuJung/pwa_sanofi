@@ -30,6 +30,7 @@ export default {
       picked: '', // number
       accordionData: [],
       currentSectionComponent: this.$attrs.currentSectionComponent.split('Section')[0],
+      currentBody: this.$attrs.currentBody,
     };
   },
   computed: {
@@ -40,7 +41,9 @@ export default {
     },
   },
   created() {
-    this.accordionData = generateAccordion(this.accordionName, this.currentSectionComponent);
+    console.log('this.accordionName', this.accordionName);
+    console.log('this.currentBody', this.currentBody);
+    this.accordionData = generateAccordion(this.accordionName, this.currentBody);
   },
   methods: {
     onPickHandler(e) {
@@ -93,7 +96,7 @@ export default {
               color="#525ca3"
               @input="onPickHandler"
             ></Radio>
-            <div class="check-score">{{grid.name}}: {{grid.score}}</div>
+            <div class="check-score">{{grid.name}}</div>
             <Info
               v-if="grid.info"
               :description="grid.info"
