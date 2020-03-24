@@ -114,7 +114,7 @@ export default {
       this.$refs.mySwiper.swiper.slideTo(0);
     },
     changeBodyScore(e) {
-      this.tabs[this.currentSectionComponent].score = parseFloat(e, 10).toFixed(1);
+      this.tabs[this.currentSectionComponent].score = parseFloat(e, 10);
     },
     changeTabStatus(status) {
       this.tabs[this.currentSectionComponent].complete = status;

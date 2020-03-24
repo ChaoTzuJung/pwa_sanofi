@@ -46,7 +46,7 @@ export default {
       this.$emit('changeTab', tab);
     },
     changeBodyScore(e) {
-      this.tabs[this.currentTabComponent].score = parseFloat(e, 10).toFixed(1);
+      this.tabs[this.currentTabComponent].score = parseFloat(e, 10);
     },
   },
 };
@@ -71,7 +71,7 @@ export default {
         </div>
         <div class="wordings">
           <div class="text">{{tab.name}}</div>
-          <div v-if="tab.hasOwnProperty('score')" class="score">score: {{tab.score}}</div>
+          <div v-if="tab.hasOwnProperty('score')" class="score">volume: {{tab.score}}</div>
         </div>
       </div>
       <div

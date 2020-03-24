@@ -21,7 +21,7 @@ export default {
 
 <template>
   <transition :name="isPwa ? 'slide' : 'fade'">
-    <div class="mask" v-if="show">
+    <div class="mask" v-if="show" @keydown.esc="closeModal" tabindex="0">
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="close" @click="closeModal"></div>

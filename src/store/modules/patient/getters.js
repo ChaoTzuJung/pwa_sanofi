@@ -100,4 +100,20 @@ export default {
     };
     return pdf;
   },
+  ChestI: state => state['Chest & Shoulder']['Chest-I'].weight * state['Chest & Shoulder']['Chest-I'].reps * state['Chest & Shoulder']['Chest-I'].sets,
+  ChestII: state => state['Chest & Shoulder']['Chest-II'].weight * state['Chest & Shoulder']['Chest-II'].reps * state['Chest & Shoulder']['Chest-II'].sets,
+  ShoulderI: state => state['Chest & Shoulder']['Shoulder-I'].weight * state['Chest & Shoulder']['Shoulder-I'].reps * state['Chest & Shoulder']['Shoulder-I'].sets,
+  ShoulderII: state => state['Chest & Shoulder']['Shoulder-II'].weight * state['Chest & Shoulder']['Shoulder-II'].reps * state['Chest & Shoulder']['Shoulder-II'].sets,
+  TricepsI: state => state['Biceps & Triceps']['Triceps-I'].weight * state['Biceps & Triceps']['Triceps-I'].reps * state['Biceps & Triceps']['Triceps-I'].sets,
+  TricepsII: state => state['Biceps & Triceps']['Triceps-II'].weight * state['Biceps & Triceps']['Triceps-II'].reps * state['Biceps & Triceps']['Triceps-II'].sets,
+  BicepsI: state => state['Biceps & Triceps']['Biceps-I'].weight * state['Biceps & Triceps']['Biceps-I'].reps * state['Biceps & Triceps']['Biceps-I'].sets,
+  BicepsII: state => state['Biceps & Triceps']['Biceps-II'].weight * state['Biceps & Triceps']['Biceps-II'].reps * state['Biceps & Triceps']['Biceps-II'].sets,
+  BacksideI: state => state['Abs & Backside']['Backside-I'].weight * state['Abs & Backside']['Backside-I'].reps * state['Abs & Backside']['Backside-I'].sets,
+  BacksideII: state => state['Abs & Backside']['Backside-II'].weight * state['Abs & Backside']['Backside-II'].reps * state['Abs & Backside']['Backside-II'].sets,
+  AbsI: state => state['Abs & Backside']['Abs-I'].weight * state['Abs & Backside']['Abs-I'].reps * state['Abs & Backside']['Abs-I'].sets,
+  AbsII: state => state['Abs & Backside']['Abs-II'].weight * state['Abs & Backside']['Abs-II'].reps * state['Abs & Backside']['Abs-II'].sets,
+  LegI: state => state['Buttocks & Leg']['Leg-I'].weight * state['Buttocks & Leg']['Leg-I'].reps * state['Buttocks & Leg']['Leg-I'].sets,
+  LegII: state => state['Buttocks & Leg']['Leg-II'].weight * state['Buttocks & Leg']['Leg-II'].reps * state['Buttocks & Leg']['Leg-II'].sets,
+  ButtocksI: state => state['Buttocks & Leg']['Buttocks-I'].weight * state['Buttocks & Leg']['Buttocks-I'].reps * state['Buttocks & Leg']['Buttocks-I'].sets,
+  ButtocksII: state => state['Buttocks & Leg']['Buttocks-II'].weight * state['Buttocks & Leg']['Buttocks-II'].reps * state['Buttocks & Leg']['Buttocks-II'].sets,
 };

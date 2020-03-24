@@ -105,23 +105,23 @@ export default {
         },
         {
           score: 'Low',
-          description: 'No inflammatory signs of atopic dermatitis (no erythema, no induration/papulation, no lichenification, no oozing/crusting). Post-inflammatory hyperpigmentation and/or hypopigmentation may be present.',
+          description: '一週只練一天',
         },
         {
           score: 'Moderate',
-          description: 'Barely perceptible erythema, barely perceptible induration/papulation, and/or minimal lichenification. No oozing or crusting.',
+          description: '一週練 2~3 天',
         },
         {
           score: 'Hight',
-          description: 'Slight but definite erythema (pink), slight but definite induration/papulation, and/or slight but definite lichenification. No oozing or crusting.',
+          description: '一週練 4~5 天',
         },
         {
           score: 'Very Hight',
-          description: 'Clearly perceptible erythema (dull red), clearly perceptible induration/papulation, and/or clearly perceptible lichenification. Oozing and crusting may be present.',
+          description: '一週練 5~6 天',
         },
         {
           score: 'Extreme',
-          description: 'Marked erythema (deep or bright red), marked induration/papulation, and/or marked lichenification. Disease is widespread in extent. Oozing or crusting may be present.',
+          description: '一週每天都訓練',
         },
       ],
     };
@@ -143,36 +143,31 @@ export default {
       return (parseFloat(this.headneckScore, 10)
         + parseFloat(this.upperScore, 10)
         + parseFloat(this.trunkScore, 10)
-        + parseFloat(this.lowerScore, 10))
-        .toFixed(1);
+        + parseFloat(this.lowerScore, 10));
     },
     Interpretation() {
       let result;
-      if (this.totalBodyScore <= 0) {
+      if (this.totalBodyScore <= 1200) {
         result = 'Low';
       }
 
-      if (this.totalBodyScore >= 0.1 && this.totalBodyScore <= 1.0) {
+      if (this.totalBodyScore >= 1201 && this.totalBodyScore <= 2500) {
         result = 'Moderate';
       }
 
-      if (this.totalBodyScore >= 1.1 && this.totalBodyScore <= 7.0) {
+      if (this.totalBodyScore >= 2501 && this.totalBodyScore <= 3000) {
         result = 'High';
       }
 
-      if (this.totalBodyScore >= 7.1 && this.totalBodyScore <= 21.0) {
+      if (this.totalBodyScore >= 3001 && this.totalBodyScore <= 4500) {
         result = 'Very High';
       }
 
-      if (this.totalBodyScore >= 21.1 && this.totalBodyScore <= 50.0) {
+      if (this.totalBodyScore >= 4501 && this.totalBodyScore <= 10000) {
         result = 'Extreme';
       }
 
-      if (this.totalBodyScore >= 50.1 && this.totalBodyScore <= 72.0) {
-        result = 'Extreme';
-      }
-
-      if (this.totalBodyScore > 72.0) {
+      if (this.totalBodyScore > 10000) {
         result = 'Extreme';
       }
       return result;
@@ -181,19 +176,19 @@ export default {
       return [
         {
           name: 'Chest & Shoulder',
-          score: parseFloat(this.headneckScore, 10).toFixed(1),
+          score: parseFloat(this.headneckScore, 10),
         },
         {
           name: 'Biceps & Triceps',
-          score: parseFloat(this.upperScore, 10).toFixed(1),
+          score: parseFloat(this.upperScore, 10),
         },
         {
           name: 'Abs & Backside',
-          score: parseFloat(this.trunkScore, 10).toFixed(1),
+          score: parseFloat(this.trunkScore, 10),
         },
         {
           name: 'Buttocks & Leg',
-          score: parseFloat(this.lowerScore, 10).toFixed(1),
+          score: parseFloat(this.lowerScore, 10),
         },
       ];
     },

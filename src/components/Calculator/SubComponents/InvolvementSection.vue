@@ -32,6 +32,8 @@ export default {
   },
   watch: {
     weight() {
+      this.weight = parseInt(this.weight, 10);
+
       if (!this.weight) {
         if (this.weight === 0) {
           this.weight = 0;
@@ -39,13 +41,6 @@ export default {
         }
         this.weight = '';
       }
-
-      this.$store.commit('patient/UPDATE_WEIGHT', {
-        category: this.currentBody,
-        movement: this.movement,
-        type: this.gridName,
-        weight: this.weight,
-      });
     },
     reps() {
       this.reps = parseInt(this.reps, 10);
@@ -58,16 +53,9 @@ export default {
         this.reps = '';
       }
 
-      if (this.reps > 20 || this.reps < 0) {
+      if (this.reps < 0) {
         this.reps = '';
       }
-
-      this.$store.commit('patient/UPDATE_REPS', {
-        category: this.currentBody,
-        movement: this.movement,
-        type: this.gridName,
-        reps: this.reps,
-      });
     },
     sets() {
       this.sets = parseInt(this.sets, 10);
@@ -80,23 +68,33 @@ export default {
         this.sets = '';
       }
 
-      if (this.sets > 100 || this.sets < 0) {
+      if (this.sets < 0) {
         this.sets = '';
       }
-
-      this.$store.commit('patient/UPDATE_SETS', {
+    },
+  },
+  methods: {
+    onChangeText(e) {
+      const { id, value } = e.target;
+      this[id] = value;
+    },
+    onBlurText(e) {
+      const { id } = e.target;
+      this.$store.commit(`patient/UPDATE_${id.toUpperCase()}`, {
         category: this.currentBody,
         movement: this.movement,
         type: this.gridName,
-        sets: this.sets,
+        [id]: this[id],
       });
     },
   },
   mounted() {
-    this.weight = this.fetchWeight;
-    this.reps = this.fetchReps;
-    this.sets = this.fetchSets;
-    console.log('mounted', this.weight);
+    // https://stackoverflow.com/questions/52353370/vuejs-cant-assign-value-from-mapstate-to-data-property-after-reloading-the-pa
+    setTimeout(() => {
+      this.weight = this.fetchWeight;
+      this.reps = this.fetchReps;
+      this.sets = this.fetchSets;
+    }, 500);
   },
 };
 </script>
@@ -109,7 +107,9 @@ export default {
         <input
           class="value"
           id="weight"
-          v-model.trim.number.lazy="weight"
+          @input="onChangeText"
+          @blur="onBlurText"
+          :value="weight"
           autocomplete="off"
         />
       </div>
@@ -121,7 +121,9 @@ export default {
           class="value"
           type="tel"
           id="reps"
-          v-model.trim.number.lazy="reps"
+          @input="onChangeText"
+          @blur="onBlurText"
+          :value="reps"
           autocomplete="off"
         />
       </div>
@@ -133,7 +135,9 @@ export default {
           class="value"
           type="tel"
           id="sets"
-          v-model.trim.number.lazy="sets"
+          @input="onChangeText"
+          @blur="onBlurText"
+          :value="sets"
           autocomplete="off"
         />
       </div>

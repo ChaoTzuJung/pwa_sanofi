@@ -1,5 +1,5 @@
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import Accordion from 'components/Common/Accordion.vue';
 import Erythema from 'components/Calculator/SubComponents/Erythema.vue';
 import EdemaPapulation from 'components/Calculator/SubComponents/EdemaPapulation.vue';
@@ -76,6 +76,12 @@ export default {
       calculator: state => state.calculator,
       patient: state => state.patient,
     }),
+    ...mapGetters({
+      ChestI: 'patient/ChestI',
+      ChestII: 'patient/ChestII',
+      ShoulderI: 'patient/ShoulderI',
+      ShoulderII: 'patient/ShoulderII',
+    }),
     areaPoint() {
       if (this.input >= 90 && this.input <= 100) return 6;
       if (this.input >= 70 && this.input <= 89) return 5;
@@ -86,20 +92,12 @@ export default {
       return 0;
     },
     summary() {
-      const symptomScore = this.tabData['Chest-I'].score
-      + this.tabData['Chest-II'].score
-      + this.tabData['Shoulder-I'].score
-      + this.tabData['Shoulder-II'].score;
-
-      const sum = this.areaPoint * symptomScore * 0.1;
-
-      const score = sum.toFixed(1);
-      return score;
+      return this.ChestI + this.ChestII + this.ShoulderI + this.ShoulderII;
     },
     checked() {
-      const isEASIFinish = Object.values(this.tabData).every(item => item.complete === true);
-      const isAreaFinsih = parseInt(this.input, 10) || false;
-      return isAreaFinsih && isEASIFinish;
+      const isEASIFinish = Object.values(this.tabData)
+        .every(item => this.formStatus(item.name) === true);
+      return isEASIFinish;
     },
   },
   watch: {
@@ -163,12 +161,13 @@ export default {
     },
     changeScore(e) {
       this.tabData[this.symptomName].score = e;
-      this.tabData[this.symptomName].complete = this.formStatus(this.symptomName);
+      this.tabData[this.symptomName].complete = true;
     },
     formStatus(accordionName) {
       return this.patient['Chest & Shoulder'][accordionName].weight !== 0
       && this.patient['Chest & Shoulder'][accordionName].reps !== 0
-      && this.patient['Chest & Shoulder'][accordionName].sets !== 0;
+      && this.patient['Chest & Shoulder'][accordionName].sets !== 0
+      && this.tabData[accordionName].complete;
     },
   },
 };
@@ -182,7 +181,7 @@ export default {
         <InvolvementSection
           :movement="calculator.currentSeverity"
           :currentBody="$attrs.currentBody"
-          :gridName="this.symptomName"
+          :gridName="symptomName"
         />
       </div>
     </Modal>
@@ -198,8 +197,8 @@ export default {
           @keyup.enter="changeTab(tabItem)"
         >
           <div class="top" @click="openAccordion(tabItem)">
-            <div class="no" :class="{'checked': tabItem.complete}">
-              <div v-if="!tabItem.complete">{{tabItem.num}}</div>
+            <div class="no" :class="{'checked': formStatus(tabItem.name)}">
+              <div v-if="!formStatus(tabItem.name)">{{tabItem.num}}</div>
             </div>
             <div class="wordings">
               <div class="text">{{tabItem.name}}</div>
