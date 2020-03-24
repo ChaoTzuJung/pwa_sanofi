@@ -22,7 +22,7 @@ const state = () => ({
       sets: 0,
       movement: '',
     },
-    'Buttocks-I': {
+    'Shoulder-I': {
       weight: 0,
       reps: 0,
       sets: 0,

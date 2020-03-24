@@ -26,46 +26,42 @@ export default {
     return {
       selected: false,
       tabData: {
-        Erythema: {
+        'Triceps-I': {
           num: 1,
-          name: 'Erythema',
-          name2: 'Triceps-I',
+          name: 'Triceps-I',
           id: '0',
           component: 'Erythema',
-          score: 0,
+          score: '',
           complete: false,
         },
-        'Edema / papulation': {
+        'Triceps-II': {
           num: 2,
-          name: 'Edema / papulation',
-          name2: 'Triceps-II',
+          name: 'Triceps-II',
           id: '1',
           component: 'EdemaPapulation',
-          score: 0,
+          score: '',
           complete: false,
         },
-        Excoriation: {
+        'Biceps-I': {
           num: 3,
-          name: 'Excoriation',
-          name2: 'Biceps-I',
+          name: 'Biceps-I',
           id: '2',
           component: 'Excoriation',
-          score: 0,
+          score: '',
           complete: false,
         },
-        Lichenification: {
+        'Biceps-II': {
           num: 4,
-          name: 'Lichenification',
-          name2: 'Biceps-II',
+          name: 'Biceps-II',
           id: '3',
           component: 'Lichenification',
-          score: 0,
+          score: '',
           complete: false,
         },
       },
       gridData: [],
       currentTabComponent: 'Erythema',
-      symptomName: 'Erythema',
+      symptomName: 'Triceps-I',
       input: '',
       accordionOpen: {
         'Triceps-I': false,
@@ -89,10 +85,10 @@ export default {
       return 0;
     },
     summary() {
-      const symptomScore = this.tabData.Erythema.score
-      + this.tabData['Edema / papulation'].score
-      + this.tabData.Excoriation.score
-      + this.tabData.Lichenification.score;
+      const symptomScore = this.tabData['Triceps-I'].score
+      + this.tabData['Triceps-II'].score
+      + this.tabData['Biceps-I'].score
+      + this.tabData[['Biceps-II']].score;
 
       const sum = this.areaPoint * symptomScore * 0.1;
 
@@ -144,26 +140,26 @@ export default {
   activated() {
     window.scrollTo(0, 0);
   },
-  deactivated() {
-    const upperData = {
-      upperAreaScore: this.areaPoint,
-      upperAreaPercent: this.input,
-      upperErythema: this.tabData.Erythema.score,
-      upperEdema: this.tabData['Edema / papulation'].score,
-      upperExcoriation: this.tabData.Excoriation.score,
-      upperLichenification: this.tabData.Lichenification.score,
-      upperScore: this.summary,
-    };
-    this.$store.commit('patient/SAVE_UPPER_DATA', upperData);
-  },
+  // deactivated() {
+  //   const upperData = {
+  //     upperAreaScore: this.areaPoint,
+  //     upperAreaPercent: this.input,
+  //     upperErythema: this.tabData.Erythema.score,
+  //     upperEdema: this.tabData['Edema / papulation'].score,
+  //     upperExcoriation: this.tabData.Excoriation.score,
+  //     upperLichenification: this.tabData.Lichenification.score,
+  //     upperScore: this.summary,
+  //   };
+  //   this.$store.commit('patient/SAVE_UPPER_DATA', upperData);
+  // },
   methods: {
     openAccordion(tabItem) {
-      this.accordionOpen[tabItem.name2] = !this.accordionOpen[tabItem.name];
+      this.accordionOpen[tabItem.name] = !this.accordionOpen[tabItem.name];
     },
     changeTab(tabItem) {
       this.symptomName = tabItem.name;
       this.currentTabComponent = tabItem.component;
-      this.gridData = generateGrids(tabItem.name2, 'Biceps & Triceps');
+      this.gridData = generateGrids(tabItem.name, 'Biceps & Triceps');
     },
     changeScore(e) {
       this.tabData[this.symptomName].score = parseInt(e, 10);
@@ -177,7 +173,11 @@ export default {
   <div class="upper-extremities-section">
     <Modal>
       <div slot="modal-content">
-        <InvolvementSection />
+        <InvolvementSection
+          :movement="calculator.currentSeverity"
+          :currentBody="$attrs.currentBody"
+          :gridName="this.symptomName"
+        />
       </div>
     </Modal>
     <div class="tab-section">
@@ -195,13 +195,13 @@ export default {
               <div v-if="!tabItem.complete">{{tabItem.num}}</div>
             </div>
             <div class="wordings">
-              <div class="text">{{tabItem.name2}}</div>
+              <div class="text">{{tabItem.name}}</div>
             </div>
             <svg class="svg-circleplus" viewBox="0 0 100 100">
               <line x1="22.5" y1="50" x2="77.5" y2="50" stroke-width="7.5" />
               <line
                 x1="50" y1="22.5" x2="50" y2="77.5" stroke-width="7.5"
-                v-if="!accordionOpen[tabItem.name2]"
+                v-if="!accordionOpen[tabItem.name]"
               />
             </svg>
           </div>
@@ -211,8 +211,8 @@ export default {
               :currentSectionComponent="$attrs.currentSectionComponent"
               :currentBody="$attrs.currentBody"
               :checkedValue="tabData[symptomName].score"
-              :accordionName="tabItem.name2"
-              :open="accordionOpen[tabItem.name2]"
+              :accordionName="tabItem.name"
+              :open="accordionOpen[tabItem.name]"
               @onPickAccordion="changeScore"
             />
           </div>
@@ -221,7 +221,7 @@ export default {
       <keep-alive>
         <component
           class="tab-content"
-          bodypart="UpperExtremities"
+          bodypart="Biceps & Triceps"
           :symptom="symptomName"
           :gridData="gridData"
           :checkedValue="tabData[symptomName].score"

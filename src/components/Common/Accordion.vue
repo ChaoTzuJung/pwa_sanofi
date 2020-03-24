@@ -18,7 +18,7 @@ export default {
       type: String,
     },
     checkedValue: {
-      type: Number,
+      type: String,
     },
     open: {
       type: Boolean,
@@ -27,31 +27,22 @@ export default {
   },
   data() {
     return {
-      picked: '', // number
+      picked: '',
       accordionData: [],
       currentSectionComponent: this.$attrs.currentSectionComponent.split('Section')[0],
       currentBody: this.$attrs.currentBody,
     };
   },
-  computed: {
-  },
-  watch: {
-    picked() {
-      this.picked = parseInt(this.picked, 10);
-    },
-  },
   created() {
-    console.log('this.accordionName', this.accordionName);
-    console.log('this.currentBody', this.currentBody);
     this.accordionData = generateAccordion(this.accordionName, this.currentBody);
   },
   methods: {
     onPickHandler(e) {
-      this.picked = e; // 0 - 3
+      this.picked = e; // 運動的動作名稱
       this.$emit('onPickAccordion', this.picked);
     },
     openModal(name) {
-      this.$store.commit('calculator/OPEN_SYMPTOMS_MODAL', { severity: name, status: true });
+      this.$store.commit('calculator/OPEN_SYMPTOMS_MODAL', { bodypart: this.accordionName, severity: name, status: true });
     },
   },
 };
@@ -91,7 +82,7 @@ export default {
             <Radio
               class="custom-radio"
               :name="grid.name + ` - ${accordionName}`"
-              :value="grid.score"
+              :value="grid.name"
               :checkedValue="picked"
               color="#525ca3"
               @input="onPickHandler"

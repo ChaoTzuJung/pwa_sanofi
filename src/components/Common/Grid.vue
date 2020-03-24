@@ -23,7 +23,7 @@ export default {
       type: Array,
     },
     checkedValue: {
-      type: Number,
+      type: String,
     },
   },
   data() {
@@ -62,6 +62,7 @@ export default {
       :name="grid.name"
       :value="grid.score"
       :checkedValue="score"
+      :bodypart="bodypart"
       @onPick="tabName = $event"
       >
     </SymptomCard>
