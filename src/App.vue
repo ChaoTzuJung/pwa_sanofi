@@ -31,23 +31,6 @@ export default {
       this.promptInstallation = false;
     },
   },
-  // mounted() {
-  //   console.log('App mounted');
-  //   window.addEventListener('offline', () => {
-  //     console.log('The network connection has been lost.');
-  //     this.$store.commit('SET_NETWORK_STATUS', { status: false });
-  //   });
-
-  //   window.addEventListener('online', () => {
-  //     console.log('You are now connected to the network.');
-  //     this.$store.commit('SET_NETWORK_STATUS', { status: true });
-  //   });
-  // },
-  // beforeDestroy() {
-  //   console.log('App beforeDestroy');
-  //   window.removeEventListener('online');
-  //   window.removeEventListener('offline');
-  // },
 };
 </script>
 

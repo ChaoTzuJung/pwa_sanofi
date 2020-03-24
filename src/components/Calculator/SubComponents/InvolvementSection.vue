@@ -32,7 +32,7 @@ export default {
   },
   watch: {
     weight() {
-      this.weight = parseInt(this.weight, 10);
+      this.weight = parseFloat(this.weight, 10);
 
       if (!this.weight) {
         if (this.weight === 0) {
