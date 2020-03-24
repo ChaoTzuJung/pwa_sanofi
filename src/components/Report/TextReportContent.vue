@@ -1,5 +1,5 @@
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import Form from 'components/Report/SubComponents/Form.vue';
 
 export default {
@@ -14,6 +14,26 @@ export default {
       default: false,
     },
   },
+  data() {
+    return {
+      ChestI: this.ChestI,
+      ChestII: this.ChestII,
+      ShoulderI: this.ShoulderI,
+      ShoulderII: this.ShoulderII,
+      TricepsI: this.TricepsI,
+      TricepsII: this.TricepsII,
+      BicepsI: this.BicepsI,
+      BicepsII: this.BicepsII,
+      BacksideI: this.BacksideI,
+      BacksideII: this.BacksideII,
+      AbsI: this.AbsI,
+      AbsII: this.AbsII,
+      LegI: this.LegI,
+      LegII: this.LegII,
+      ButtocksI: this.ButtocksI,
+      ButtocksII: this.ButtocksII,
+    };
+  },
   computed: {
     ...mapState({
       sessionId: state => state.patient.patientId,
@@ -25,12 +45,30 @@ export default {
       EASI: state => state.patient.EASI,
       BSA: state => state.patient.BSA,
       IGA: state => state.patient.IGA,
-      HeadNeck: state => state.patient.HeadNeck,
-      UpperExtremities: state => state.patient.UpperExtremities,
-      Trunk: state => state.patient.Trunk,
-      LowerExtremities: state => state.patient.LowerExtremities,
+      'Chest & Shoulder': state => state.patient['Chest & Shoulder'],
+      'Biceps & Triceps': state => state.patient['Biceps & Triceps'],
+      'Abs & Backside': state => state.patient['Abs & Backside'],
+      'Buttocks & Leg': state => state.patient['Buttocks & Leg'],
     }),
   },
+  ...mapGetters({
+    ChestI: 'patient/ChestI',
+    ChestII: 'patient/ChestII',
+    ShoulderI: 'patient/ShoulderI',
+    ShoulderII: 'patient/ShoulderII',
+    TricepsI: 'patient/TricepsI',
+    TricepsII: 'patient/TricepsII',
+    BicepsI: 'patient/BicepsI',
+    BicepsII: 'patient/BicepsII',
+    BacksideI: 'patient/BacksideI',
+    BacksideII: 'patient/BacksideII',
+    AbsI: 'patient/AbsI',
+    AbsII: 'patient/AbsII',
+    LegI: 'patient/LegI',
+    LegII: 'patient/LegII',
+    ButtocksI: 'patient/ButtocksI',
+    ButtocksII: 'patient/ButtocksII',
+  }),
 };
 </script>
 
@@ -70,49 +108,39 @@ export default {
     <div class="block">
         <div class="title">Body Regions</div>
         <div class="item">
-          C:
+          Chest & Shoulder:
           <div class="value">
-            1st: {{this.HeadNeck.symptom.Erythema}}
-            / 2nd: {{this.HeadNeck.symptom.EdemaPapulation}}
-            / 3rd: {{this.HeadNeck.symptom.Excoriation}}
-            / 4th: {{this.HeadNeck.symptom.Lichenification}}
-            / Region: {{this.HeadNeck.area.areaScore}} ({{this.HeadNeck.area.areaPercent}}%)
-            / Body: {{this.HeadNeck.bodypartScore}}
+            {{this['Chest & Shoulder']['Chest-I'].movement}}: {{ChestI}}
+            / {{this['Chest & Shoulder']['Chest-II'].movement}}: {{ChestII}}
+            / {{this['Chest & Shoulder']['Shoulder-I'].movement}}: {{ShoulderI}}
+            / {{this['Chest & Shoulder']['Shoulder-II'].movement}}: {{ShoulderII}}
           </div>
         </div>
         <div class="item">
-          A:
+          Biceps & Triceps:
           <div class="value">
-            1st: {{this.Trunk.symptom.Erythema}}
-            / 2nd: {{this.Trunk.symptom.EdemaPapulation}}
-            / 3rd: {{this.Trunk.symptom.Excoriation}}
-            / 4th: {{this.Trunk.symptom.Lichenification}}
-            / Region: {{this.Trunk.area.areaScore}}  ({{this.Trunk.area.areaPercent}}%)
-            / Body: {{this.Trunk.bodypartScore}}
+            {{this['Biceps & Triceps']['Triceps-I'].movement}}: {{TricepsI}}
+            / {{this['Biceps & Triceps']['Triceps-II'].movement}}: {{TricepsII}}
+            / {{this['Biceps & Triceps']['Biceps-I'].movement}}: {{BicepsI}}
+            / {{this['Biceps & Triceps']['Biceps-II'].movement}}: {{BicepsII}}
           </div>
         </div>
         <div class="item">
-          B:
+          Abs & Backside:
           <div class="value">
-            1st: {{this.UpperExtremities.symptom.Erythema}}
-            / 2nd: {{this.UpperExtremities.symptom.EdemaPapulation}}
-            / 3rd: {{this.UpperExtremities.symptom.Excoriation}}
-            / 4th: {{this.UpperExtremities.symptom.Lichenification}}
-            <!-- eslint-disable-next-line max-len -->
-            / Region: {{this.UpperExtremities.area.areaScore}} ({{this.UpperExtremities.area.areaPercent}}%)
-            / Body: {{this.UpperExtremities.bodypartScore}}
+            {{this['Abs & Backside']['Backside-I'].movement}}: {{BacksideI}}
+            / {{this['Abs & Backside']['Backside-II'].movement}}: {{BacksideII}}
+            / {{this['Abs & Backside']['Abs-I'].movement}}: {{AbsI}}
+            / {{this['Abs & Backside']['Abs-II'].movement}}: {{AbsII}}
           </div>
         </div>
         <div class="item">
-          L:
+          Buttocks & Leg:
           <div class="value">
-            1st: {{this.LowerExtremities.symptom.Erythema}}
-            / 2nd: {{this.LowerExtremities.symptom.EdemaPapulation}}
-            / 3rd: {{this.LowerExtremities.symptom.Excoriation}}
-            / 4th: {{this.LowerExtremities.symptom.Lichenification}}
-            <!-- eslint-disable-next-line max-len -->
-            / Region: {{this.LowerExtremities.area.areaScore}} ({{this.LowerExtremities.area.areaPercent}}%)
-            / Body: {{this.LowerExtremities.bodypartScore}}
+            {{this['Buttocks & Leg']['Leg-I'].movement}}: {{LegI}}
+            / {{this['Buttocks & Leg']['Leg-II'].movement}}: {{LegII}}
+            / {{this['Buttocks & Leg']['Buttocks-I'].movement}}: {{ButtocksI}}
+            / {{this['Buttocks & Leg']['Buttocks-II'].movement}}: {{ButtocksII}}
           </div>
         </div>
     </div>

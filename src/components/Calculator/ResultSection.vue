@@ -147,29 +147,26 @@ export default {
     },
     Interpretation() {
       let result;
-      if (this.totalBodyScore <= 1200) {
+      if (this.totalBodyScore <= 3600) {
         result = 'Low';
       }
 
-      if (this.totalBodyScore >= 1201 && this.totalBodyScore <= 2500) {
+      if (this.totalBodyScore >= 3601 && this.totalBodyScore <= 7500) {
         result = 'Moderate';
       }
 
-      if (this.totalBodyScore >= 2501 && this.totalBodyScore <= 3000) {
+      if (this.totalBodyScore >= 7501 && this.totalBodyScore <= 9000) {
         result = 'High';
       }
 
-      if (this.totalBodyScore >= 3001 && this.totalBodyScore <= 4500) {
+      if (this.totalBodyScore >= 9001 && this.totalBodyScore <= 13500) {
         result = 'Very High';
       }
 
-      if (this.totalBodyScore >= 4501 && this.totalBodyScore <= 10000) {
+      if (this.totalBodyScore >= 13501) {
         result = 'Extreme';
       }
 
-      if (this.totalBodyScore > 10000) {
-        result = 'Extreme';
-      }
       return result;
     },
     scores() {
@@ -195,10 +192,6 @@ export default {
   },
   activated() {
     window.scroll(0, 0);
-    this.BSA = parseInt((this.headNeckAreaPercent * 0.1)
-        + (this.upperExtremitiesAreaPercent * 0.2)
-        + (this.trunkAreaPercent * 0.3)
-        + (this.lowerExtremitiesAreaPercent * 0.4), 10);
   },
   methods: {
     goToPatient() {
@@ -286,7 +279,7 @@ export default {
       <hr>
       <div class="score-section">
         <div class="mobile">
-          <div class="body-region">Score per muscle group:</div>
+          <div class="body-region">Score muscle group:</div>
           <div :key="score.name" class="score" v-for="score in scores">
             <div class="body-title">{{score.name}}</div>
             <div class="body-score">{{score.score}}</div>
@@ -296,7 +289,7 @@ export default {
           <div :key="score.name" class="score" v-for="(score,idx) in scores">
             <div class="score-block">
               <div class="body-title">{{score.name}}</div>
-              <div class="body-region">Score per muscle group:</div>
+              <div class="body-region">Score muscle group:</div>
               <div class="body-score">
                 {{score.score}}
                 <span class="plus" v-if="idx !== 3">+</span>
@@ -516,6 +509,7 @@ export default {
 
             & > .mobile {
                 flex-direction: column;
+                width: 100%;
 
                 & > .body-region {
                     font-weight: 500;

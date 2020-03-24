@@ -345,12 +345,12 @@ export default {
           }
 
           & > .checked {
-            background-color: #FBB63F;
-            border: 2px solid #FBB63F;
+            background-color: #525ca3;
+            border: 2px solid #525ca3;
           }
 
           & .checked::after {
-            content: "kg";
+            content: "";
             position: absolute;
             top: 0;
             width: 6px;
