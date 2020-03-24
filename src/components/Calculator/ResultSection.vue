@@ -19,19 +19,19 @@ export default {
   props: {
     headneckScore: {
       require: true,
-      type: String,
+      type: Number,
     },
     upperScore: {
       require: true,
-      type: String,
+      type: Number,
     },
     trunkScore: {
       require: true,
-      type: String,
+      type: Number,
     },
     lowerScore: {
       require: true,
-      type: String,
+      type: Number,
     },
   },
   data() {

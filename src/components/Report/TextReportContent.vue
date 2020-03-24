@@ -14,26 +14,6 @@ export default {
       default: false,
     },
   },
-  data() {
-    return {
-      ChestI: this.ChestI,
-      ChestII: this.ChestII,
-      ShoulderI: this.ShoulderI,
-      ShoulderII: this.ShoulderII,
-      TricepsI: this.TricepsI,
-      TricepsII: this.TricepsII,
-      BicepsI: this.BicepsI,
-      BicepsII: this.BicepsII,
-      BacksideI: this.BacksideI,
-      BacksideII: this.BacksideII,
-      AbsI: this.AbsI,
-      AbsII: this.AbsII,
-      LegI: this.LegI,
-      LegII: this.LegII,
-      ButtocksI: this.ButtocksI,
-      ButtocksII: this.ButtocksII,
-    };
-  },
   computed: {
     ...mapState({
       sessionId: state => state.patient.patientId,
@@ -50,25 +30,25 @@ export default {
       'Abs & Backside': state => state.patient['Abs & Backside'],
       'Buttocks & Leg': state => state.patient['Buttocks & Leg'],
     }),
+    ...mapGetters({
+      ChestI: 'patient/ChestI',
+      ChestII: 'patient/ChestII',
+      ShoulderI: 'patient/ShoulderI',
+      ShoulderII: 'patient/ShoulderII',
+      TricepsI: 'patient/TricepsI',
+      TricepsII: 'patient/TricepsII',
+      BicepsI: 'patient/BicepsI',
+      BicepsII: 'patient/BicepsII',
+      BacksideI: 'patient/BacksideI',
+      BacksideII: 'patient/BacksideII',
+      AbsI: 'patient/AbsI',
+      AbsII: 'patient/AbsII',
+      LegI: 'patient/LegI',
+      LegII: 'patient/LegII',
+      ButtocksI: 'patient/ButtocksI',
+      ButtocksII: 'patient/ButtocksII',
+    }),
   },
-  ...mapGetters({
-    ChestI: 'patient/ChestI',
-    ChestII: 'patient/ChestII',
-    ShoulderI: 'patient/ShoulderI',
-    ShoulderII: 'patient/ShoulderII',
-    TricepsI: 'patient/TricepsI',
-    TricepsII: 'patient/TricepsII',
-    BicepsI: 'patient/BicepsI',
-    BicepsII: 'patient/BicepsII',
-    BacksideI: 'patient/BacksideI',
-    BacksideII: 'patient/BacksideII',
-    AbsI: 'patient/AbsI',
-    AbsII: 'patient/AbsII',
-    LegI: 'patient/LegI',
-    LegII: 'patient/LegII',
-    ButtocksI: 'patient/ButtocksI',
-    ButtocksII: 'patient/ButtocksII',
-  }),
 };
 </script>
 
@@ -107,40 +87,72 @@ export default {
     </div>
     <div class="block">
         <div class="title">Body Regions</div>
-        <div class="item">
-          Chest & Shoulder:
+        <div class="item" v-if="ChestI || ChestII || ShoulderI || ShoulderII">
+          Chest & Shoulder:<br>
           <div class="value">
-            {{this['Chest & Shoulder']['Chest-I'].movement}}: {{ChestI}}
-            / {{this['Chest & Shoulder']['Chest-II'].movement}}: {{ChestII}}
-            / {{this['Chest & Shoulder']['Shoulder-I'].movement}}: {{ShoulderI}}
-            / {{this['Chest & Shoulder']['Shoulder-II'].movement}}: {{ShoulderII}}
+            <div v-if="ChestI">
+              {{this['Chest & Shoulder']['Chest-I'].movement}}: {{ChestI}}
+            </div>
+            <div v-if="ChestII">
+              {{this['Chest & Shoulder']['Chest-II'].movement}}: {{ChestII}}
+            </div>
+            <div v-if="ShoulderI">
+              {{this['Chest & Shoulder']['Shoulder-I'].movement}}: {{ShoulderI}}
+            </div>
+            <div v-if="ShoulderII">
+              {{this['Chest & Shoulder']['Shoulder-II'].movement}}: {{ShoulderII}}
+            </div>
           </div>
         </div>
-        <div class="item">
-          Biceps & Triceps:
+        <div class="item" v-if="TricepsI || TricepsII || BicepsI || BicepsII">
+          Biceps & Triceps:<br>
           <div class="value">
-            {{this['Biceps & Triceps']['Triceps-I'].movement}}: {{TricepsI}}
-            / {{this['Biceps & Triceps']['Triceps-II'].movement}}: {{TricepsII}}
-            / {{this['Biceps & Triceps']['Biceps-I'].movement}}: {{BicepsI}}
-            / {{this['Biceps & Triceps']['Biceps-II'].movement}}: {{BicepsII}}
+            <div v-if="TricepsI">
+              {{this['Biceps & Triceps']['Triceps-I'].movement}}: {{TricepsI}}
+            </div>
+            <div v-if="TricepsII">
+              {{this['Biceps & Triceps']['Triceps-II'].movement}}: {{TricepsII}}
+            </div>
+            <div v-if="BicepsI">
+              {{this['Biceps & Triceps']['Biceps-I'].movement}}: {{BicepsI}}
+            </div>
+            <div v-if="BicepsII">
+              {{this['Biceps & Triceps']['Biceps-II'].movement}}: {{BicepsII}}
+            </div>
           </div>
         </div>
-        <div class="item">
-          Abs & Backside:
+        <div class="item" v-if="BacksideI || BacksideII || AbsI || AbsII">
+          Abs & Backside:<br>
           <div class="value">
-            {{this['Abs & Backside']['Backside-I'].movement}}: {{BacksideI}}
-            / {{this['Abs & Backside']['Backside-II'].movement}}: {{BacksideII}}
-            / {{this['Abs & Backside']['Abs-I'].movement}}: {{AbsI}}
-            / {{this['Abs & Backside']['Abs-II'].movement}}: {{AbsII}}
+            <div v-if="BacksideI">
+              {{this['Abs & Backside']['Backside-I'].movement}}: {{BacksideI}}
+            </div>
+            <div v-if="BacksideII">
+              {{this['Abs & Backside']['Backside-II'].movement}}: {{BacksideII}}
+            </div>
+            <div v-if="AbsI">
+              {{this['Abs & Backside']['Abs-I'].movement}}: {{AbsI}}
+            </div>
+            <div v-if="AbsII">
+              {{this['Abs & Backside']['Abs-II'].movement}}: {{AbsII}}
+            </div>
           </div>
         </div>
-        <div class="item">
-          Buttocks & Leg:
+        <div class="item" v-if="LegI || LegII || ButtocksI || ButtocksII">
+          Buttocks & Leg:<br>
           <div class="value">
-            {{this['Buttocks & Leg']['Leg-I'].movement}}: {{LegI}}
-            / {{this['Buttocks & Leg']['Leg-II'].movement}}: {{LegII}}
-            / {{this['Buttocks & Leg']['Buttocks-I'].movement}}: {{ButtocksI}}
-            / {{this['Buttocks & Leg']['Buttocks-II'].movement}}: {{ButtocksII}}
+            <div v-if="LegI">
+              {{this['Buttocks & Leg']['Leg-I'].movement}}: {{LegI}}
+            </div>
+            <div v-if="LegII">
+              {{this['Buttocks & Leg']['Leg-II'].movement}}: {{LegII}}
+            </div>
+            <div v-if="ButtocksI">
+              {{this['Buttocks & Leg']['Buttocks-I'].movement}}: {{ButtocksI}}
+            </div>
+            <div v-if="ButtocksII">
+              {{this['Buttocks & Leg']['Buttocks-II'].movement}}: {{ButtocksII}}
+            </div>
           </div>
         </div>
     </div>
