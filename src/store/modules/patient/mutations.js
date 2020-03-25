@@ -1,20 +1,22 @@
 export default {
   UPDATE_WEIGHT(state, {
-    category, movement, type, weight,
+    category, type, weight,
   }) {
     state[category][type].weight = weight;
-    state[category][type].movement = movement;
   },
   UPDATE_REPS(state, {
-    category, movement, type, reps,
+    category, type, reps,
   }) {
     state[category][type].reps = reps;
-    state[category][type].movement = movement;
   },
   UPDATE_SETS(state, {
-    category, movement, type, sets,
+    category, type, sets,
   }) {
     state[category][type].sets = sets;
+  },
+  UPDATE_MOVEMENT(state, {
+    category, movement, type,
+  }) {
     state[category][type].movement = movement;
   },
   SAVE_BSA_PERCENT(state, payload) {

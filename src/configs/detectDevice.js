@@ -9,6 +9,11 @@ const detectDevice = () => {
     window.isIos = true;
   }
 
+  // Detects if device is on Android
+  if (/Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    window.isAndroid = true;
+  }
+
   if (window.matchMedia('(display-mode: standalone)').matches) {
     window.isPwa = true;
   }

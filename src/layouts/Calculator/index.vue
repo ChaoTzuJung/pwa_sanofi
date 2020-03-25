@@ -33,7 +33,7 @@ export default {
           id: '1',
           component: 'HeadNeckSection',
           abbreviation: 'HeadNeck',
-          score: 0.0,
+          score: 0,
           complete: false,
         },
         UpperExtremitiesSection: {

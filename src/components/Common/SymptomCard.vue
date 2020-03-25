@@ -70,7 +70,7 @@ export default {
         <Radio
           class="custom-radio"
           :name="name"
-          :value="value"
+          :value="name"
           :checkedValue="checkedValue"
           color="#525ca3"
           @input="onPickHandler"

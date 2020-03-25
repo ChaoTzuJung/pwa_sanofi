@@ -11,12 +11,14 @@ export default {
     CalculatorLayout,
   },
   beforeCreate() {
-    if (!this.$store.hasModule('calculator')) {
-      this.$store.registerModule('calculator', calculatorModule());
-    }
-    if (!this.$store.hasModule('patient')) {
-      this.$store.registerModule('patient', patientModule());
-    }
+    // if (!this.$store.hasModule('calculator')) {
+    //   this.$store.registerModule('calculator', calculatorModule());
+    // }
+    // if (!this.$store.hasModule('patient')) {
+    //   this.$store.registerModule('patient', patientModule());
+    // }
+    this.$store.registerModule('calculator', calculatorModule());
+    this.$store.registerModule('patient', patientModule());
   },
   created() {
     window.scrollTo(0, 0);

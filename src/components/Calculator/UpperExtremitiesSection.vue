@@ -163,6 +163,11 @@ export default {
     changeScore(e) {
       this.tabData[this.symptomName].score = e;
       this.tabData[this.symptomName].complete = true;
+      this.$store.commit('patient/UPDATE_MOVEMENT', {
+        category: this.$attrs.currentBody,
+        movement: e,
+        type: this.symptomName,
+      });
     },
     formStatus(accordionName) {
       return this.patient['Biceps & Triceps'][accordionName].weight !== 0

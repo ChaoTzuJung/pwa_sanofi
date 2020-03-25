@@ -16,6 +16,9 @@ export default {
       if (this.$route.path === '/') return 'home';
       return this.$route.path.split('/')[1];
     },
+    isAndroid() {
+      return window.isAndroid;
+    },
   },
   methods: {
     async openDialog() {
@@ -27,10 +30,10 @@ export default {
 </script>
 
 <template>
-  <header :class="{'pwa-header': isPwa}">
+  <header :class="{'pwa-header': isPwa, 'android': isAndroid}">
     <transition-group name="fade" tag="a" v-if="isPwa">
       <div class="title-nav" v-if="headerTitle !== 'home'" key="1">
-        <div class="back-btn" @click="$router.go(-1)">
+        <div class="back-btn" @click="$router.go(-1)" v-if="!isAndroid">
           <img :src="IosBack"/>
         </div>
         <transition name="fade">
@@ -135,6 +138,11 @@ header {
     padding-left: 0;
     z-index: 999;
   }
+}
+
+.android {
+  justify-content: flex-start;
+  padding: 16px 0;
 }
 
 .fade-enter-active,

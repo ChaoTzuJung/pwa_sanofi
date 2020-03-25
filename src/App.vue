@@ -50,7 +50,9 @@ export default {
     <Dialog />
     <Header />
     <transition :name="isPwa ? `${direction}` : ''">
-      <router-view class="view"></router-view>
+      <keep-alive>
+        <router-view class="view"></router-view>
+      </keep-alive>
     </transition>
   </div>
 </template>
