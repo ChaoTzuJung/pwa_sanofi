@@ -62,48 +62,56 @@ export default {
           {
             title: 'Chest & Shoulder',
             themeColor: '#f0dd00',
-            score: 'score',
-            AreaScore: 'AreaScore',
-            AreaPercent: 'AreaPercent',
-            Erythema: 1,
-            EdemaPapulation: 2,
-            Excoriation: 3,
-            Lichenification: 4,
+            score: this.ChestI + this.ChestII + this.ShoulderI + this.ShoulderII,
+            movement1: this['Chest & Shoulder']['Chest-I'].movement,
+            movement2: this['Chest & Shoulder']['Chest-II'].movement,
+            movement3: this['Chest & Shoulder']['Shoulder-I'].movement,
+            movement4: this['Chest & Shoulder']['Shoulder-II'].movement,
+            row1: this.ChestI,
+            row2: this.ChestII,
+            row3: this.ShoulderI,
+            row4: this.ShoulderII,
           },
           {
             title: 'Abs & Backside',
             themeColor: '#fbba00',
-            score: 'score',
-            AreaScore: 'AreaScore',
-            AreaPercent: 'AreaPercent',
-            Erythema: 1,
-            EdemaPapulation: 2,
-            Excoriation: 3,
-            Lichenification: 4,
+            score: this.TricepsI + this.TricepsII + this.BicepsI + this.BicepsII,
+            movement1: this['Abs & Backside']['Backside-I'].movement,
+            movement2: this['Abs & Backside']['Backside-II'].movement,
+            movement3: this['Abs & Backside']['Abs-I'].movement,
+            movement4: this['Abs & Backside']['Abs-II'].movement,
+            row1: this.TricepsI,
+            row2: this.TricepsII,
+            row3: this.BicepsI,
+            row4: this.BicepsII,
           },
         ],
         [
           {
             title: 'Biceps & Triceps',
             themeColor: '#00a590',
-            score: 'score',
-            AreaScore: 'AreaScore',
-            AreaPercent: 'AreaPercent',
-            Erythema: 1,
-            EdemaPapulation: 2,
-            Excoriation: 3,
-            Lichenification: 4,
+            score: this.BacksideI + this.BacksideII + this.AbsI + this.AbsII,
+            movement1: this['Biceps & Triceps']['Triceps-I'].movement,
+            movement2: this['Biceps & Triceps']['Triceps-II'].movement,
+            movement3: this['Biceps & Triceps']['Biceps-I'].movement,
+            movement4: this['Biceps & Triceps']['Biceps-II'].movement,
+            row1: this.BacksideI,
+            row2: this.BacksideII,
+            row3: this.AbsI,
+            row4: this.AbsII,
           },
           {
             title: 'Buttocks & Leg',
             themeColor: '#bcbc1c',
-            score: 'score',
-            AreaScore: 'AreaScore',
-            AreaPercent: 'AreaPercent',
-            Erythema: 1,
-            EdemaPapulation: 2,
-            Excoriation: 3,
-            Lichenification: 4,
+            score: this.LegI + this.LegII + this.ButtocksI + this.ButtocksII,
+            movement1: this['Buttocks & Leg']['Leg-I'].movement,
+            movement2: this['Buttocks & Leg']['Leg-II'].movement,
+            movement3: this['Buttocks & Leg']['Buttocks-I'].movement,
+            movement4: this['Buttocks & Leg']['Buttocks-II'].movement,
+            row1: this.LegI,
+            row2: this.LegII,
+            row3: this.ButtocksI,
+            row4: this.ButtocksII,
           },
         ],
       ];
@@ -165,12 +173,14 @@ export default {
             :title="item.title"
             :color="item.themeColor"
             :score="item.score"
-            :AreaScore="item.AreaScore"
-            :AreaPercent="item.AreaPercent"
-            :Erythema="item.Erythema"
-            :EdemaPapulation="item.EdemaPapulation"
-            :Excoriation="item.Excoriation"
-            :Lichenification="item.Lichenification"
+            :movement1="item.movement1"
+            :movement2="item.movement2"
+            :movement3="item.movement3"
+            :movement4="item.movement4"
+            :row1="item.row1"
+            :row2="item.row2"
+            :row3="item.row3"
+            :row4="item.row4"
           >
           </Card>
         </div>

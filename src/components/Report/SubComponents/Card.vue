@@ -13,130 +13,42 @@ export default {
     },
     score: {
       require: true,
+      type: Number,
+      default: 0,
+    },
+    row1: {
+      type: Number,
+      default: 0,
+    },
+    row2: {
+      type: Number,
+      default: 0,
+    },
+    row3: {
+      type: Number,
+      default: 0,
+    },
+    row4: {
+      type: Number,
+      default: 0,
+    },
+    movement1: {
       type: String,
-      default: '00.00',
     },
-    AreaScore: {
-      require: true,
-      type: Number,
-      default: 6,
+    movement2: {
+      type: String,
     },
-    AreaPercent: {
-      require: true,
-      type: Number,
-      default: 100,
+    movement3: {
+      type: String,
     },
-    Erythema: {
-      require: true,
-      type: Number,
-      default: 0,
-    },
-    EdemaPapulation: {
-      require: true,
-      type: Number,
-      default: 0,
-    },
-    Excoriation: {
-      require: true,
-      type: Number,
-      default: 0,
-    },
-    Lichenification: {
-      require: true,
-      type: Number,
-      default: 0,
+    movement4: {
+      type: String,
     },
   },
   data() {
     return {
       cardOpen: false,
     };
-  },
-  computed: {
-    showErythema() {
-      let result;
-      switch (this.Erythema) {
-        case 0:
-          result = 'Primary: 0';
-          break;
-        case 1:
-          result = 'Intermediate: 1';
-          break;
-        case 2:
-          result = 'Advanced: 2';
-          break;
-        case 3:
-          result = 'Superlative: 3';
-          break;
-        default:
-          result = 'Null: NaN';
-          break;
-      }
-      return result;
-    },
-    showEdemaPapulation() {
-      let result;
-      switch (this.EdemaPapulation) {
-        case 0:
-          result = 'Primary: 0';
-          break;
-        case 1:
-          result = 'Intermediate: 1';
-          break;
-        case 2:
-          result = 'Advanced: 2';
-          break;
-        case 3:
-          result = 'Superlative: 3';
-          break;
-        default:
-          result = 'Null: NaN';
-          break;
-      }
-      return result;
-    },
-    showExcoriation() {
-      let result;
-      switch (this.Excoriation) {
-        case 0:
-          result = 'Primary: 0';
-          break;
-        case 1:
-          result = 'Intermediate: 1';
-          break;
-        case 2:
-          result = 'Advanced: 2';
-          break;
-        case 3:
-          result = 'Superlative: 3';
-          break;
-        default:
-          result = 'Null: NaN';
-          break;
-      }
-      return result;
-    },
-    showLichenification() {
-      let result;
-      switch (this.Lichenification) {
-        case 0:
-          result = 'Primary: 0';
-          break;
-        case 1:
-          result = 'Intermediate: 1';
-          break;
-        case 2:
-          result = 'Advanced: 2';
-          break;
-        case 3:
-          result = 'Superlative: 3';
-          break;
-        default:
-          result = 'Null: NaN';
-          break;
-      }
-      return result;
-    },
   },
   methods: {
     openCard() {
@@ -147,7 +59,11 @@ export default {
 </script>
 
 <template>
-  <div class="card" :class=" cardOpen ? 'extand-card' : ''">
+  <div
+    class="card"
+    :class=" cardOpen ? 'extand-card' : ''"
+    v-if="movement1 || movement2 || movemont3 || movement4"
+  >
     <div class="card-title" @click="openCard">
       <div class="title">
         <div class="head" :style="{'color': color}">
@@ -162,24 +78,27 @@ export default {
         </div>
       </div>
     </div>
-    <div class="card-body" :class=" cardOpen ? 'show-card-body' : ''">
+    <div
+      class="card-body"
+      :class=" cardOpen ? 'show-card-body' : ''"
+    >
       <div class="left">
-        <div class="key">First sets</div>
-        <div class="key">Second sets</div>
-        <div class="key">Third sets</div>
-        <div class="key">Fourth sets</div>
-        <div class="key">Average volume</div>
+        <div class="key" v-if="movement1">{{movement1}}</div>
+        <div class="key" v-if="movement2">{{movement2}}</div>
+        <div class="key" v-if="movement3">{{movement3}}</div>
+        <div class="key" v-if="movement4">{{movement4}}</div>
+        <div class="key" v-if="score">Average volume</div>
       </div>
       <div class="right">
-        <div class="value">{{showErythema}}</div>
-        <div class="value">{{showEdemaPapulation}}</div>
-        <div class="value">{{showExcoriation}}</div>
-        <div class="value">{{showLichenification}}</div>
-        <div class="value">{{`${AreaScore}(${AreaPercent}%)`}}</div>
+        <div class="value" v-if="row1">{{row1}}</div>
+        <div class="value" v-if="row2">{{row2}}</div>
+        <div class="value" v-if="row3">{{row3}}</div>
+        <div class="value" v-if="row4">{{row4}}</div>
+        <div class="value" v-if="score">{{score / 4}}</div>
       </div>
     </div>
-    <div class="text">
-      Score per muscle group:
+    <div class="text" v-if="score">
+      Score muscle group:
       <span class="score">{{score}}</span>
     </div>
   </div>
@@ -258,7 +177,7 @@ export default {
       }
 
       & .key {
-        margin-bottom: 15px;
+        margin-bottom: 13px;
         font-weight: 300;
         font-size: 14px;
         color: #66757d;
@@ -277,7 +196,7 @@ export default {
       }
 
       & .value {
-        margin-bottom: 13px;
+        margin-bottom: 15px;
         font-weight: 300;
         font-size: 16px;
         color: #000000;
