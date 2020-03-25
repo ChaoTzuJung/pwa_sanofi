@@ -37,7 +37,7 @@ export default {
 <template>
   <div class="route" :style="isPwa ? {'padding-top': '52px'} : ''">
     <transition name="slide">
-      <div class="offlie" v-if="!isOnline && isPwa">App is offlie</div>
+      <div class="offline" v-if="!isOnline && isPwa">App is offline</div>
     </transition>
     <div
       class="overlay"
@@ -56,7 +56,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
-.offlie {
+.offline {
   position: fixed;
   top: 0;
   color: #fff;
