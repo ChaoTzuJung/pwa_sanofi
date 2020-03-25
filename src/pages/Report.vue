@@ -9,7 +9,6 @@ export default {
     ReportLayout,
   },
   created() {
-    console.log('created');
     window.scrollTo(0, 0);
   },
   beforeRouteEnter(to, from, next) {

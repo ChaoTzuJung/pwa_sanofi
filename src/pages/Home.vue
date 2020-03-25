@@ -9,13 +9,10 @@ export default {
     HomeLayout,
   },
   beforeCreate() {
-    console.log('beforeCreate');
     if (this.$store.hasModule('patient')) {
-      console.log('unregisterModule patient');
       this.$store.unregisterModule('patient');
     }
     if (this.$store.hasModule('calculator')) {
-      console.log('unregisterModule calculator');
       this.$store.unregisterModule('calculator');
     }
   },
