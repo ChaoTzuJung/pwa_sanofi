@@ -62,7 +62,7 @@ export default {
   <div
     class="card"
     :class=" cardOpen ? 'extand-card' : ''"
-    v-if="movement1 || movement2 || movemont3 || movement4"
+    v-if="movement1 || movement2 || movement3 || movement4"
   >
     <div class="card-title" @click="openCard">
       <div class="title">

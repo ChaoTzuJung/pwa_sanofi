@@ -49,22 +49,9 @@ export default {
     </div>
     <Dialog />
     <Header />
-    <!-- <keep-alive v-if="$route.meta.keepAlive">
-      <transition :name="isPwa ? `${direction}` : ''">
-        <router-view style="position: absolute;right: 0;left: 0"></router-view>
-      </transition>
-    </keep-alive>
-    <transition
-      :name="isPwa ? `${direction}` : ''">
-      <router-view v-if="!$route.meta.keepAlive" style="position: absolute;right: 0;left: 0">
-      </router-view>
-    </transition> -->
-    <keep-alive>
-      <transition :name="isPwa ? `${direction}` : ''">
-        <router-view class="view">
-        </router-view>
-      </transition>
-    </keep-alive>
+    <transition :name="isPwa ? `${direction}` : ''">
+      <router-view class="view"></router-view>
+    </transition>
   </div>
 </template>
 

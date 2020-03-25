@@ -1,8 +1,6 @@
 <script>
 import Footer from 'components/Common/Footer.vue';
 import HomeLayout from '@/layouts/Home/index.vue';
-import calculatorModule from '@/store/modules/calculator';
-import patientModule from '@/store/modules/patient';
 
 export default {
   name: 'HomePage',
@@ -10,12 +8,15 @@ export default {
     Footer,
     HomeLayout,
   },
-  mounted() {
-    if (!this.$store.hasModule('calculator')) {
-      this.$store.registerModule('calculator', calculatorModule());
+  beforeCreate() {
+    console.log('beforeCreate');
+    if (this.$store.hasModule('patient')) {
+      console.log('unregisterModule patient');
+      this.$store.unregisterModule('patient');
     }
-    if (!this.$store.hasModule('patient')) {
-      this.$store.registerModule('patient', patientModule());
+    if (this.$store.hasModule('calculator')) {
+      console.log('unregisterModule calculator');
+      this.$store.unregisterModule('calculator');
     }
   },
 };
