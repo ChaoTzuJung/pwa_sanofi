@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 // Give the service worker access to Firebase Messaging.
 
-importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js');
+importScripts('https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/7.10.0/firebase-messaging.js');
 
 // Initialize the Firebase app in the service worker by passing in the
 // messagingSenderId.

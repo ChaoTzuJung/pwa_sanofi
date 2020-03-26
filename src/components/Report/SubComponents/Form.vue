@@ -100,12 +100,14 @@ export default {
     },
     async sendData() {
       const checkedResult = await this.checkFormData();
+
       if (checkedResult) {
         // eslint-disable-next-line no-alert
         this.clearInput();
         this.errorMessage = '';
         this.recievers = [];
-        this.$store.commit('OPEN_DIALOG', { type: 'completeAlert', status: true });
+        // this.$store.commit('OPEN_DIALOG', { type: 'completeAlert', status: true });
+        this.$store.dispatch('pushNotification', { reciever: this.reciever });
       }
     },
   },

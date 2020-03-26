@@ -11,22 +11,22 @@ const askForPermissionToReceiveNotifications = async () => {
     // 先判斷cookies有沒有token，沒有再取token
     // eslint-disable-next-line no-useless-escape
     const token = document.cookie.replace(/(?:(?:^|.*;\\s*)augustusWsPush\s*\=\s*([^;]*).*$)|^.*$/, '$1') || null;
-
-    // cookies不存在，跟使用者要求通知權限
+    console.log('token: ', token);
+    // cookies 不存在，跟使用者要求通知權限
     if (token === null) {
       const currentToken = await messaging.getToken();
+      console.log('currentToken: ', currentToken);
       // token存至firebase
       const id = currentToken.split(':')[0];
       firebase.database().ref(`webUsers/${id}`).set({ token: currentToken });
       // token存至cookies
-      document.cookie = `augustusWsPush=${token}`;
+      document.cookie = `augustusWsPush=${currentToken}`;
     } else {
+      console.log('token2: ', token);
       // cookies 已存在，從 cookies 取出後傳至 firebase
       const id = token.split(':')[0];
       firebase.database().ref(`webUsers/${id}`).set({ token });
     }
-
-    // messaging.onMessage(payload => console.log('Message received. ', payload));
 
     // make user token to backend
     // const tokenData = new FormData();
